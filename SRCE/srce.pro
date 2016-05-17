@@ -12,12 +12,13 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = WApp
 TEMPLATE = app
 
-
+LIBS	+= -lGLU
 SOURCES += main.cpp\
         mainwindow.cpp \
     rubik.cpp
 
 HEADERS  += mainwindow.h \
-    rubik.hpp
+    rubik.h
 
-FORMS    += mainwindow.ui
+FORMS    += \
+    rubik.ui

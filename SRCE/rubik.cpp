@@ -1,14 +1,13 @@
-#include "rubik.hpp"
-#include <QtWidgets/QMainWindow>
-#include <QGLWidget>
-#include <QGridLayout>
+#include "rubik.h"
+#include "mainwindow.h"
 
+#include <QGridLayout>
 rubik::rubik(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags)
 {
     ui.setupUi(this);
     QGridLayout *gd=new QGridLayout(ui.groupBox);
-    Widget=new QGLWidget(ui.groupBox);
+    Widget=new GLWidget(ui.groupBox);
     gd->addWidget(Widget);
     Widget->show();
     Widget->setFocusPolicy(Qt::StrongFocus);

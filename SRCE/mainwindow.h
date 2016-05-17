@@ -1,22 +1,29 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
+#include <QGLWidget>
+#include <QMouseEvent>
 
-namespace Ui {
-class MainWindow;
-}
+ class GLWidget : public QGLWidget
+ {
+     Q_OBJECT
 
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
+ public:
+     GLWidget(QWidget *parent = 0);
+     ~GLWidget();
 
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+     QSize minimumSizeHint() const;
+     QSize sizeHint() const;
 
-private:
-    Ui::MainWindow *ui;
-};
 
-#endif // MAINWINDOW_H
+ protected:
+     void initializeGL();
+     void paintGL();
+     void resizeGL(int width, int height);
+
+ private:
+     GLuint makeObject();
+     QPoint lastPos;
+ };
+
+ #endif
