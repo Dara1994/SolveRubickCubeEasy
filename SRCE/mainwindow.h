@@ -17,6 +17,8 @@
 
 
  protected:
+     void mousePressEvent(QMouseEvent *event);
+     void mouseMoveEvent(QMouseEvent *event);
      void initializeGL();
      void paintGL();
      void resizeGL(int width, int height);

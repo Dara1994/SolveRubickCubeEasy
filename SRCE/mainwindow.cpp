@@ -1,4 +1,6 @@
 #include "mainwindow.h"
+#include <math.h>
+
 #include <GL/gl.h>
 #include <GL/glu.h>
 
@@ -80,6 +82,9 @@ class Cube
      void move(float dx,float dy,float dz);
      void drawCube();
      void drawWireCube();
+     void rotX(int angle);
+     void rotY(int angle);
+     void rotZ(int angle);
  };
 
 Cube::Cube(float x0,float y0,float z0,float a,int r1,int r2,int r3,int r4,int r5,int r6)
@@ -106,14 +111,73 @@ Cube::Cube(float x0,float y0,float z0,float a,int r1,int r2,int r3,int r4,int r5
 void Cube::drawCube()
 {
     glBegin(GL_QUADS);
-    glColor3fv(col[colors[0]]);
-    glNormal3fv(norm[0]);
-    glVertex3fv(coords[0]);
-    glVertex3fv(coords[1]);
-    glVertex3fv(coords[5]);
-    glVertex3fv(coords[4]);
 
     glEnd();
+}
+
+void Cube::move(float dx,float dy,float dz)
+{
+    int k;
+    for (k=0; k<8; k++) {
+        coords[k][0]+=dx;
+        coords[k][1]+=dy;
+        coords[k][2]+=dz;
+    }
+}
+
+void Cube::rotX(int angle)
+{
+    float f=angle*3.14159/180.;
+    float cosf=cos(f),sinf=sin(f);
+    float b,c;
+    int k;
+    for (k=0; k<8; k++) {
+        b=cosf*coords[k][1]-sinf*coords[k][2];
+        c=sinf*coords[k][1]+cosf*coords[k][2];
+        coords[k][1]=b; coords[k][2]=c;
+    }
+    for (k=0; k<6; k++) {
+        b=cosf*norm[k][1]-sinf*norm[k][2];
+        c=sinf*norm[k][1]+cosf*norm[k][2];
+        norm[k][1]=b; norm[k][2]=c;
+    }
+}
+
+void Cube::rotY(int angle)
+{
+    float f=angle*3.14159/180.;
+    float cosf=cos(f),sinf=sin(f);
+    float b,c;
+    int k;
+    for (k=0; k<8; k++) {
+        b=cosf*coords[k][2]-sinf*coords[k][0];
+        c=sinf*coords[k][2]+cosf*coords[k][0];
+        coords[k][2]=b; coords[k][0]=c;
+    }
+    for (k=0; k<6; k++) {
+        b=cosf*norm[k][2]-sinf*norm[k][0];
+        c=sinf*norm[k][2]+cosf*norm[k][0];
+        norm[k][2]=b; norm[k][0]=c;
+    }
+}
+
+
+void Cube::rotZ(int angle)
+{
+    float f=angle*3.14159/180.;
+    float cosf=cos(f),sinf=sin(f);
+    float b,c;
+    int k;
+    for (k=0; k<8; k++) {
+        b=cosf*coords[k][0]-sinf*coords[k][1];
+        c=sinf*coords[k][0]+cosf*coords[k][1];
+        coords[k][0]=b; coords[k][1]=c;
+    }
+    for (k=0; k<6; k++) {
+        b=cosf*norm[k][0]-sinf*norm[k][1];
+        c=sinf*norm[k][0]+cosf*norm[k][1];
+        norm[k][0]=b; norm[k][1]=c;
+    }
 }
 
 
@@ -293,6 +357,68 @@ int processHits (GLint hits, GLuint buffer[])
     }
     return ret;
 }
+void GLWidget::mousePressEvent(QMouseEvent *event)
+{
+    lastPos = event->pos();
+    if (event->buttons() & Qt::RightButton) {
+
+        GLint viewport[4];
+        int x=lastPos.x();
+        int y=lastPos.y();
+
+        glGetIntegerv(GL_VIEWPORT,viewport);
+        unsigned int buffer[1000];
+
+
+
+        glSelectBuffer(1000,buffer);
+        glRenderMode(GL_SELECT);
+        glInitNames();
+        glPushName(100);
+
+        glMatrixMode (GL_PROJECTION);
+        glPushMatrix();
+
+        glLoadIdentity();
+
+        gluPickMatrix(x,viewport[3]+2*viewport[1]-y,3,3,viewport);
+        ORTHOFRUSTRUM;
+
+        updateGL();
+
+        glMatrixMode (GL_PROJECTION);
+        glPopMatrix();
+
+    }
+}
+
+ void GLWidget::mouseMoveEvent(QMouseEvent *event)
+ {
+     int dx = event->x() - lastPos.x();
+     int dy = event->y() - lastPos.y();
+
+     if (event->buttons() & Qt::LeftButton) {
+
+
+         GLfloat pmat[16];
+
+         glMatrixMode (GL_MODELVIEW);
+    glGetFloatv(GL_MODELVIEW_MATRIX,pmat);
+    glLoadIdentity();
+
+    glRotatef(dy,1, 0,0);
+    glRotatef(dx, 0,1,0);
+    glMultMatrixf(pmat);
+    glGetFloatv(GL_MODELVIEW_MATRIX,pmat);
+    pmat[12]=0; pmat[13]=0; pmat[14]=-dist;
+    glLoadMatrixf(pmat);
+
+
+         updateGL();
+
+     }
+     lastPos = event->pos();
+ }
 
  GLuint GLWidget::makeObject()
  {
