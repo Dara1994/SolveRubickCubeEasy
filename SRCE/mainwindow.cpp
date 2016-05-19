@@ -59,8 +59,8 @@ char MoveBuffer::popBuffer()
     return 0;
 }
 
-
-float col[][3]={{0.1,0.1,0.1},{1,0,0},{0,1,0},{0,0,1},{1,1,0},{1,0,1},{0,1,1}};
+//bojenje kocke
+float col[][3]={{0.1,0.1,0.1},{0.8,0,0},{0,0.8,0},{0,0,0.8},{0.8,0.8,0},{0.8,0,0.8},{0,0.8,0.8}};
 
 int map[6][3][3]=
 {{{1,1,1},{1,1,1},{1,1,1}},
@@ -111,7 +111,47 @@ Cube::Cube(float x0,float y0,float z0,float a,int r1,int r2,int r3,int r4,int r5
 void Cube::drawCube()
 {
     glBegin(GL_QUADS);
+       glColor3fv(col[colors[0]]);
+       glNormal3fv(norm[0]);
+       glVertex3fv(coords[0]);
+       glVertex3fv(coords[1]);
+       glVertex3fv(coords[5]);
+       glVertex3fv(coords[4]);
 
+       glColor3fv(col[colors[1]]);
+       glNormal3fv(norm[1]);
+       glVertex3fv(coords[0]);
+       glVertex3fv(coords[4]);
+       glVertex3fv(coords[6]);
+       glVertex3fv(coords[2]);
+
+       glColor3fv(col[colors[2]]);
+       glNormal3fv(norm[2]);
+       glVertex3fv(coords[4]);
+       glVertex3fv(coords[5]);
+       glVertex3fv(coords[7]);
+       glVertex3fv(coords[6]);
+
+       glColor3fv(col[colors[3]]);
+       glNormal3fv(norm[3]);
+       glVertex3fv(coords[0]);
+       glVertex3fv(coords[2]);
+       glVertex3fv(coords[3]);
+       glVertex3fv(coords[1]);
+
+       glColor3fv(col[colors[4]]);
+       glNormal3fv(norm[4]);
+       glVertex3fv(coords[1]);
+       glVertex3fv(coords[3]);
+       glVertex3fv(coords[7]);
+       glVertex3fv(coords[5]);
+
+       glColor3fv(col[colors[5]]);
+       glNormal3fv(norm[5]);
+       glVertex3fv(coords[2]);
+       glVertex3fv(coords[6]);
+       glVertex3fv(coords[7]);
+       glVertex3fv(coords[3]);
     glEnd();
 }
 
@@ -498,13 +538,13 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
         }
 
         glBegin(GL_LINES);
-        glLineWidth(6);
+        glLineWidth(20);
         //iscrtavanje linija rotacije: vrtex-odakle polazi linija
-        glColor3f(1,.2,.2);
+        glColor3f(1,.5,.5);
         glVertex3f(0,0,0); glVertex3f(1,0,0);
-        glColor3f(.2,1,.2);
+        glColor3f(.5,1,.5);
         glVertex3f(0,0,0); glVertex3f(0,1,0);
-        glColor3f(.2,.2,1);
+        glColor3f(.5,.5,1);
         glVertex3f(0,0,0); glVertex3f(0,0,1);
         glEnd();
     }

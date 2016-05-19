@@ -32,25 +32,49 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTextBrowser" name="Game_explained">
+   <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>10</y>
-      <width>201</width>
-      <height>511</height>
+      <x>150</x>
+      <y>30</y>
+      <width>441</width>
+      <height>501</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">QTextBrowser {
+     <string notr="true">QGroupBox {
+background-color: rgb(181, 177, 177);
+border: 5px solid black;
+border-radius: 5px;
+margin-top: 1ex; /* leave space at the top for the title */
+}</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>30</y>
+      <width>160</width>
+      <height>521</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QTextBrowser" name="Game_explained">
+       <property name="styleSheet">
+        <string notr="true">QTextBrowser {
 background-color: rgb(180, 171, 171);
  border: 2px solid gray;
  border-radius: 5px;
  margin-top: 1ex; /* leave space at the top for the title */
 }</string>
-    </property>
-    <property name="html">
-     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+       </property>
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -69,79 +93,72 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial'; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial'; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Steps:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPlainTextEdit" name="plainTextEdit"/>
+     </item>
+    </layout>
    </widget>
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>50</y>
-      <width>561</width>
-      <height>351</height>
+      <x>10</x>
+      <y>90</y>
+      <width>131</width>
+      <height>201</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">QGroupBox {
-background-color: rgb(181, 177, 177);
-border: 2px solid gray;
- border-radius: 5px;
- margin-top: 1ex; /* leave space at the top for the title */
-}</string>
-    </property>
-    <property name="title">
-     <string/>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QPushButton" name="I_give_up">
+       <property name="text">
+        <string>I give up!</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Make_a_cube">
+       <property name="text">
+        <string>Make a cube!</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="New_game">
+       <property name="text">
+        <string>New game!</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Solve it!</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QPushButton" name="Make_a_cube">
+   <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>460</y>
-      <width>169</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Make a cube!</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="New_game">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
+      <x>620</x>
       <y>10</y>
-      <width>169</width>
-      <height>41</height>
+      <width>158</width>
+      <height>17</height>
      </rect>
     </property>
     <property name="text">
-     <string>New game!</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="I_give_up">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>10</y>
-      <width>171</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>I give up!</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>460</y>
-      <width>211</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Show me how to solve it</string>
+     <string>Commands:</string>
     </property>
    </widget>
   </widget>
