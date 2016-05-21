@@ -67,7 +67,7 @@ margin-top: 1ex; /* leave space at the top for the title */
       <widget class="QTextBrowser" name="Game_explained">
        <property name="styleSheet">
         <string notr="true">QTextBrowser {
-background-color: rgb(180, 171, 171);
+background-color: rgb(255, 255, 255);
  border: 2px solid gray;
  border-radius: 5px;
  margin-top: 1ex; /* leave space at the top for the title */
