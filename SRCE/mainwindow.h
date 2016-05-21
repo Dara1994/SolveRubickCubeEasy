@@ -15,6 +15,8 @@
      QSize minimumSizeHint() const;
      QSize sizeHint() const;
 
+      void rotLD();
+
 
  protected:
      void mousePressEvent(QMouseEvent *event);
@@ -22,9 +24,11 @@
      void initializeGL();
      void paintGL();
      void resizeGL(int width, int height);
+     void keyPressEvent( QKeyEvent * event );
 
  private:
      GLuint makeObject();
+
      QPoint lastPos;
  };
 

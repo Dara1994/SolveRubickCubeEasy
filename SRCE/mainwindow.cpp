@@ -3,13 +3,14 @@
 
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include <QTime>
 
 float R=0.2,S=0.16;
 float dist=7;
 #define ORTHOFRUSTRUM glFrustum (-.3, .3, -.3, .3, 4, 10);
 
-//float DT=500.;
-//int way=1;
+float DT=500.;
+int way=1;
 
 class MoveBuffer {
     char *movBuffer;
@@ -164,6 +165,15 @@ void Cube::move(float dx,float dy,float dz)
         coords[k][2]+=dz;
     }
 }
+void GLWidget::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_F){
+        rotLD();
+        Buffer.pushBuffer(1);
+
+    }
+}
+
 
 void Cube::rotX(int angle)
 {
@@ -279,6 +289,71 @@ void resetCube()
     A[26]=new Cube( R, R, R,S,		           0,           0,map[2][2][2],		           0,map[4][2][0],map[5][2][2]);
 
 }
+#define SHIFT_FACE(a_)\
+tmp[0]=map[a_][2][2]; tmp[1]=map[a_][1][2];\
+tmp[2]=map[a_][0][2]; tmp[3]=map[a_][0][1];\
+tmp[4]=map[a_][0][0]; tmp[5]=map[a_][1][0];\
+tmp[6]=map[a_][2][0]; tmp[7]=map[a_][2][1];\
+map[a_][2][2]=tmp[6]; map[a_][1][2]=tmp[7];\
+map[a_][0][2]=tmp[0]; map[a_][0][1]=tmp[1];\
+map[a_][0][0]=tmp[2]; map[a_][1][0]=tmp[3];\
+map[a_][2][0]=tmp[4]; map[a_][2][1]=tmp[5];
+
+
+#define DESHIFT_FACE(a_)\
+tmp[6]=map[a_][2][2]; tmp[7]=map[a_][1][2];\
+tmp[0]=map[a_][0][2]; tmp[1]=map[a_][0][1];\
+tmp[2]=map[a_][0][0]; tmp[3]=map[a_][1][0];\
+tmp[4]=map[a_][2][0]; tmp[5]=map[a_][2][1];\
+map[a_][2][2]=tmp[0]; map[a_][1][2]=tmp[1];\
+map[a_][0][2]=tmp[2]; map[a_][0][1]=tmp[3];\
+map[a_][0][0]=tmp[4]; map[a_][1][0]=tmp[5];\
+map[a_][2][0]=tmp[6]; map[a_][2][1]=tmp[7];
+
+void  GLWidget::rotLD()
+{
+    int tmp[8];
+    if (way==1) {
+        SHIFT_FACE(1);
+        tmp[0]=map[5][2][0]; tmp[1]=map[5][1][0]; tmp[2]=map[5][0][0];
+        map[5][2][0]=map[3][2][0]; map[5][1][0]=map[3][1][0]; map[5][0][0]=map[3][0][0];
+        map[3][2][0]=map[0][0][0]; map[3][1][0]=map[0][1][0]; map[3][0][0]=map[0][2][0];
+        map[0][0][0]=map[2][0][0]; map[0][1][0]=map[2][1][0]; map[0][2][0]=map[2][2][0];
+        map[2][0][0]=tmp[0]; map[2][1][0]=tmp[1]; map[2][2][0]=tmp[2];
+    } else {
+        DESHIFT_FACE(1);
+        tmp[0]=map[2][0][0]; tmp[1]=map[2][1][0]; tmp[2]=map[2][2][0];
+        map[2][0][0]=map[0][0][0]; map[2][1][0]=map[0][1][0]; map[2][2][0]=map[0][2][0];
+        map[0][0][0]=map[3][2][0]; map[0][1][0]=map[3][1][0]; map[0][2][0]=map[3][0][0];
+        map[3][2][0]=map[5][2][0]; map[3][1][0]=map[5][1][0]; map[3][0][0]=map[5][0][0];
+        map[5][2][0]=tmp[0]; map[5][1][0]=tmp[1]; map[5][0][0]=tmp[2];
+    }
+
+    int k;
+    int r;
+    float fr;
+    QTime time;
+
+    k=0;
+    fr=0;
+    while (k<90) {
+        time.start();
+        updateGL();
+        fr+=(time.elapsed()*90.)/DT;
+        r=fr; fr-=r;
+        if (k+r>90) r=90-k;
+        k=k+r;
+        if (way==0) r=-r;
+        A[0]->rotX(r); A[3]->rotX(r); A[6]->rotX(r);
+        A[9]->rotX(r); A[12]->rotX(r); A[15]->rotX(r);
+        A[18]->rotX(r); A[21]->rotX(r); A[24]->rotX(r);
+
+    }
+
+    updateGL();
+    resetCube();
+}
+
 
 
 
