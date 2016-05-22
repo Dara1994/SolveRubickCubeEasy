@@ -17,6 +17,7 @@
 
       void rotLD();
       void rotLU();
+      void rotRD();
 
 
  protected:
