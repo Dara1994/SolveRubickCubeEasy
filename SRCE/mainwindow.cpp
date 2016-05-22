@@ -169,16 +169,19 @@ void GLWidget::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_F){
         rotLD();
-        Buffer.pushBuffer(1);
+        Buffer.pushBuffer('F');
     }
     if(event->key() == Qt::Key_D){
         rotLU();
-        Buffer.pushBuffer(2);
+        Buffer.pushBuffer('D');
     }
     if(event->key() == Qt::Key_J){
         rotRD();
-        Buffer.pushBuffer(3);
-
+        Buffer.pushBuffer('J');
+    }
+    if(event->key() == Qt::Key_K){
+        rotRU();
+        Buffer.pushBuffer('K');
     }
 }
 
@@ -447,7 +450,50 @@ void  GLWidget::rotRD()
     resetCube();
 
 }
+void  GLWidget::rotRU()
+{
+    int tmp[8];
+    if (way!=1) {
+        SHIFT_FACE(4);
+        tmp[0]=map[5][0][2]; tmp[1]=map[5][1][2]; tmp[2]=map[5][2][2];
+        map[5][0][2]=map[3][0][2]; map[5][1][2]=map[3][1][2]; map[5][2][2]=map[3][2][2];
+        map[3][0][2]=map[0][2][2]; map[3][1][2]=map[0][1][2]; map[3][2][2]=map[0][0][2];
+        map[0][2][2]=map[2][2][2]; map[0][1][2]=map[2][1][2]; map[0][0][2]=map[2][0][2];
+        map[2][2][2]=tmp[0]; map[2][1][2]=tmp[1]; map[2][0][2]=tmp[2];
 
+    } else {
+        DESHIFT_FACE(4);
+        tmp[0]=map[2][2][2]; tmp[1]=map[2][1][2]; tmp[2]=map[2][0][2];
+        map[2][2][2]=map[0][2][2]; map[2][1][2]=map[0][1][2]; map[2][0][2]=map[0][0][2];
+        map[0][2][2]=map[3][0][2]; map[0][1][2]=map[3][1][2]; map[0][0][2]=map[3][2][2];
+        map[3][0][2]=map[5][0][2]; map[3][1][2]=map[5][1][2]; map[3][2][2]=map[5][2][2];
+        map[5][0][2]=tmp[0]; map[5][1][2]=tmp[1]; map[5][2][2]=tmp[2];
+    }
+
+    int k;
+    int r;
+    float fr;
+    QTime time;
+
+    k=0;
+    fr=0;
+    while (k<90) {
+        time.start();
+        updateGL();
+        fr+=(time.elapsed()*90.)/DT;
+        r=fr; fr-=r;
+        if (k+r>90) r=90-k;
+        k=k+r;
+        if (way==0) r=-r;
+        A[2]->rotX(-r); A[5]->rotX(-r); A[8]->rotX(-r);
+        A[11]->rotX(-r); A[14]->rotX(-r); A[17]->rotX(-r);
+        A[20]->rotX(-r); A[23]->rotX(-r); A[26]->rotX(-r);
+    }
+
+    updateGL();
+    resetCube();
+
+}
 
  GLWidget::GLWidget(QWidget *parent)
      : QGLWidget(parent)

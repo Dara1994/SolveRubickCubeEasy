@@ -18,7 +18,7 @@
       void rotLD();
       void rotLU();
       void rotRD();
-
+      void rotRU();
 
  protected:
      void mousePressEvent(QMouseEvent *event);
