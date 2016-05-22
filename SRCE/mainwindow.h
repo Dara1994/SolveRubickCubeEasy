@@ -16,6 +16,7 @@
      QSize sizeHint() const;
 
       void rotLD();
+      void rotLU();
 
 
  protected:
