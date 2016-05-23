@@ -22,6 +22,7 @@
 
       void  rotFR();
       void  rotTL();
+      void  rotTR();
 
 
  protected:
