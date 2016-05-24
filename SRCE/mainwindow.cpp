@@ -167,6 +167,27 @@ void Cube::move(float dx,float dy,float dz)
 }
 void GLWidget::keyPressEvent(QKeyEvent *event)
 {
+    if(event->key() == Qt::Key_W){
+        DT=100;
+        int k;
+        for (;;) {
+              k=Buffer.popBuffer();
+              if (k>0) way=0; else way=1;
+              if (k<0) k=-k;
+              switch (k) {
+              case 'F': rotLD(); break;
+              case 'D': rotLU(); break;
+              case 'J': rotRD(); break;
+              case 'K': rotRU(); break;
+              case 'H': rotFR(); break;
+              case 'R': rotTL(); break;
+              case 'I': rotTR(); break;
+              }
+              if (k==0) break;
+        }
+        DT=500;
+        way=1;
+    }
     if(event->key() == Qt::Key_F){
         rotLD();
         Buffer.pushBuffer('F');
