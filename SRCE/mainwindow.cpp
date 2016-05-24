@@ -167,27 +167,6 @@ void Cube::move(float dx,float dy,float dz)
 }
 void GLWidget::keyPressEvent(QKeyEvent *event)
 {
-    if(event->key() == Qt::Key_W){
-        DT=100;
-        int k;
-        for (;;) {
-              k=Buffer.popBuffer();
-              if (k>0) way=0; else way=1;
-              if (k<0) k=-k;
-              switch (k) {
-              case 'F': rotLD(); break;
-              case 'D': rotLU(); break;
-              case 'J': rotRD(); break;
-              case 'K': rotRU(); break;
-              case 'H': rotFR(); break;
-              case 'R': rotTL(); break;
-              case 'I': rotTR(); break;
-              }
-              if (k==0) break;
-        }
-        DT=500;
-        way=1;
-    }
     if(event->key() == Qt::Key_F){
         rotLD();
         Buffer.pushBuffer('F');
@@ -216,6 +195,19 @@ void GLWidget::keyPressEvent(QKeyEvent *event)
         rotTR();
         Buffer.pushBuffer('I');
     }
+    if(event->key() == Qt::Key_G){
+        rotFL();
+        Buffer.pushBuffer('G');
+    }
+    if(event->key() == Qt::Key_C){
+         rotDL();
+         Buffer.pushBuffer('C');
+    }
+    if(event->key() == Qt::Key_M){
+        rotDR();
+        Buffer.pushBuffer('M');
+    }
+
 }
 
 
@@ -236,7 +228,6 @@ void Cube::rotX(int angle)
         norm[k][1]=b; norm[k][2]=c;
     }
 }
-
 void Cube::rotY(int angle)
 {
     float f=angle*3.14159/180.;
@@ -254,8 +245,6 @@ void Cube::rotY(int angle)
         norm[k][2]=b; norm[k][0]=c;
     }
 }
-
-
 void Cube::rotZ(int angle)
 {
     float f=angle*3.14159/180.;
@@ -273,8 +262,6 @@ void Cube::rotZ(int angle)
         norm[k][0]=b; norm[k][1]=c;
     }
 }
-
-
 void Cube::drawWireCube()
 {
     glEnableClientState(GL_VERTEX_ARRAY);
@@ -286,11 +273,9 @@ void Cube::drawWireCube()
     glDrawElements(GL_LINE_STRIP,10,GL_UNSIGNED_INT,(void *)P);
     static unsigned int P1[]={1,5,2,6,3,7};
     glDrawElements(GL_LINES,6,GL_UNSIGNED_INT,(void *)P1);
+
 }
-
 Cube *A[27]={0};
-
-
 void resetCube()
 {
     int k;
@@ -353,7 +338,6 @@ map[a_][2][2]=tmp[0]; map[a_][1][2]=tmp[1];\
 map[a_][0][2]=tmp[2]; map[a_][0][1]=tmp[3];\
 map[a_][0][0]=tmp[4]; map[a_][1][0]=tmp[5];\
 map[a_][2][0]=tmp[6]; map[a_][2][1]=tmp[7];
-
 void  GLWidget::rotLD()
 {
     int tmp[8];
@@ -527,7 +511,6 @@ void  GLWidget::rotRU()
     resetCube();
 
 }
-
 void  GLWidget::rotFR()
 {
     int tmp[8];
@@ -571,7 +554,49 @@ void  GLWidget::rotFR()
     resetCube();
 
 }
+void  GLWidget::rotFL()
+{
+    int tmp[8];
+    if (way==1) {
+        DESHIFT_FACE(2);
+        tmp[0]=map[1][2][0]; tmp[1]=map[1][2][1]; tmp[2]=map[1][2][2];
+        map[1][2][0]=map[0][2][0]; map[1][2][1]=map[0][2][1]; map[1][2][2]=map[0][2][2];
+        map[0][2][0]=map[4][2][2]; map[0][2][1]=map[4][2][1]; map[0][2][2]=map[4][2][0];
+        map[4][2][2]=map[5][2][2]; map[4][2][1]=map[5][2][1]; map[4][2][0]=map[5][2][0];
+        map[5][2][2]=tmp[0]; map[5][2][1]=tmp[1]; map[5][2][0]=tmp[2];
+    } else {
+        SHIFT_FACE(2);
+        tmp[0]=map[5][2][2]; tmp[1]=map[5][2][1]; tmp[2]=map[5][2][0];
+        map[5][2][2]=map[4][2][2]; map[5][2][1]=map[4][2][1]; map[5][2][0]=map[4][2][0];
+        map[4][2][2]=map[0][2][0]; map[4][2][1]=map[0][2][1]; map[4][2][0]=map[0][2][2];
+        map[0][2][0]=map[1][2][0]; map[0][2][1]=map[1][2][1]; map[0][2][2]=map[1][2][2];
+        map[1][2][0]=tmp[0]; map[1][2][1]=tmp[1]; map[1][2][2]=tmp[2];
+    }
 
+    int k;
+    int r;
+    float fr;
+    QTime time;
+
+    k=0;
+    fr=0;
+    while (k<90) {
+        time.start();
+        updateGL();
+        fr+=(time.elapsed()*90.)/DT;
+        r=fr; fr-=r;
+        if (k+r>90) r=90-k;
+        k=k+r;
+        if (way==0) r=-r;
+        A[18]->rotZ(r); A[19]->rotZ(r); A[20]->rotZ(r);
+        A[21]->rotZ(r); A[22]->rotZ(r); A[23]->rotZ(r);
+        A[24]->rotZ(r); A[25]->rotZ(r); A[26]->rotZ(r);
+    }
+
+    updateGL();
+    resetCube();
+
+}
 void  GLWidget::rotTL()
 {
     int tmp[8];
@@ -615,7 +640,6 @@ void  GLWidget::rotTL()
     resetCube();
 
 }
-
 void  GLWidget::rotTR()
 {
     int tmp[8];
@@ -659,7 +683,95 @@ void  GLWidget::rotTR()
     resetCube();
 
 }
+void  GLWidget::rotDL()
+{
+    int tmp[8];
 
+    if (way!=1) {
+        SHIFT_FACE(0);
+        tmp[0]=map[1][2][2]; tmp[1]=map[1][1][2]; tmp[2]=map[1][0][2];
+        map[1][2][2]=map[3][0][0]; map[1][1][2]=map[3][0][1]; map[1][0][2]=map[3][0][2];
+        map[3][0][0]=map[4][0][2]; map[3][0][1]=map[4][1][2]; map[3][0][2]=map[4][2][2];
+        map[4][0][2]=map[2][0][2]; map[4][1][2]=map[2][0][1]; map[4][2][2]=map[2][0][0];
+        map[2][0][2]=tmp[0]; map[2][0][1]=tmp[1]; map[2][0][0]=tmp[2];
+    } else {
+        DESHIFT_FACE(0);
+        tmp[0]=map[2][0][2]; tmp[1]=map[2][0][1]; tmp[2]=map[2][0][0];
+        map[2][0][2]=map[4][0][2]; map[2][0][1]=map[4][1][2]; map[2][0][0]=map[4][2][2];
+        map[4][0][2]=map[3][0][0]; map[4][1][2]=map[3][0][1]; map[4][2][2]=map[3][0][2];
+        map[3][0][0]=map[1][2][2]; map[3][0][1]=map[1][1][2]; map[3][0][2]=map[1][0][2];
+        map[1][2][2]=tmp[0]; map[1][1][2]=tmp[1]; map[1][0][2]=tmp[2];
+    }
+
+    int k;
+    int r;
+    float fr;
+    QTime time;
+
+    k=0;
+    fr=0;
+    while (k<90) {
+        time.start();
+        updateGL();
+        fr+=(time.elapsed()*90.)/DT;
+        r=fr; fr-=r;
+        if (k+r>90) r=90-k;
+        k=k+r;
+        if(way==0) r=-r;
+        A[0]->rotY(-r); A[1]->rotY(-r); A[2]->rotY(-r);
+        A[9]->rotY(-r); A[10]->rotY(-r); A[11]->rotY(-r);
+        A[18]->rotY(-r); A[19]->rotY(-r); A[20]->rotY(-r);
+    }
+
+    updateGL();
+    resetCube();
+
+}
+void GLWidget::rotDR()
+{
+    int tmp[8];
+
+    if (way==1) {
+        SHIFT_FACE(0);
+        tmp[0]=map[1][2][2]; tmp[1]=map[1][1][2]; tmp[2]=map[1][0][2];
+        map[1][2][2]=map[3][0][0]; map[1][1][2]=map[3][0][1]; map[1][0][2]=map[3][0][2];
+        map[3][0][0]=map[4][0][2]; map[3][0][1]=map[4][1][2]; map[3][0][2]=map[4][2][2];
+        map[4][0][2]=map[2][0][2]; map[4][1][2]=map[2][0][1]; map[4][2][2]=map[2][0][0];
+        map[2][0][2]=tmp[0]; map[2][0][1]=tmp[1]; map[2][0][0]=tmp[2];
+    } else {
+        DESHIFT_FACE(0);
+        tmp[0]=map[2][0][2]; tmp[1]=map[2][0][1]; tmp[2]=map[2][0][0];
+        map[2][0][2]=map[4][0][2]; map[2][0][1]=map[4][1][2]; map[2][0][0]=map[4][2][2];
+        map[4][0][2]=map[3][0][0]; map[4][1][2]=map[3][0][1]; map[4][2][2]=map[3][0][2];
+        map[3][0][0]=map[1][2][2]; map[3][0][1]=map[1][1][2]; map[3][0][2]=map[1][0][2];
+        map[1][2][2]=tmp[0]; map[1][1][2]=tmp[1]; map[1][0][2]=tmp[2];
+    }
+
+    int k;
+    int r;
+    float fr;
+    QTime time;
+
+    k=0;
+    fr=0;
+    while (k<90) {
+        time.start();
+        updateGL();
+        fr+=(time.elapsed()*90.)/DT;
+        r=fr; fr-=r;
+        if (k+r>90) r=90-k;
+        k=k+r;
+        if (way==0) r=-r;
+        A[0]->rotY(r); A[1]->rotY(r); A[2]->rotY(r);
+        A[9]->rotY(r); A[10]->rotY(r); A[11]->rotY(r);
+        A[18]->rotY(r); A[19]->rotY(r); A[20]->rotY(r);
+
+    }
+
+    resetCube();
+
+    updateGL();
+    }
 
  GLWidget::GLWidget(QWidget *parent)
      : QGLWidget(parent)
