@@ -557,15 +557,15 @@ void  GLWidget::rotFR()
 void  GLWidget::rotFL()
 {
     int tmp[8];
-    if (way==1) {
-        DESHIFT_FACE(2);
+    if (way!=1) {
+        SHIFT_FACE(2);
         tmp[0]=map[1][2][0]; tmp[1]=map[1][2][1]; tmp[2]=map[1][2][2];
         map[1][2][0]=map[0][2][0]; map[1][2][1]=map[0][2][1]; map[1][2][2]=map[0][2][2];
         map[0][2][0]=map[4][2][2]; map[0][2][1]=map[4][2][1]; map[0][2][2]=map[4][2][0];
         map[4][2][2]=map[5][2][2]; map[4][2][1]=map[5][2][1]; map[4][2][0]=map[5][2][0];
         map[5][2][2]=tmp[0]; map[5][2][1]=tmp[1]; map[5][2][0]=tmp[2];
     } else {
-        SHIFT_FACE(2);
+        DESHIFT_FACE(2);
         tmp[0]=map[5][2][2]; tmp[1]=map[5][2][1]; tmp[2]=map[5][2][0];
         map[5][2][2]=map[4][2][2]; map[5][2][1]=map[4][2][1]; map[5][2][0]=map[4][2][0];
         map[4][2][2]=map[0][2][0]; map[4][2][1]=map[0][2][1]; map[4][2][0]=map[0][2][2];
@@ -597,6 +597,7 @@ void  GLWidget::rotFL()
     resetCube();
 
 }
+
 void  GLWidget::rotTL()
 {
     int tmp[8];
