@@ -1113,6 +1113,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
 
         glBegin(GL_LINES);
         glLineWidth(20);
+
         //iscrtavanje linija rotacije: vrtex-odakle polazi linija
         glColor3f(1,.5,.5);
         glVertex3f(0,0,0); glVertex3f(1,0,0);
