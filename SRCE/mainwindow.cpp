@@ -207,6 +207,12 @@ void GLWidget::keyPressEvent(QKeyEvent *event)
         rotDR();
         Buffer.pushBuffer('M');
     }
+    if(event->key() == Qt::Key_Q){
+        RandomCube();
+        Buffer.pushBuffer('Q');
+    }
+    // adding here down
+
     if(event->key() == Qt::Key_W){
         DT=100;
         int k;
@@ -225,6 +231,7 @@ void GLWidget::keyPressEvent(QKeyEvent *event)
                 case 'J': rotRD(); break;
                 case 'K': rotRU(); break;
                 case 'M': rotDR(); break;
+
              }
              if (k==0) break;
         }
@@ -402,7 +409,8 @@ void  GLWidget::rotLD()
     updateGL();
     resetCube();
 }
-void GLWidget::rotLU(){
+void GLWidget::rotLU()
+{
     int tmp[8];
     if (way!=1) {
         SHIFT_FACE(1);
@@ -618,7 +626,6 @@ void  GLWidget::rotFL()
     resetCube();
 
 }
-
 void  GLWidget::rotTL()
 {
     int tmp[8];
@@ -794,6 +801,61 @@ void GLWidget::rotDR()
 
     updateGL();
     }
+
+void GLWidget::RandomCube()
+{
+int number = 10;
+int n=20;
+int valueR;
+for(int i=0; i<n;i++){
+    valueR= qrand()%number;
+    switch(valueR){
+    case 0:
+        rotLD();
+         Buffer.pushBuffer('F');
+        break;
+    case 1:
+        rotLU();
+         Buffer.pushBuffer('D');
+        break;
+    case 2:
+        rotRD();
+         Buffer.pushBuffer('J');
+        break;
+    case 3:
+        rotRU();
+         Buffer.pushBuffer('K');
+        break;
+    case 4:
+        rotFR();
+         Buffer.pushBuffer('H');
+        break;
+    case 5:
+        rotFL();
+        Buffer.pushBuffer('G');
+        break;
+    case 6:
+        rotTL();
+         Buffer.pushBuffer('R');
+        break;
+    case 7:
+        rotTR();
+         Buffer.pushBuffer('I');
+        break;
+    case 9:
+        rotDL();
+         Buffer.pushBuffer('C');
+        break;
+    case 8:
+        rotDR();
+         Buffer.pushBuffer('M');
+        break;
+    }
+}
+}
+
+
+
 
  GLWidget::GLWidget(QWidget *parent)
      : QGLWidget(parent)

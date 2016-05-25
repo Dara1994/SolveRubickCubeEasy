@@ -27,7 +27,7 @@
       void rotDL();
       void rotDR();
       void rotFL();
-
+void RandomCube();
  protected:
      void mousePressEvent(QMouseEvent *event);
      void mouseMoveEvent(QMouseEvent *event);
