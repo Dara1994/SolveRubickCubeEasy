@@ -310,11 +310,7 @@ void resetCube()
     for (k=0; k<27; k++) {
          delete A[k];
     }
-    int k1,k2,k3;
-     k=0;
-     int c1,c2,c3,c4,c5,c6;
-
-
+    k=0;
     A[ 0]=new Cube(-R,-R,-R,S,		map[0][0][0],map[1][0][2],           0,		map[3][0][0],           0,           0);
     A[ 1]=new Cube( 0,-R,-R,S,		map[0][0][1],           0,           0,		map[3][0][1],           0,           0);
     A[ 2]=new Cube( R,-R,-R,S,		map[0][0][2],           0,           0,		map[3][0][2],map[4][0][2],           0);
@@ -912,11 +908,7 @@ GLfloat light_position[] = { 1, 0, 0, 1 };
 void GLWidget::paintGL()
 {
 
-    float ww=3.14159/180.;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-
-
     makeObject();
 }
 
@@ -935,7 +927,7 @@ void GLWidget::paintGL()
 
 int processHits (GLint hits, GLuint buffer[])
 {
-    unsigned int i, j;
+    int i, j;
     float z1,z2;
     int hit;
 
