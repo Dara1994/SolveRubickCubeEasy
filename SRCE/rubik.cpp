@@ -1,4 +1,5 @@
 #include "rubik.h"
+#include "pokreti.h"
 #include "mainwindow.h"
 
 #include <QGridLayout>

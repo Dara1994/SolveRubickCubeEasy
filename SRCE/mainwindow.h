@@ -1,8 +1,18 @@
+/*! \file mainwindow.h
+ * \brief Definisana vecina funkcija
+ *
+ * Definisana Clasa GLWidget koja nasleduje QLWidget
+*/
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "pokreti.h"
 #include <QGLWidget>
 #include <QMouseEvent>
+
+
+
 
  class GLWidget : public QGLWidget
  {
@@ -15,19 +25,9 @@
      QSize minimumSizeHint() const;
      QSize sizeHint() const;
 
-      void rotLD();
-      void rotLU();
-      void rotRD();
-      void rotRU();
 
-      void  rotFR();
-      void  rotTL();
-      void  rotTR();
-
-      void rotDL();
-      void rotDR();
-      void rotFL();
 void RandomCube();
+
  protected:
      void mousePressEvent(QMouseEvent *event);
      void mouseMoveEvent(QMouseEvent *event);
