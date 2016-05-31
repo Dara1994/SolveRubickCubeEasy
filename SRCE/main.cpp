@@ -1,3 +1,6 @@
+/*! \file main.cpp
+ * \brief Main funkcija
+ */
 #include <QtWidgets/QApplication>
 #include "rubik.h"
 

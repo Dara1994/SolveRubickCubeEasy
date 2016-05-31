@@ -1,3 +1,6 @@
+/*! \file cube.cpp
+ * \brief Implementacija cube.h
+ */
 #include "mainwindow.h"
 #include "pokreti.h"
 #include "cube.h"

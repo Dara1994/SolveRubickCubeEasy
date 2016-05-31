@@ -1,4 +1,4 @@
-/*! \file cube.h
+/*! \header cube.h "cube.h"
  *  \brief Classa Cube
  *
  *  Metoda ResetCube

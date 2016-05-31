@@ -1,4 +1,4 @@
-/*! \file pokreti.h
+/*! \header pokreti.h "pokreti.h"
  * \brief Moguci pokreti rubikove kocke
  *
  * Ovde imamo Kontejner klasu MoveWidget koja nasleduje od QGLWidget ??? ??? ???
@@ -39,7 +39,6 @@ public:
  * @param[in] A pripada klasi Cube,nasa rubikova kocka
 */
     void rotLD(int & way,int (&map)[6][3][3], float & DT,  Cube *A[] );
-
 
     /*! \brief  LU - left side up /levu kolonu nagore
      * @param[in] way smer okreta

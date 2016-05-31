@@ -1,3 +1,8 @@
+/*! \file mainwindow.cpp
+ * \brief ??? ??? ???
+ * ??? ??? ???
+ */
+
 #include "mainwindow.h"
 #include "pokreti.h"
 #include <math.h>
@@ -5,6 +10,8 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <QTime>
+
+
 extern float R=0.2,S=0.16;
 extern Cube *A[27]={0};
 extern float col[][3]={{0.1,0.1,0.1},{0.8,0,0},{0,0.8,0},{0,0,0.8},{0.8,0.8,0},{0.8,0,0.8},{0,0.8,0.8}};
@@ -22,21 +29,37 @@ extern int map[6][3][3]=
     {{4,4,4},{4,4,4},{4,4,4}},
     {{5,5,5},{5,5,5},{5,5,5}},
     {{6,6,6},{6,6,6},{6,6,6}}};
-
+/*! \brief Pomocna klasa MoveBuffer
+ * Klasa kojom manipulisemo bufferom poteza.
+ */
 class MoveBuffer {
-    char *movBuffer;
-    int movBufferLen;
-    int movBufferMem;
+    char *movBuffer; /*!< */
+    int movBufferLen; /*!< */
+    int movBufferMem; /*!< */
 
 public:
+    /*! \brief Konstruktor za MoveBuffer
+     * @param[in] movBuffer ??? ??? ???
+     * @param[in] movBufferLen ??? ??? ???
+     * @param[in] movBufferMem ??? ??? ???
+     */
     MoveBuffer() {movBuffer=0; movBufferLen=0; movBufferMem=0;}
-    ~MoveBuffer() {free(movBuffer);}
 
+    /*! Destruktor */
+    ~MoveBuffer() {free(movBuffer);}
+    /*! \brief Push
+     * @param[in] mov Vrednost koju postavljamo na vrh buffer.
+     *
+     *  Pushujemo na vrh buffera slovo koje odgovara dugmetu koje smo pritisli.
+     */
     void pushBuffer(char mov);
+    /*! \brief Pop.
+     * \return slovo sa vrha buffera.
+     */
     char popBuffer();
 };
 
-MoveBuffer Buffer;
+MoveBuffer Buffer; /*!< Napravili smo jedan buffer */
 
 void MoveBuffer::pushBuffer(char mov)
 {
@@ -150,9 +173,9 @@ void GLWidget::keyPressEvent(QKeyEvent *event)
 
 void GLWidget::RandomCube()
 {
-int number = 10;
-int n=15;
-int valueR;
+int number = 10; /*!< Broj ukupnih pokreta.*/
+int n=15; /*!< Broj nasumicnih poteza*/
+int valueR; /*!< nasumicna vrednost u opsegu [0-9] */
 for(int i=0; i<n;i++){
     valueR= qrand()%number;
     switch(valueR){

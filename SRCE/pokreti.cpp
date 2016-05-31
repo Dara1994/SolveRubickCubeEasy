@@ -1,3 +1,7 @@
+/*! \file pokreti.cpp
+ *  \brief Implementacija pokreti.h
+ *  ??? ??? ???
+ */
 #include "mainwindow.h"
 #include "pokreti.h"
 #include "rubik.h"
@@ -8,9 +12,11 @@
 #include <QTime>
 
 
-int tmp[8];
+int tmp[8]; /*!< Pomocni niz*/
 
-
+/*!
+ *  Definise pomeranje nalicija ??? nalevo ???
+ */
 #define SHIFT_FACE(a_)\
 tmp[0]=map[a_][2][2]; tmp[1]=map[a_][1][2];\
 tmp[2]=map[a_][0][2]; tmp[3]=map[a_][0][1];\
@@ -21,7 +27,9 @@ map[a_][0][2]=tmp[0]; map[a_][0][1]=tmp[1];\
 map[a_][0][0]=tmp[2]; map[a_][1][0]=tmp[3];\
 map[a_][2][0]=tmp[4]; map[a_][2][1]=tmp[5];
 
-
+/*!
+ * Definise pomeranje nalicija ??? nadesno ???
+ */
 #define DESHIFT_FACE(a_)\
 tmp[6]=map[a_][2][2]; tmp[7]=map[a_][1][2];\
 tmp[0]=map[a_][0][2]; tmp[1]=map[a_][0][1];\
@@ -31,6 +39,7 @@ map[a_][2][2]=tmp[0]; map[a_][1][2]=tmp[1];\
 map[a_][0][2]=tmp[2]; map[a_][0][1]=tmp[3];\
 map[a_][0][0]=tmp[4]; map[a_][1][0]=tmp[5];\
 map[a_][2][0]=tmp[6]; map[a_][2][1]=tmp[7];
+
 void  MoveWidget::rotLD(int & way,int(&map)[6][3][3], float & DT ,  Cube *A[] )
 {
     int tmp[8];
