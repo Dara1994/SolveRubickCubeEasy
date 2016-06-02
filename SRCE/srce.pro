@@ -15,14 +15,10 @@ TEMPLATE = app
 LIBS	+= -lGLU
 SOURCES += main.cpp\
         mainwindow.cpp \
-    rubik.cpp \
-    pokreti.cpp \
-    cube.cpp
+    rubik.cpp
 
 HEADERS  += mainwindow.h \
-    rubik.h \
-    pokreti.h \
-    cube.h
+    rubik.h
 
 FORMS    += \
     rubik.ui
