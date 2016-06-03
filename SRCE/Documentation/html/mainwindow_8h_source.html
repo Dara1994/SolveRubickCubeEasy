@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.12"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SRCE: Izvorni kod datoteke mainwindow.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">SRCE
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Aplication for solving rubik&#39;s cube.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Napravio Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Traži');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,'Traži');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">mainwindow.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef MAINWINDOW_H</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define MAINWINDOW_H</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;QGLWidget&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;QMouseEvent&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classGLWidget.html">   14</a></span>&#160; <span class="keyword">class </span><a class="code" href="classGLWidget.html">GLWidget</a> : <span class="keyword">public</span> QGLWidget</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; {</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;     Q_OBJECT</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; <span class="keyword">public</span>:</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;     <a class="code" href="classGLWidget.html#ab79c391c86de1ffb76f6950b49d82c0c">GLWidget</a>(QWidget *parent = 0);</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;     <a class="code" href="classGLWidget.html#a535192a4262b4501e5493303834f45d3">~GLWidget</a>();</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;     QSize <a class="code" href="classGLWidget.html#a942d1b558c1f2fa5fac1fef09f6526d0">minimumSizeHint</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;     QSize <a class="code" href="classGLWidget.html#a108b4939019eafe1c6fcc73d7b8bd81e">sizeHint</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classGLWidget.html#aed9abc259552aa9ae08b2aed8b518b86">rotLD</a>();</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classGLWidget.html#a3b65174ae0eab3908457df7fb73fe210">rotLU</a>();</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classGLWidget.html#a6a2b5c679b2c66b0ac4df438c160ddcc">rotRD</a>();</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classGLWidget.html#a968a9e56d6eb8dc0b5c444a8542433ed">rotRU</a>();</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      <span class="keywordtype">void</span>  <a class="code" href="classGLWidget.html#adafb904dd1e479aeb025422b6657f47b">rotFR</a>();</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      <span class="keywordtype">void</span>  <a class="code" href="classGLWidget.html#a711e00bc6e62bfa436c7674f992c1ac3">rotTL</a>();</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      <span class="keywordtype">void</span>  <a class="code" href="classGLWidget.html#a5a01f3c15613006689a235c6d359e04e">rotTR</a>();</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classGLWidget.html#a37bbcfb8900d5f5e9026771c8af65ed3">rotDL</a>();</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classGLWidget.html#a5880e4ead683bb63b31c46e510277999">rotDR</a>();</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classGLWidget.html#ac2b729607891cdf32da594f37e970197">rotFL</a>();</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classGLWidget.html#a7799035981c6459c315ca0e554a91e2e">RandomCube</a>();</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;       <span class="keyword">protected</span>:</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;           <span class="keywordtype">void</span> <a class="code" href="classGLWidget.html#ab144cc8064c1bbf6d0ef0646ca0bd06c">mousePressEvent</a>(QMouseEvent *event);</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;           <span class="keywordtype">void</span> <a class="code" href="classGLWidget.html#a9043bac13d6f0a5307ea5c7f9b3caa50">mouseMoveEvent</a>(QMouseEvent *event);</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;           <span class="keywordtype">void</span> <a class="code" href="classGLWidget.html#a7fab13e8cc9fc0730ca54c08b2c923a7">initializeGL</a>();</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;           <span class="keywordtype">void</span> <a class="code" href="classGLWidget.html#a640b5570cb2b37724fd5b58a77339c5e">paintGL</a>();</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;           <span class="keywordtype">void</span> <a class="code" href="classGLWidget.html#ac0d2a8ecf60907a81c0d73475d851025">resizeGL</a>(<span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height);</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;           <span class="keywordtype">void</span> <a class="code" href="classGLWidget.html#a43dfdc9164dfacb939a173e725651fa9">keyPressEvent</a>( QKeyEvent * event );</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; <span class="keyword">private</span>:</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;     GLuint makeObject();</div><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;     QPoint lastPos;</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; };</div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor"> #endif</span></div><div class="ttc" id="classGLWidget_html_ab144cc8064c1bbf6d0ef0646ca0bd06c"><div class="ttname"><a href="classGLWidget.html#ab144cc8064c1bbf6d0ef0646ca0bd06c">GLWidget::mousePressEvent</a></div><div class="ttdeci">void mousePressEvent(QMouseEvent *event)</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:989</div></div>
+<div class="ttc" id="classGLWidget_html_a9043bac13d6f0a5307ea5c7f9b3caa50"><div class="ttname"><a href="classGLWidget.html#a9043bac13d6f0a5307ea5c7f9b3caa50">GLWidget::mouseMoveEvent</a></div><div class="ttdeci">void mouseMoveEvent(QMouseEvent *event)</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:1024</div></div>
+<div class="ttc" id="classGLWidget_html_a535192a4262b4501e5493303834f45d3"><div class="ttname"><a href="classGLWidget.html#a535192a4262b4501e5493303834f45d3">GLWidget::~GLWidget</a></div><div class="ttdeci">~GLWidget()</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:885</div></div>
+<div class="ttc" id="classGLWidget_html_a43dfdc9164dfacb939a173e725651fa9"><div class="ttname"><a href="classGLWidget.html#a43dfdc9164dfacb939a173e725651fa9">GLWidget::keyPressEvent</a></div><div class="ttdeci">void keyPressEvent(QKeyEvent *event)</div><div class="ttdoc">Dogadjaji na pritisak dugmeta sa tastature. </div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:189</div></div>
+<div class="ttc" id="classGLWidget_html_ac2b729607891cdf32da594f37e970197"><div class="ttname"><a href="classGLWidget.html#ac2b729607891cdf32da594f37e970197">GLWidget::rotFL</a></div><div class="ttdeci">void rotFL()</div><div class="ttdoc">FL - front face left / nalicje rotiraj nalevo. </div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:603</div></div>
+<div class="ttc" id="classGLWidget_html_a3b65174ae0eab3908457df7fb73fe210"><div class="ttname"><a href="classGLWidget.html#a3b65174ae0eab3908457df7fb73fe210">GLWidget::rotLU</a></div><div class="ttdeci">void rotLU()</div><div class="ttdoc">LD - left side up /levu kolonu nagore. </div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:429</div></div>
+<div class="ttc" id="classGLWidget_html_a942d1b558c1f2fa5fac1fef09f6526d0"><div class="ttname"><a href="classGLWidget.html#a942d1b558c1f2fa5fac1fef09f6526d0">GLWidget::minimumSizeHint</a></div><div class="ttdeci">QSize minimumSizeHint() const</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:893</div></div>
+<div class="ttc" id="classGLWidget_html_a5a01f3c15613006689a235c6d359e04e"><div class="ttname"><a href="classGLWidget.html#a5a01f3c15613006689a235c6d359e04e">GLWidget::rotTR</a></div><div class="ttdeci">void rotTR()</div><div class="ttdoc">TL - top row left /gornji red nalevo. </div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:689</div></div>
+<div class="ttc" id="classGLWidget_html_a37bbcfb8900d5f5e9026771c8af65ed3"><div class="ttname"><a href="classGLWidget.html#a37bbcfb8900d5f5e9026771c8af65ed3">GLWidget::rotDL</a></div><div class="ttdeci">void rotDL()</div><div class="ttdoc">DL - down row left /donji red nalevo. </div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:732</div></div>
+<div class="ttc" id="classGLWidget_html_a108b4939019eafe1c6fcc73d7b8bd81e"><div class="ttname"><a href="classGLWidget.html#a108b4939019eafe1c6fcc73d7b8bd81e">GLWidget::sizeHint</a></div><div class="ttdeci">QSize sizeHint() const</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:898</div></div>
+<div class="ttc" id="classGLWidget_html_a5880e4ead683bb63b31c46e510277999"><div class="ttname"><a href="classGLWidget.html#a5880e4ead683bb63b31c46e510277999">GLWidget::rotDR</a></div><div class="ttdeci">void rotDR()</div><div class="ttdoc">DR - down row right /donji red nadesno. </div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:776</div></div>
+<div class="ttc" id="classGLWidget_html_ab79c391c86de1ffb76f6950b49d82c0c"><div class="ttname"><a href="classGLWidget.html#ab79c391c86de1ffb76f6950b49d82c0c">GLWidget::GLWidget</a></div><div class="ttdeci">GLWidget(QWidget *parent=0)</div><div class="ttdoc">Konstruktor. </div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:879</div></div>
+<div class="ttc" id="classGLWidget_html"><div class="ttname"><a href="classGLWidget.html">GLWidget</a></div><div class="ttdoc">Klasa GLWidget. </div><div class="ttdef"><b>Definition:</b> mainwindow.h:14</div></div>
+<div class="ttc" id="classGLWidget_html_aed9abc259552aa9ae08b2aed8b518b86"><div class="ttname"><a href="classGLWidget.html#aed9abc259552aa9ae08b2aed8b518b86">GLWidget::rotLD</a></div><div class="ttdeci">void rotLD()</div><div class="ttdoc">Moguci pokreti rubikove kocke. </div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:386</div></div>
+<div class="ttc" id="classGLWidget_html_a7fab13e8cc9fc0730ca54c08b2c923a7"><div class="ttname"><a href="classGLWidget.html#a7fab13e8cc9fc0730ca54c08b2c923a7">GLWidget::initializeGL</a></div><div class="ttdeci">void initializeGL()</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:905</div></div>
+<div class="ttc" id="classGLWidget_html_a7799035981c6459c315ca0e554a91e2e"><div class="ttname"><a href="classGLWidget.html#a7799035981c6459c315ca0e554a91e2e">GLWidget::RandomCube</a></div><div class="ttdeci">void RandomCube()</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:822</div></div>
+<div class="ttc" id="classGLWidget_html_ac0d2a8ecf60907a81c0d73475d851025"><div class="ttname"><a href="classGLWidget.html#ac0d2a8ecf60907a81c0d73475d851025">GLWidget::resizeGL</a></div><div class="ttdeci">void resizeGL(int width, int height)</div><div class="ttdoc">Promena velicine prozora. </div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:938</div></div>
+<div class="ttc" id="classGLWidget_html_a6a2b5c679b2c66b0ac4df438c160ddcc"><div class="ttname"><a href="classGLWidget.html#a6a2b5c679b2c66b0ac4df438c160ddcc">GLWidget::rotRD</a></div><div class="ttdeci">void rotRD()</div><div class="ttdoc">RD - right side down /desnu kolonu nadole. </div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:472</div></div>
+<div class="ttc" id="classGLWidget_html_a968a9e56d6eb8dc0b5c444a8542433ed"><div class="ttname"><a href="classGLWidget.html#a968a9e56d6eb8dc0b5c444a8542433ed">GLWidget::rotRU</a></div><div class="ttdeci">void rotRU()</div><div class="ttdoc">RU - right side up / desno kolonu nagore. </div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:516</div></div>
+<div class="ttc" id="classGLWidget_html_adafb904dd1e479aeb025422b6657f47b"><div class="ttname"><a href="classGLWidget.html#adafb904dd1e479aeb025422b6657f47b">GLWidget::rotFR</a></div><div class="ttdeci">void rotFR()</div><div class="ttdoc">FR - front face right / nalicje rotiraj nadesno. </div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:560</div></div>
+<div class="ttc" id="classGLWidget_html_a640b5570cb2b37724fd5b58a77339c5e"><div class="ttname"><a href="classGLWidget.html#a640b5570cb2b37724fd5b58a77339c5e">GLWidget::paintGL</a></div><div class="ttdeci">void paintGL()</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:931</div></div>
+<div class="ttc" id="classGLWidget_html_a711e00bc6e62bfa436c7674f992c1ac3"><div class="ttname"><a href="classGLWidget.html#a711e00bc6e62bfa436c7674f992c1ac3">GLWidget::rotTL</a></div><div class="ttdeci">void rotTL()</div><div class="ttdoc">TL - top row rigth /gornji red nadesno. </div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:646</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Napravio &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.12
+</small></address>
+</body>
+</html>

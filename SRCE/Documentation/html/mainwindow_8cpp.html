@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.12"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SRCE: Opis datoteke mainwindow.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">SRCE
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Aplication for solving rubik&#39;s cube.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Napravio Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Traži');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,'Traži');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Klase, strukture i unije</a> &#124;
+<a href="#define-members">Makro zamene</a> &#124;
+<a href="#func-members">Funkcije</a> &#124;
+<a href="#var-members">Promenljive</a>  </div>
+  <div class="headertitle">
+<div class="title">Opis datoteke mainwindow.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>??? ??? ??? ??? ??? ???  
+<a href="#details">Još...</a></p>
+<div class="textblock"><code>#include &quot;mainwindow.h&quot;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;GL/gl.h&gt;</code><br />
+<code>#include &lt;GL/glu.h&gt;</code><br />
+<code>#include &lt;QTime&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Klase, strukture i unije</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMoveBuffer.html">MoveBuffer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pomocna klasa <a class="el" href="classMoveBuffer.html" title="Pomocna klasa MoveBuffer Klasa kojom manipulisemo bufferom poteza. ">MoveBuffer</a> Klasa kojom manipulisemo bufferom poteza.  <a href="classMoveBuffer.html#details">Još...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCube.html">Cube</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Makro zamene</h2></td></tr>
+<tr class="memitem:adac9a3f1db3aed14a8f72f2fc80e6e63"><td class="memItemLeft" align="right" valign="top"><a id="adac9a3f1db3aed14a8f72f2fc80e6e63"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ORTHOFRUSTRUM</b>&#160;&#160;&#160;glFrustum (-.3, .3, -.3, .3, 4, 10);</td></tr>
+<tr class="separator:adac9a3f1db3aed14a8f72f2fc80e6e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ae11b3bb5e3ba09b05071b508595d1a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>SHIFT_FACE</b>(a_)</td></tr>
+<tr class="separator:a6ae11b3bb5e3ba09b05071b508595d1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeb464aa0da4dc366bae43d2952b3aaa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>DESHIFT_FACE</b>(a_)</td></tr>
+<tr class="separator:aeeb464aa0da4dc366bae43d2952b3aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funkcije</h2></td></tr>
+<tr class="memitem:ace6fe1ae60e174221dcf7ccaf300eeac"><td class="memItemLeft" align="right" valign="top"><a id="ace6fe1ae60e174221dcf7ccaf300eeac"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>resetCube</b> ()</td></tr>
+<tr class="separator:ace6fe1ae60e174221dcf7ccaf300eeac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac80108ccb66f6f53c1cbe43de1558d36"><td class="memItemLeft" align="right" valign="top"><a id="ac80108ccb66f6f53c1cbe43de1558d36"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>processHits</b> (GLint hits, GLuint buffer[])</td></tr>
+<tr class="separator:ac80108ccb66f6f53c1cbe43de1558d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Promenljive</h2></td></tr>
+<tr class="memitem:a4c4b08e61e92b3da1ed512f4e006f34a"><td class="memItemLeft" align="right" valign="top"><a id="a4c4b08e61e92b3da1ed512f4e006f34a"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>R</b> =0.2</td></tr>
+<tr class="separator:a4c4b08e61e92b3da1ed512f4e006f34a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec096540ec69f8da2df05c038f077b3d"><td class="memItemLeft" align="right" valign="top"><a id="aec096540ec69f8da2df05c038f077b3d"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>S</b> =0.16</td></tr>
+<tr class="separator:aec096540ec69f8da2df05c038f077b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2578b368dad74bcd4a88bbeeb319a833"><td class="memItemLeft" align="right" valign="top"><a id="a2578b368dad74bcd4a88bbeeb319a833"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>dist</b> =7</td></tr>
+<tr class="separator:a2578b368dad74bcd4a88bbeeb319a833"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46877d35fbc25bd63721845831500bf2"><td class="memItemLeft" align="right" valign="top"><a id="a46877d35fbc25bd63721845831500bf2"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>DT</b> =500.</td></tr>
+<tr class="separator:a46877d35fbc25bd63721845831500bf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a988fdf7683e3ea0bc5b6fac950793d1a"><td class="memItemLeft" align="right" valign="top"><a id="a988fdf7683e3ea0bc5b6fac950793d1a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>way</b> =1</td></tr>
+<tr class="separator:a988fdf7683e3ea0bc5b6fac950793d1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0da7c49ed5a56c054406779a5e5d812f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMoveBuffer.html">MoveBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mainwindow_8cpp.html#a0da7c49ed5a56c054406779a5e5d812f">Buffer</a></td></tr>
+<tr class="separator:a0da7c49ed5a56c054406779a5e5d812f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a046a0c1728b83663a6d59715d9777dbf"><td class="memItemLeft" align="right" valign="top"><a id="a046a0c1728b83663a6d59715d9777dbf"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>col</b> [][3] ={{0.1,0.1,0.1},{0.8,0,0},{0,0.8,0},{0,0,0.8},{0.8,0.8,0},{0.8,0,0.8},{0,0.8,0.8}}</td></tr>
+<tr class="separator:a046a0c1728b83663a6d59715d9777dbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cbe0a66ed795dda758670028bea706a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><b>map</b> [6][3][3]</td></tr>
+<tr class="separator:a5cbe0a66ed795dda758670028bea706a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf6db7f1e8139f8eb9b9c07ed60b3ff6"><td class="memItemLeft" align="right" valign="top"><a id="aaf6db7f1e8139f8eb9b9c07ed60b3ff6"></a>
+<a class="el" href="classCube.html">Cube</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>A</b> [27] ={0}</td></tr>
+<tr class="separator:aaf6db7f1e8139f8eb9b9c07ed60b3ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Opširniji opis</h2>
+<div class="textblock"><p>??? ??? ??? ??? ??? ??? </p>
+</div><h2 class="groupheader">Dokumentacija makro zamene</h2>
+<a id="aeeb464aa0da4dc366bae43d2952b3aaa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DESHIFT_FACE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">a_</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Vrednost:</b><div class="fragment"><div class="line">tmp[6]=map[a_][2][2]; tmp[7]=map[a_][1][2];\</div><div class="line">tmp[0]=map[a_][0][2]; tmp[1]=map[a_][0][1];\</div><div class="line">tmp[2]=map[a_][0][0]; tmp[3]=map[a_][1][0];\</div><div class="line">tmp[4]=map[a_][2][0]; tmp[5]=map[a_][2][1];\</div><div class="line">map[a_][2][2]=tmp[0]; map[a_][1][2]=tmp[1];\</div><div class="line">map[a_][0][2]=tmp[2]; map[a_][0][1]=tmp[3];\</div><div class="line">map[a_][0][0]=tmp[4]; map[a_][1][0]=tmp[5];\</div><div class="line">map[a_][2][0]=tmp[6]; map[a_][2][1]=tmp[7];</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a6ae11b3bb5e3ba09b05071b508595d1a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SHIFT_FACE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">a_</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Vrednost:</b><div class="fragment"><div class="line">tmp[0]=map[a_][2][2]; tmp[1]=map[a_][1][2];\</div><div class="line">tmp[2]=map[a_][0][2]; tmp[3]=map[a_][0][1];\</div><div class="line">tmp[4]=map[a_][0][0]; tmp[5]=map[a_][1][0];\</div><div class="line">tmp[6]=map[a_][2][0]; tmp[7]=map[a_][2][1];\</div><div class="line">map[a_][2][2]=tmp[6]; map[a_][1][2]=tmp[7];\</div><div class="line">map[a_][0][2]=tmp[0]; map[a_][0][1]=tmp[1];\</div><div class="line">map[a_][0][0]=tmp[2]; map[a_][1][0]=tmp[3];\</div><div class="line">map[a_][2][0]=tmp[4]; map[a_][2][1]=tmp[5];</div></div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Dokumentacija promenljive</h2>
+<a id="a0da7c49ed5a56c054406779a5e5d812f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMoveBuffer.html">MoveBuffer</a> Buffer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Napravili smo jedan buffer </p>
+
+</div>
+</div>
+<a id="a5cbe0a66ed795dda758670028bea706a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int map[6][3][3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Početna vrednost:</b><div class="fragment"><div class="line">=</div><div class="line">{{{1,1,1},{1,1,1},{1,1,1}},</div><div class="line">    {{2,2,2},{2,2,2},{2,2,2}},</div><div class="line">    {{3,3,3},{3,3,3},{3,3,3}},</div><div class="line">    {{4,4,4},{4,4,4},{4,4,4}},</div><div class="line">    {{5,5,5},{5,5,5},{5,5,5}},</div><div class="line">    {{6,6,6},{6,6,6},{6,6,6}}}</div></div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Napravio &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.12
+</small></address>
+</body>
+</html>
