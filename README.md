@@ -1,7 +1,7 @@
 # rs16-12
-SolveRubikCubeEasy
+#SolveRubikCubeEasy
 
-Project name: SolveRUbikCubeEasy
+Project name: SolveRubikCubeEasy
 
 Authors: Ana Vuksic, Radmila Matic Muller, Darinka Nesovic
 
