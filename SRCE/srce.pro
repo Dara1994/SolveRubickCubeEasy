@@ -22,3 +22,4 @@ HEADERS  += mainwindow.h \
 
 FORMS    += \
     rubik.ui
+RESOURCES +=

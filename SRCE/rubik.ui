@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
+    <width>960</width>
     <height>700</height>
    </rect>
   </property>
@@ -46,35 +46,70 @@
   <property name="autoFillBackground">
    <bool>true</bool>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QtMainWindow{
+background-image:url(:/images/canvas3.jpg);}</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
-       <widget class="QPushButton" name="I_give_up">
-        <property name="text">
-         <string>I give up!</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="Make_a_cube">
-        <property name="text">
-         <string>Make a cube!</string>
-        </property>
-       </widget>
-      </item>
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>10</number>
+      </property>
+      <property name="rightMargin">
+       <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>10</number>
+      </property>
       <item>
        <widget class="QPushButton" name="New_game">
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+border-color: 10px solid red;
+border	-radius: 10px;
+font: 75 12pt &quot;Purisa&quot;;
+}</string>
+        </property>
         <property name="text">
          <string>New game!</string>
         </property>
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="Make_a_cube">
+        <property name="styleSheet">
+         <string notr="true">font: 75 12pt &quot;Purisa&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Make a cube!</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="pushButton">
+        <property name="styleSheet">
+         <string notr="true">font: 75 12pt &quot;Purisa&quot;;</string>
+        </property>
         <property name="text">
          <string>Solve it!</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="I_give_up">
+        <property name="styleSheet">
+         <string notr="true">font: 75 12pt &quot;Purisa&quot;;</string>
+        </property>
+        <property name="text">
+         <string>I give up!</string>
         </property>
        </widget>
       </item>
@@ -98,6 +133,9 @@
     </item>
     <item>
      <widget class="QGroupBox" name="groupBox">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -121,7 +159,6 @@ margin-top: 1ex; /* leave space at the top for the title */
       <property name="title">
        <string/>
       </property>
-      <zorder>horizontalSpacer</zorder>
      </widget>
     </item>
     <item>
@@ -134,7 +171,7 @@ margin-top: 1ex; /* leave space at the top for the title */
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>20</width>
+        <width>40</width>
         <height>20</height>
        </size>
       </property>
@@ -144,6 +181,9 @@ margin-top: 1ex; /* leave space at the top for the title */
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QLabel" name="label_2">
+        <property name="styleSheet">
+         <string notr="true">font: 75 12pt &quot;Purisa&quot;;</string>
+        </property>
         <property name="text">
          <string>Commands:</string>
         </property>
@@ -164,35 +204,40 @@ background-color: rgb(255, 255, 255);
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-style:italic;&quot;&gt;Instructions:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;TR&lt;/span&gt; - Rotate top of the cube to the right.&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;TL&lt;/span&gt; - Rotate top of the cube to the left.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LU&lt;/span&gt; - Rotate left side of the cube upward.&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LD&lt;/span&gt; - Rotate left side of the cube downward.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;RU&lt;/span&gt; - Rotate rigt side of the cube upward.&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;RD&lt;/span&gt; - Rotate left side of the cube downward.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;BR&lt;/span&gt; - Rotate bottom of the cube to the right.&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;BL&lt;/span&gt; - Rotate bottom of the cube to the left.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;FR&lt;/span&gt; - Rotate front of the cube to the right.&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;FL&lt;/span&gt; - Rotate front of the cube to the left.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Rotate top of the cube: &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- right ( &lt;span style=&quot; font-weight:600; color:#7c0f0f;&quot;&gt;TR&lt;/span&gt; )          	 - left ( &lt;span style=&quot; font-weight:600; color:#7c0f0f;&quot;&gt;TL &lt;/span&gt;)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- press &lt;span style=&quot; font-weight:600; font-style:italic;&quot;&gt;I                  	&lt;/span&gt;- press &lt;span style=&quot; font-weight:600; font-style:italic; color:#7c0f0f;&quot;&gt;R&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Rotate left side of the cube:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;-upward ( &lt;span style=&quot; font-weight:600; color:#7c0f0f;&quot;&gt;LU &lt;/span&gt;)      	 - downward ( &lt;span style=&quot; font-weight:600; color:#7c0f0f;&quot;&gt;LD&lt;/span&gt; )&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- press &lt;span style=&quot; font-weight:600; font-style:italic; color:#7c0f0f;&quot;&gt;K                 	 &lt;/span&gt;- press &lt;span style=&quot; font-weight:600; font-style:italic; color:#7c0f0f;&quot;&gt;J&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Rotate rigt side of the cube:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- upward (&lt;span style=&quot; font-weight:600; color:#7c0f0f;&quot;&gt;RU&lt;/span&gt;)       	 - downward (&lt;span style=&quot; font-weight:600; color:#7c0f0f;&quot;&gt;RD&lt;/span&gt;)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- press &lt;span style=&quot; font-weight:600; font-style:italic; color:#7c0f0f;&quot;&gt;D                	 &lt;/span&gt;- press &lt;span style=&quot; font-weight:600; font-style:italic; color:#7c0f0f;&quot;&gt;F&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Rotate bottom of the cube to the:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- right ( &lt;span style=&quot; font-weight:600; color:#7c0f0f;&quot;&gt;DR&lt;/span&gt; )          	 - left ( &lt;span style=&quot; font-weight:600; color:#7c0f0f;&quot;&gt;DL &lt;/span&gt;)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- press &lt;span style=&quot; font-weight:600; font-style:italic; color:#7c0f0f;&quot;&gt;M               	 - &lt;/span&gt;press &lt;span style=&quot; font-weight:600; font-style:italic; color:#7c0f0f;&quot;&gt;C&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Rotate front of the cube to:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- right (&lt;span style=&quot; font-weight:600; color:#7c0f0f;&quot;&gt;FR&lt;/span&gt;)             	 - left (&lt;span style=&quot; font-weight:600; color:#7c0f0f;&quot;&gt;FL&lt;/span&gt;)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- press &lt;span style=&quot; font-weight:600; font-style:italic; color:#7c0f0f;&quot;&gt;H	          	 - &lt;/span&gt;press &lt;span style=&quot; font-weight:600; font-style:italic; color:#7c0f0f;&quot;&gt;G&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLabel" name="label">
+        <property name="styleSheet">
+         <string notr="true">font: 75 12pt &quot;Purisa&quot;;</string>
+        </property>
         <property name="text">
          <string>Steps:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPlainTextEdit" name="plainTextEdit"/>
+       <widget class="QPlainTextEdit" name="plainTextEdit">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -203,7 +248,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>900</width>
+     <width>960</width>
      <height>22</height>
     </rect>
    </property>
