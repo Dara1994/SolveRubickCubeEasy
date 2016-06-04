@@ -78,6 +78,8 @@
 
    /*! Randomiranje rubikove kocke*/
      void RandomCube();
+     /*! SImple Solve metoda*/
+     void SolveSimple();
 
        protected:
           /*! Desavanja na pritisak misa*/
