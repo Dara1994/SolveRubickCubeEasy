@@ -31,6 +31,8 @@ private slots:
     void new_game();
     void solve_it();
 
+    void on_FunFacts_clicked();
+
 private:
     Ui::MainWindow ui; /*!< ??? ??? ???*/
 };
