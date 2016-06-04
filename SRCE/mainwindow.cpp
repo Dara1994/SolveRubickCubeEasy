@@ -239,31 +239,7 @@ void GLWidget::keyPressEvent(QKeyEvent *event)
         rotFL();
         Buffer.pushBuffer('P');
     }
-    if(event->key() == Qt::Key_W){
-        DT=100;
-        int k;
-        for (;;) {
-             k=Buffer.popBuffer();
-             if (k>0) way=0; else way=1;
-             if (k<0) k=-k;
-             switch (k) {
-                case 'R': rotTL(); break;
-                case 'D': rotLU(); break;
-                case 'C': rotDL(); break;
-                case 'F': rotLD(); break;
-                case 'G': rotFL(); break;
-                case 'H': rotFR(); break;
-                case 'I': rotTR(); break;
-                case 'J': rotRD(); break;
-                case 'K': rotRU(); break;
-                case 'M': rotDR(); break;
 
-             }
-             if (k==0) break;
-        }
-        DT=500;
-        way=1;
-   }
 }
 void Cube::rotX(int angle)
 {
@@ -883,6 +859,35 @@ void GLWidget::make_random_cube(){
     Buffer.pushBuffer('Q');
 
 }
+
+void GLWidget::new_game(){
+    DT=100;
+    int k;
+    for (;;) {
+         k=Buffer.popBuffer();
+         if (k>0) way=0; else way=1;
+         if (k<0) k=-k;
+         switch (k) {
+            case 'R': rotTL(); break;
+            case 'D': rotLU(); break;
+            case 'C': rotDL(); break;
+            case 'F': rotLD(); break;
+            case 'G': rotFL(); break;
+            case 'H': rotFR(); break;
+            case 'I': rotTR(); break;
+            case 'J': rotRD(); break;
+            case 'K': rotRU(); break;
+            case 'M': rotDR(); break;
+
+         }
+         if (k==0) break;
+    }
+    DT=500;
+    way=1;
+
+}
+
+
 GLWidget::GLWidget(QWidget *parent)
      : QGLWidget(parent)
 {

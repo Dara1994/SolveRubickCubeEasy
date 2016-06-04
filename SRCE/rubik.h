@@ -28,6 +28,7 @@ public:
     QGLWidget *Widget; /*!< pokazivac klase Widget. */
 private slots:
     void make_random_cube();
+     void new_game();
 
 private:
     Ui::MainWindow ui; /*!< ??? ??? ???*/
