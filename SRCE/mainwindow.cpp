@@ -235,11 +235,6 @@ void GLWidget::keyPressEvent(QKeyEvent *event)
         rotDR();
         Buffer.pushBuffer('M');
     }
-    if(event->key() == Qt::Key_P){
-       // dobar poziv stavljen
-        SolveSimple();
-        Buffer.pushBuffer('P');
-    }
 
 }
 void Cube::rotX(int angle)
@@ -885,6 +880,11 @@ void GLWidget::new_game(){
     }
     DT=500;
     way=1;
+
+}
+void GLWidget::solve_it(){
+        SolveSimple();
+        Buffer.pushBuffer('P');
 
 }
 

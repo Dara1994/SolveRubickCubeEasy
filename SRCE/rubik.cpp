@@ -18,6 +18,7 @@ rubik::rubik(QWidget *parent, Qt::WindowFlags flags)
     // Connect button signal to appropriate slot
     connect(ui.make_cube_btn, SIGNAL (clicked()), Widget, SLOT (make_random_cube()));
     connect(ui.new_game_btn, SIGNAL (clicked()), Widget, SLOT (new_game()));
+    connect(ui.solve_it_btn, SIGNAL (clicked()), Widget, SLOT (solve_it()));
 
 }
 rubik::~rubik()
@@ -33,3 +34,10 @@ void rubik::new_game(){
     GLWidget w;
     w.new_game();
 }
+
+
+void rubik::solve_it(){
+    GLWidget w;
+    w.solve_it();
+}
+

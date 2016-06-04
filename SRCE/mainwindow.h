@@ -100,7 +100,9 @@
            void keyPressEvent( QKeyEvent * event );
  public slots:
            void make_random_cube();
-            void new_game();
+           void new_game();
+           void solve_it();
+
  private:
             /*! Pravljene objekta i isrtavanje*/
      GLuint makeObject();
