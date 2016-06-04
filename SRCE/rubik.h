@@ -1,4 +1,5 @@
-/*! \header.h rubik.h "rubik.h"
+/*! \file rubik.h
+ * \header.h rubik.h "rubik.h"
  *  \brief Class rubik.
  *
  * Sadrzi Klasu rubik koja nasledjuje QMainWindow. ??? ??? ???
@@ -11,7 +12,10 @@
 #include <QPushButton>
 #include "ui_rubik.h"
 #include "mainwindow.h"
-
+/*! Klasa rubik
+ * Sadrzi konstruktor i destruktor. Kao i metode za pravljene nove, randominizaciju, resertovane i zanimlivosti
+ * o rubikovoj kocki.
+ */
 class rubik : public QMainWindow
 {
     Q_OBJECT
@@ -25,16 +29,21 @@ public:
     /*! Destruktor za rubik.*/
     ~rubik();
 
-    QGLWidget *Widget; /*!< pokazivac klase Widget. */
+    /*! pokazivac klase Widget. */
+     QGLWidget *Widget;
 private slots:
+     /*! Napravi random cube*/
     void make_random_cube();
+/*! Nova igra*/
     void new_game();
+    /*! Resi rubikovu kocku*/
     void solve_it();
-
+ /*! Zanimljivosti o rubikovoj kocki*/
     void on_FunFacts_clicked();
 
 private:
-    Ui::MainWindow ui; /*!< ??? ??? ???*/
+    /*! ??? ??? ???*/
+     Ui::MainWindow ui;
 };
 
 #endif

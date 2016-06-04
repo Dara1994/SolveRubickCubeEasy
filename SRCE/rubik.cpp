@@ -1,9 +1,16 @@
+/*! \file rubik.cpp
+ * ??? ??? ???
+ */
 #include "rubik.h"
 #include "mainwindow.h"
 #include <QMessageBox>
 #include <QGridLayout>
 #include <QProcess>
 
+/*! Realizacija
+ *
+ * ??? ??? ???
+ */
 rubik::rubik(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags)
 {
@@ -21,26 +28,43 @@ rubik::rubik(QWidget *parent, Qt::WindowFlags flags)
     connect(ui.solve_it_btn, SIGNAL (clicked()), Widget, SLOT (solve_it()));
 
 }
+/*! Destruktor nam je prazan*/
 rubik::~rubik()
 {}
-
+/*! Realizacija
+ * @param w nam sluzi da bi mogli da pozovemo metodu RandomCube
+ *
+ */
 void rubik::make_random_cube(){
     GLWidget w;
     w.RandomCube();
 
 }
+/*! Realizacija
+ * @param w nam sluzi da bi mogli da pozovemo metodu new_game
+ *
+ */
 
 void rubik::new_game(){
     GLWidget w;
     w.new_game();
 }
 
-
+/*! Realizacija
+ * @param w nam sluzi da bi mogli da pozovemo metodu solve_it
+ *
+ */
 void rubik::solve_it(){
     GLWidget w;
     w.solve_it();
 }
 
+/*! Realizacija
+ * @param number imamo deset zanimljivih cinenjica
+ * @param value nasumicna vrednost
+ *
+ * U switchu prosledujemo value i u zavisnosti od nje nasumicno biramo jednu cienicu za prikaz u QmessegeBox.
+ */
 void rubik::on_FunFacts_clicked()
 {
     int number=10;

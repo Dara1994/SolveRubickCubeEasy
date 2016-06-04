@@ -1,28 +1,44 @@
 /*! \file mainwindow.cpp
- * \brief ??? ??? ???
- * ??? ??? ???
+ * \brief Implementacija
+ * Implementacija metoda, pomocna klasa MoveBuffer.
  */
 #include "mainwindow.h"
 #include <math.h>
-
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <QTime>
 
-float R=0.2,S=0.16;
+/*! @param R je float sa vrednoscu 0.2
+ * koja se koristi za postavljanje koordinatnog pocetke za kockice
+ */
+float R=0.2;
+/*! @param S je float sa vrednoscu 0.16
+ * koja se koristi za ??? ??? ??? */
+float S=0.16;
+/*! @param dist je int sa vrednoscu 7
+ *  koja se kosti za ??? ??? ???*/
 float dist=7;
+/*!  ORTHOFRUSTRUM
+ *  koja sluzi za ??? ??? ??? */
 #define ORTHOFRUSTRUM glFrustum (-.3, .3, -.3, .3, 4, 10);
-
+/*! float DT je tipa float vrednosti 500
+ * koju koristimo u kalsama za iscrtavanje. ??? ??? ???*/
 float DT=500.;
+/*! way je int
+ * koja defenise u kom smeru cemo da pomeramo rotacije. */
 int way=1;
 
-/*! \brief Pomocna klasa MoveBuffer
- * Klasa kojom manipulisemo bufferom poteza.
+/*! @class MoveBuffer
+ * \brief Pomocna klasa MoveBuffer
+ * Pomocna klasa kojom manipulisemo bufferom poteza.
  */
 class MoveBuffer {
-    char *movBuffer; /*!< pokazivac na top vrednost */
-    int movBufferLen; /*!< duzina buffera*/
-    int movBufferMem; /*!< memorija*/
+     /*! pokazivac na top vrednost */
+    char *movBuffer;
+     /*! duzina buffera*/
+    int movBufferLen;
+  /*!< memorija*/
+       int movBufferMem;
 
 public:
     /*! \brief Konstruktor za MoveBuffer
@@ -46,8 +62,15 @@ public:
     char popBuffer();
 };
 
-MoveBuffer Buffer; /*!< Napravili smo jedan buffer */
+/*! Buffer
+ * Napravili smo jedan buffer u kome cemo cuvati nase interakcije sa tastaturom
+ */
+MoveBuffer Buffer;
 
+/*! Realizacija metode pushBuffer
+ *  * Stavljamo mov na vrh buffer posto izvsimo provere.
+ * ??? ??? ??? opisati sta svaki if radi sta tacno proveravamo ??? ??? ???
+ */
 void MoveBuffer::pushBuffer(char mov)
 {
     if (movBufferLen>0 &&
@@ -72,6 +95,11 @@ void MoveBuffer::pushBuffer(char mov)
     movBufferLen++;
 }
 
+/*! Realizacije metode popBuffer
+ * @param[out] karakter na vrhu buffera
+ * ukoliko duzina buffera nije nula smanjimo tu duzino i vratimo char sa vrha.
+ * ukoliko nam je duzina buffera nula, odnosno Buffer je prazan, vracamo nulu.
+ */
 char MoveBuffer::popBuffer()
 {
     if (movBufferLen>0) {
@@ -81,9 +109,12 @@ char MoveBuffer::popBuffer()
     return 0;
 }
 
-//bojenje kocke
+/*! Inicializacija promenljive vezane za boje rubikove kocke
+ * @param col je dvo dimezioni niz koji cuva informacije o nasim bojama RGB
+ */
 float col[][3]={{0.1,0.1,0.1},{0.8,0,0},{0,0.8,0},{0,0,0.8},{0.8,0.8,0},{0.8,0,0.8},{0,0.8,0.8}};
-
+/*! Mapa
+ *  @param map je trodimezioni niz koji mapira sve kvadrata na svim stranama rubikove kocke.*/
 int map[6][3][3]=
 {{{1,1,1},{1,1,1},{1,1,1}},
     {{2,2,2},{2,2,2},{2,2,2}},
@@ -92,23 +123,54 @@ int map[6][3][3]=
     {{5,5,5},{5,5,5},{5,5,5}},
     {{6,6,6},{6,6,6},{6,6,6}}};
 
-
-
+/*! \class Klasa Cube
+ * \brief Klasa kojom definisemo ponasanje cube
+ * Ovde imamo sve metode vezane za manipulaciju nase rubikove kocke.
+ * Definisanje kocke, iscrtavanja i rotacija oko xyz osa.
+ */
 class Cube
  {
  public:
+    /*! Koordinate u prostoru
+     *Iscrtavamo relevatne tacke za nasu kocku to su uglovi rubikove kocke u prostoru.
+     */
      float coords[8][3];
+     /*! ??? ??? ??? */
      float norm[6][3];
+     /*! Boje*/
      int colors[6];
+     /*! Konstruktor
+      * @param[in] x0, y0, z0 su koordinate koordinatnog pocetka
+      * @param[in] b je ??? ??? ???
+      * @param[in] r1, r2 ,r3 ,r4, r5 ,r6 su relevatne boje.
+      */
      Cube(float x0,float y0,float z0,float b,int r1,int r2,int r3,int r4,int r5,int r6);
+     /*! Pomeri rubikovu kocku
+      * @param dx, dy, dz su vrednosti za koje pomeramo u odnosu na xyz ose.
+      */
      void move(float dx,float dy,float dz);
+     /*! Iscrtavanje kocke*/
      void drawCube();
+     /*! Isrtavanje mreze rubikove kocke*/
      void drawWireCube();
+     /*! Rotacija oko x ose
+      * @param[in] zadati ugao
+      */
      void rotX(int angle);
+     /*! Rotacija oko y ose
+      * @param[in] zadati ugao
+      */
      void rotY(int angle);
+     /*! Rotacija oko z ose
+      * @param[in] zadati ugao
+      */
      void rotZ(int angle);
  };
-
+/*! Realizacija
+ * postavimo zadate vrednosti boja.
+ * Izracunamo koordinate za svaku od 8 relevatnih tacaka
+ * I postavimo norm
+ */
 Cube::Cube(float x0,float y0,float z0,float a,int r1,int r2,int r3,int r4,int r5,int r6)
 {
     colors[0]=r1; colors[1]=r2; colors[2]=r3;
@@ -129,7 +191,10 @@ Cube::Cube(float x0,float y0,float z0,float a,int r1,int r2,int r3,int r4,int r5
     norm[4][0]= 1; norm[4][1]= 0; norm[4][2]= 0;
     norm[5][0]= 0; norm[5][1]= 1; norm[5][2]= 0;
 }
-
+/*! Realizacija
+ * Crta rubikovu kocku.
+ * ??? ??? ??? Sta se koristi i mozda opis kako koristi odredene ugradene funkcije? ??? ??? ???
+ */
 void Cube::drawCube()
 {
     glBegin(GL_QUADS);
@@ -176,7 +241,9 @@ void Cube::drawCube()
        glVertex3fv(coords[3]);
     glEnd();
 }
-
+/*! Realizacija
+ * Uvelicamo sve koordinate za odgovarajuce unete parametre.
+ */
 void Cube::move(float dx,float dy,float dz)
 {
     int k;
@@ -186,13 +253,11 @@ void Cube::move(float dx,float dy,float dz)
         coords[k][2]+=dz;
     }
 }
-//void GLWidget::make_random_cube()
-//{
-//    RandomCube();
-//    Buffer.pushBuffer('Q');
 
-//}
-
+/*! Realizacija
+ * Na svaki pritisnut taster izvsavamo relevatnu rotaciju. Predefinisani okret.
+ * Dok vrednost tastera stavljamo u buffer.
+ */
 void GLWidget::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_F){
@@ -237,6 +302,16 @@ void GLWidget::keyPressEvent(QKeyEvent *event)
     }
 
 }
+
+/*! Realizacija
+ * @param f je angle puta pi.
+ * @param cosf, sinf su vrednosti kosinusa i sinusa respektivno od f
+ * @param b,c vrednosti pomeranja
+ * @param k broji uglove
+ *
+ * Za svaki ugao mi racunamo razliku u pomeranu i taj rezultat sacuvamo u odgovarajuci
+ *  coords reda k prve koordinate i norm.
+ */
 void Cube::rotX(int angle)
 {
     float f=angle*3.14159/180.;
@@ -254,6 +329,15 @@ void Cube::rotX(int angle)
         norm[k][1]=b; norm[k][2]=c;
     }
 }
+/*! Realizacija
+ * @param f je angle puta pi.
+ * @param cosf, sinf su vrednosti kosinusa i sinusa respektivno od f
+ * @param b,c vrednosti pomeranja
+ * @param k broji uglove
+ *
+ * Za svaki ugao mi racunamo razliku u pomeranu i taj rezultat sacuvamo u odgovarajuci
+ *  coords reda k druge koordinate i norm.
+ */
 void Cube::rotY(int angle)
 {
     float f=angle*3.14159/180.;
@@ -271,6 +355,15 @@ void Cube::rotY(int angle)
         norm[k][2]=b; norm[k][0]=c;
     }
 }
+/*! Realizacija
+ * @param f je angle puta pi.
+ * @param cosf, sinf su vrednosti kosinusa i sinusa respektivno od f
+ * @param b,c vrednosti pomeranja
+ * @param k broji uglove
+ *
+ * Za svaki ugao mi racunamo razliku u pomeranu i taj rezultat sacuvamo u odgovarajuci
+ *  coords reda k trece koordinate i norm.
+ */
 void Cube::rotZ(int angle)
 {
     float f=angle*3.14159/180.;
@@ -288,6 +381,11 @@ void Cube::rotZ(int angle)
         norm[k][0]=b; norm[k][1]=c;
     }
 }
+/*! Realizacija
+ * @param P je niz koji koristimo za ??? ??? ???
+ * @param P1 je niz koji koristimo za ??? ??? ???
+ * ??? ??? ??? Kako iscrtava sta koristimo ??? ??? ???
+ */
 void Cube::drawWireCube()
 {
     glEnableClientState(GL_VERTEX_ARRAY);
@@ -302,7 +400,18 @@ void Cube::drawWireCube()
 
 }
 
+/*! A
+ * Napravili smo niz pokazivaca na nase kockice koje cine rubikovu kocku
+ */
 Cube *A[27]={0};
+
+/*! Realizacija
+ * @param k brojac koji broji kockice.
+ *
+ * Prvo obrisemo svaki elemenat iz niza A. Potom za svaku od tih 27 kockica koje cine rubikovu kocku
+ * koristimo konstruktor Cube sa odgovarajucim elementima. R za koordinatni pocetak za svaku kockicu,
+ * S za ??? ??? ???, i odgovarajuce map za strane koje su vidljive a 0 za one koje nevidimo.
+ */
 void resetCube()
 {
     int k;
@@ -341,6 +450,7 @@ void resetCube()
     A[26]=new Cube( R, R, R,S,		           0,           0,map[2][2][2],		           0,map[4][2][0],map[5][2][2]);
 
 }
+/*! Definisemo pomeranje jedne strane ??? ??? ???nalevo/nadesno??? ??? ???*/
 #define SHIFT_FACE(a_)\
 tmp[0]=map[a_][2][2]; tmp[1]=map[a_][1][2];\
 tmp[2]=map[a_][0][2]; tmp[3]=map[a_][0][1];\
@@ -351,7 +461,7 @@ map[a_][0][2]=tmp[0]; map[a_][0][1]=tmp[1];\
 map[a_][0][0]=tmp[2]; map[a_][1][0]=tmp[3];\
 map[a_][2][0]=tmp[4]; map[a_][2][1]=tmp[5];
 
-
+/*! Definisemo pomeranje jedne strane ??? ??? ???nalevo/nadesno??? ??? ???*/
 #define DESHIFT_FACE(a_)\
 tmp[6]=map[a_][2][2]; tmp[7]=map[a_][1][2];\
 tmp[0]=map[a_][0][2]; tmp[1]=map[a_][0][1];\
@@ -361,6 +471,20 @@ map[a_][2][2]=tmp[0]; map[a_][1][2]=tmp[1];\
 map[a_][0][2]=tmp[2]; map[a_][0][1]=tmp[3];\
 map[a_][0][0]=tmp[4]; map[a_][1][0]=tmp[5];\
 map[a_][2][0]=tmp[6]; map[a_][2][1]=tmp[7];
+
+/*! Realizacija
+ * @param tmp je pomocni niz.
+ *
+ * Zavisnosti od promenljive way mi cemo rotirati na jednu ili drugu stranu. Pomocu SHIFT_FACE / DESHIFT_FACE
+ * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
+ *
+ * @param k je vreme u milisekundama.
+ * @param r je ugao ??? ??? ???
+ * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
+ *
+ * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
+ * i za to vreme polako pomerati odgovarajuce kockice oko X ose.
+ */
 void  GLWidget::rotLD()
 {
     int tmp[8];
@@ -379,6 +503,7 @@ void  GLWidget::rotLD()
         map[3][2][0]=map[5][2][0]; map[3][1][0]=map[5][1][0]; map[3][0][0]=map[5][0][0];
         map[5][2][0]=tmp[0]; map[5][1][0]=tmp[1]; map[5][0][0]=tmp[2];
     }
+
 
     int k;
     int r;
@@ -404,6 +529,19 @@ void  GLWidget::rotLD()
     updateGL();
     resetCube();
 }
+/*! Realizacija
+ * @param tmp je pomocni niz.
+ *
+ * Zavisnosti od promenljive way mi cemo rotirati na jednu ili drugu stranu. Pomocu SHIFT_FACE / DESHIFT_FACE
+ * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
+ *
+ * @param k je vreme u milisekundama.
+ * @param r je ugao ??? ??? ???
+ * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
+ *
+ * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
+ * i za to vreme polako pomerati odgovarajuce kockice oko X ose.
+ */
 void GLWidget::rotLU()
 {
     int tmp[8];
@@ -447,6 +585,19 @@ void GLWidget::rotLU()
     updateGL();
     resetCube();
 }
+/*! Realizacija
+ * @param tmp je pomocni niz.
+ *
+ * Zavisnosti od promenljive way mi cemo rotirati na jednu ili drugu stranu. Pomocu SHIFT_FACE / DESHIFT_FACE
+ * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
+ *
+ * @param k je vreme u milisekundama.
+ * @param r je ugao ??? ??? ???
+ * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
+ *
+ * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
+ * i za to vreme polako pomerati odgovarajuce kockice oko X ose.
+ */
 void  GLWidget::rotRD()
 {
     int tmp[8];
@@ -491,6 +642,19 @@ void  GLWidget::rotRD()
     resetCube();
 
 }
+/*! Realizacija
+ * @param tmp je pomocni niz.
+ *
+ * Zavisnosti od promenljive way mi cemo rotirati na jednu ili drugu stranu. Pomocu SHIFT_FACE / DESHIFT_FACE
+ * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
+ *
+ * @param k je vreme u milisekundama.
+ * @param r je ugao ??? ??? ???
+ * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
+ *
+ * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
+ * i za to vreme polako pomerati odgovarajuce kockice oko X ose.
+ */
 void  GLWidget::rotRU()
 {
     int tmp[8];
@@ -535,6 +699,19 @@ void  GLWidget::rotRU()
     resetCube();
 
 }
+/*! Realizacija
+ * @param tmp je pomocni niz.
+ *
+ * Zavisnosti od promenljive way mi cemo rotirati na jednu ili drugu stranu. Pomocu SHIFT_FACE / DESHIFT_FACE
+ * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
+ *
+ * @param k je vreme u milisekundama.
+ * @param r je ugao ??? ??? ???
+ * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
+ *
+ * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
+ * i za to vreme polako pomerati odgovarajuce kockice oko Z ose.
+ */
 void  GLWidget::rotFR()
 {
     int tmp[8];
@@ -578,6 +755,19 @@ void  GLWidget::rotFR()
     resetCube();
 
 }
+/*! Realizacija
+ * @param tmp je pomocni niz.
+ *
+ * Zavisnosti od promenljive way mi cemo rotirati na jednu ili drugu stranu. Pomocu SHIFT_FACE / DESHIFT_FACE
+ * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
+ *
+ * @param k je vreme u milisekundama.
+ * @param r je ugao ??? ??? ???
+ * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
+ *
+ * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
+ * i za to vreme polako pomerati odgovarajuce kockice oko Z ose.
+ */
 void  GLWidget::rotFL()
 {
     int tmp[8];
@@ -621,6 +811,19 @@ void  GLWidget::rotFL()
     resetCube();
 
 }
+/*! Realizacija
+ * @param tmp je pomocni niz.
+ *
+ * Zavisnosti od promenljive way mi cemo rotirati na jednu ili drugu stranu. Pomocu SHIFT_FACE / DESHIFT_FACE
+ * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
+ *
+ * @param k je vreme u milisekundama.
+ * @param r je ugao ??? ??? ???
+ * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
+ *
+ * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
+ * i za to vreme polako pomerati odgovarajuce kockice oko Y ose.
+ */
 void  GLWidget::rotTL()
 {
     int tmp[8];
@@ -664,6 +867,19 @@ void  GLWidget::rotTL()
     resetCube();
 
 }
+/*! Realizacija
+ * @param tmp je pomocni niz.
+ *
+ * Zavisnosti od promenljive way mi cemo rotirati na jednu ili drugu stranu. Pomocu SHIFT_FACE / DESHIFT_FACE
+ * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
+ *
+ * @param k je vreme u milisekundama.
+ * @param r je ugao ??? ??? ???
+ * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
+ *
+ * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
+ * i za to vreme polako pomerati odgovarajuce kockice oko Y ose.
+ */
 void  GLWidget::rotTR()
 {
     int tmp[8];
@@ -707,6 +923,19 @@ void  GLWidget::rotTR()
     resetCube();
 
 }
+/*! Realizacija
+ * @param tmp je pomocni niz.
+ *
+ * Zavisnosti od promenljive way mi cemo rotirati na jednu ili drugu stranu. Pomocu SHIFT_FACE / DESHIFT_FACE
+ * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
+ *
+ * @param k je vreme u milisekundama.
+ * @param r je ugao ??? ??? ???
+ * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
+ *
+ * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
+ * i za to vreme polako pomerati odgovarajuce kockice oko Y ose.
+ */
 void  GLWidget::rotDL()
 {
     int tmp[8];
@@ -751,6 +980,19 @@ void  GLWidget::rotDL()
     resetCube();
 
 }
+/*! Realizacija
+ * @param tmp je pomocni niz.
+ *
+ * Zavisnosti od promenljive way mi cemo rotirati na jednu ili drugu stranu. Pomocu SHIFT_FACE / DESHIFT_FACE
+ * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
+ *
+ * @param k je vreme u milisekundama.
+ * @param r je ugao ??? ??? ???
+ * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
+ *
+ * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
+ * i za to vreme polako pomerati odgovarajuce kockice oko Y ose.
+ */
 void GLWidget::rotDR()
 {
     int tmp[8];
@@ -797,13 +1039,21 @@ void GLWidget::rotDR()
     updateGL();
     }
 
+/*! Realizacija
+ * @param number je broj ukupnih pokreta. Postavljen nadeset
+ * @param n je Broj nasumicnih potez, postavljen na 15
+ * @param valueR nasumicna vrednost u opsegu [0-9]
+ * @param DT postavimo na  100, da ubrzamo pokrete, posle izvrsenja funkcije vracamo na 500.
+ *
+ * U for petlji biramo nasumicno jedan broj kojim je definisan jedan pokret valueR to pomocu switch
+ * odredujemo koji pokret hocemo pa izvrsimo taj pokret i ponovimo petlju.
+ */
 void GLWidget::RandomCube()
-{
-    int number = 10; /*!< Broj ukupnih pokreta.*/
-    int n=15; /*!< Broj nasumicnih poteza*/
-    int valueR; /*!< nasumicna vrednost u opsegu [0-9] */
-    /*! U for petlji biramo nasumicno jedan broj kojim je definisan jedan pokret izvrsimo taj
-     * pokret i ponovimo petlju.*/
+{ DT = 100;
+    int number = 10;
+    int n=15;
+    int valueR;
+
 for(int i=0; i<n;i++){
     valueR= qrand()%number;
     switch(valueR){
@@ -849,13 +1099,27 @@ for(int i=0; i<n;i++){
         break;
     }
 }
+
+DT = 500;
 }
+/*! Realizacija
+ * pozovemo metodu RandomCube .Polse stavimo na vrh buffera Q
+ */
 void GLWidget::make_random_cube(){
     RandomCube();
     Buffer.pushBuffer('Q');
 
 }
 
+/*! Realizacija
+ * @param k brojac
+ * @param DT koji postavimo na 100 da bi ubrzali posle izvrsenja funkcije vracamo na 500.
+ *
+ * Da bi vratili kocku u poziciju za novu igru  mi zemo prati poteze na bufferu i vratiti
+ * se pokretima unazad sve dok nam buffer nije prazan. Ukoliko imamo vrednost koja nije jedan od pokreta na
+ * bufferu nju cemo samo skinuti, i ignorisati.
+ * Moramo da obratimo paznju na promenljivu way dok radimo.
+ */
 void GLWidget::new_game(){
     DT=100;
     int k;
@@ -882,18 +1146,28 @@ void GLWidget::new_game(){
     way=1;
 
 }
+/*! Realizacija
+ * Pozovemo  SolveSimple i na buffer pushujemo P.
+ */
 void GLWidget::solve_it(){
         SolveSimple();
         Buffer.pushBuffer('P');
 
 }
 
-
+/*! Realizacija
+ * Pozovemo resetCube
+ */
 GLWidget::GLWidget(QWidget *parent)
      : QGLWidget(parent)
 {
      resetCube();
 }
+/*! Realizacija
+ *@param k je brojac
+ *
+ * U for ciklusu idemo k ide od 0 do 27 i za svaki elemenat A me ga brisemo.
+ */
 
  GLWidget::~GLWidget()
  {
@@ -903,19 +1177,25 @@ GLWidget::GLWidget(QWidget *parent)
      }
   }
 
+ /*! Realizacija
+  * vratimo funkciju Qsize sa vrednostima 50 za duzinu i 50 za sirinu.
+  */
  QSize GLWidget::minimumSizeHint() const
  {
      return QSize(50, 50);
  }
 
+ /*! Realizacija
+  * vratimo Qsize sa vrednostima 400 za sirinu i duzinu.
+  */
  QSize GLWidget::sizeHint() const
  {
      return QSize(400, 400);
  }
 
+/**************************************/
 
-
- /********************************************************************************************/
+ /*! mapa resene rubikove kocke*/
  int mapGoal[6][3][3]=
  {{{1,1,1},{1,1,1},{1,1,1}},
      {{2,2,2},{2,2,2},{2,2,2}},
@@ -926,7 +1206,7 @@ GLWidget::GLWidget(QWidget *parent)
  /*! \brief pomocna metoda za proveru stanja nase trenutne rubikove kocke i koliko je daleko od resenja*/
  int vrednost(int tekmap[6][3][3])
  {
-     /*!  br je broj polja koji se nalaze na tacnom mestu minimalno je 6 jer centri su
+     /*! @param br je broj polja koji se nalaze na tacnom mestu minimalno je 6 jer centri su
       * uvek na tacnom mestu a max je 54 odnosno solved cube
       * radi jednostavnosti brojimo od 0 ipak.
       */
@@ -938,6 +1218,21 @@ GLWidget::GLWidget(QWidget *parent)
      return br;
  }
 
+ /*! Realizacija
+  * @param n = ogranicenje za maksimum ciklusa, da bi sprecili beskonacnu petlju.
+  * @param tekbr, novbr tekuca i nova vrednost stanja mape
+  * @param[out] resenje je niz poteza do resenja
+  * @param brojac za niz resenja
+  * @param flag je pomocna promenjljiva koja kada nije moguce vise izvrsavati jednostruke poteze
+  * pokusa da izvrsava dvostruke poteze da dodje do resenja.
+  *
+  * Algoritam se svodi na try and error.
+  * Mi posle svakog pokreta racunamo koliko vrednosti nam se poklapaju izmedju trenutne mape, globalne promenljive
+  * i ciljne mape. Sto je ta vrednost veca to smo blizi resenju. Ukoliko smo dosli do maximuma od 54, to jest potpunog
+  * poklapanja nasih mapa, mi radimo break.
+  * Ukoliko nam novo stanje samo vece od starog, mi sacuvamo to stanje i radimo continue.
+  *
+  */
  void GLWidget::SolveSimple()
  {
 
@@ -1251,7 +1546,10 @@ GLWidget::GLWidget(QWidget *parent)
 
  /**********************************************************************************/
 
-
+/*! Realizacija
+ *
+ * ??? ??? ???
+ */
  void GLWidget::initializeGL()
  {
 GLfloat no_mat[] = { 0.0, 0.0, 0.0, 1.0 };
@@ -1277,7 +1575,10 @@ GLfloat light_position[] = { 1, 0, 0, 1 };
     glTranslated(0.0, 0.0, -dist);
      glEnable(GL_CULL_FACE);
  }
-
+/*! Realizacija
+ * ??? ??? ???
+ * Pozovemo makeObject.
+ */
 void GLWidget::paintGL()
 {
 
@@ -1285,6 +1586,11 @@ void GLWidget::paintGL()
     makeObject();
 }
 
+/*! Realizacija
+ *
+ * Vrsi se promena velicine pomocu glVieport.
+ * ??? ??? ???
+ */
  void GLWidget::resizeGL(int width, int height)
  {
 
@@ -1298,6 +1604,19 @@ void GLWidget::paintGL()
      lastPos = QCursor::pos ();
  }
 
+/*! Realizacija
+ * @param i,j su brojaci
+ * @param z1,z2 su ??? ??? ???
+ * @param hit je ??? ??? ???
+ * @param minZ je ??? ??? ???
+ * @param ret je ??? ??? ???
+ * @param ii ??? ??? ???
+ * @param jj ??? ??? ???
+ * @param names ??? ??? ???
+ * @param ptr je pokazivac na ??? ??? ???
+ *
+ * ??? ??? ???
+ */
 int processHits (GLint hits, GLuint buffer[])
 {
     int i, j;
@@ -1336,6 +1655,11 @@ int processHits (GLint hits, GLuint buffer[])
     }
     return ret;
 }
+/*! Realizacija
+ * @param lastPos je poslednja pozicija misa ??? ??? ???
+ *
+ * ??? ??? ???
+ */
 void GLWidget::mousePressEvent(QMouseEvent *event)
 {
     lastPos = event->pos();
@@ -1370,7 +1694,11 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
 
     }
 }
-
+/*! Realizacija
+ * @param dx,dy za koliko se mis pomerio u odnosu na poslednju poziciju ??? ??? ???
+ *
+ * ??? ??? ???
+ */
  void GLWidget::mouseMoveEvent(QMouseEvent *event)
  {
      int dx = event->x() - lastPos.x();
@@ -1398,6 +1726,12 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
      }
      lastPos = event->pos();
  }
+
+ /*! Realizacija
+  * @param render_mode ??? ??? ???
+  *
+  * ??? ??? ???
+  */
 
  GLuint GLWidget::makeObject()
  {

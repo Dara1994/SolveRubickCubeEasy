@@ -1,4 +1,5 @@
-/*! \header mainwindow.h "mainwindow.h"
+/*! \file mainwindow.h
+ * \header mainwindow.h "mainwindow.h"
  * \brief Klasa GLWidget
  *
  * Definisana Clasa GLWidget koja nasleduje QLWidget. Ovde se nalaze funkcije
@@ -11,6 +12,26 @@
 #include <QGLWidget>
 #include <QMouseEvent>
 
+/*! \class GLWidget
+ *  \brief Vecina nasih funkcija
+ *
+ * Ovde imamo sve nase pokrete.
+ * Moguci pokreti su:
+ * LU - left side up /levu kolonu nagore;
+ * LD - left side down /levu kolonu nadole;
+ * RU - right side up /desnu kolonu nagore;
+ * RD - right side down /desnu kolonu nadole;
+ * FR - front face right / nalicje rotiraj nadesno;
+ * FL - front face left / nalicije rotiraj nalevo;
+ * TL - top row left /gorni red nalevo;
+ * TR - top row right /gornji red nadesno;
+ * DL - down row left /donji red nalevo;
+ * DR - down row rigth /donji red nadesno;
+ *
+ * Imamo konstruktor i destruktor nasledjeni od roditeljske klase.
+ * Kao i sto imamo Randomiranje, solve it i resetovanje
+ *
+ */
  class GLWidget : public QGLWidget
  {
      Q_OBJECT
@@ -27,23 +48,7 @@
      /*! Pocetna velicina prozora*/
      QSize sizeHint() const;
 
-     /*! * \brief Moguci pokreti rubikove kocke
- *
- * Ovde imamo sve nase pokrete.
- * Moguci pokreti su:
- * LU - left side up /levu kolonu nagore
- * LD - left side down /levu kolonu nadole
- * RU - right side up /desnu kolonu nagore
- * RD - right side down /desnu kolonu nadole
- * FR - front face right / nalicje rotiraj nadesno
- * FL - front face left / nalicije rotiraj nalevo
- * TL - top row left /gorni red nalevo
- * TR - top row right /gornji red nadesno
- * DL - down row left /donji red nalevo
- * DR - down row rigth /donji red nadesno
- *
- * Imamo konstruktor i destruktor nasledjeni od roditeljske klase.
- */
+
      /*! \brief  LD - left side down /levu kolonu nadole
 
      */
@@ -78,7 +83,7 @@
 
    /*! Randomiranje rubikove kocke*/
      void RandomCube();
-     /*! SImple Solve metoda*/
+     /*! Simple Solve metoda*/
      void SolveSimple();
 
        protected:
@@ -99,8 +104,11 @@
             */
            void keyPressEvent( QKeyEvent * event );
  public slots:
+           /*! funkcije povezane sa new game button*/
            void make_random_cube();
+           /*! funkcija povezana sa reset button*/
            void new_game();
+           /*! funkcija povezana sa solve it button*/
            void solve_it();
 
  private:
