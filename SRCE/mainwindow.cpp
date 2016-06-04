@@ -236,7 +236,8 @@ void GLWidget::keyPressEvent(QKeyEvent *event)
         Buffer.pushBuffer('M');
     }
     if(event->key() == Qt::Key_P){
-        rotFL();
+       // dobar poziv stavljen
+        SolveSimple();
         Buffer.pushBuffer('P');
     }
 
