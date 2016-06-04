@@ -52,33 +52,31 @@
      /*! \brief  LD - left side down /levu kolonu nadole
 
      */
-      void rotLD();
+      void rotLD(int flag=0);
       /*! \brief  LD - left side up /levu kolonu nagore
 
       */
-      void rotLU();
+      void rotLU(int flag=0);
       /*! \brief  RD - right side down /desnu kolonu nadole
 
       */
-      void rotRD();
+      void rotRD(int flag=0);
       /*! \brief RU - right side up / desno kolonu nagore
 */
-      void rotRU();
+      void rotRU(int flag=0);
       /*! \brief   FR - front face right / nalicje rotiraj nadesno
-
       */
-      void  rotFR();
+      void  rotFR(int flag=0);
       /*! \brief  TL - top row rigth /gornji red nadesno*/
-
-      void  rotTL();
+      void  rotTL(int flag=0);
       /*! \brief  TL - top row left /gornji red nalevo*/
-      void  rotTR();
+      void  rotTR(int flag=0);
 /*! \brief  DL - down row left /donji red nalevo*/
-      void rotDL();
+      void rotDL(int flag=0);
       /*! \brief  DR - down row right /donji red nadesno*/
-      void rotDR();
+      void rotDR(int flag=0);
       /*! \brief  FL - front face left / nalicje rotiraj nalevo */
-      void rotFL();
+      void rotFL(int flag=0);
 
 
    /*! Randomiranje rubikove kocke*/

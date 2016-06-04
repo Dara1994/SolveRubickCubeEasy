@@ -485,7 +485,7 @@ map[a_][2][0]=tmp[6]; map[a_][2][1]=tmp[7];
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
  * i za to vreme polako pomerati odgovarajuce kockice oko X ose.
  */
-void  GLWidget::rotLD()
+void  GLWidget::rotLD(int flag)
 {
     int tmp[8];
     if (way==1) {
@@ -503,7 +503,7 @@ void  GLWidget::rotLD()
         map[3][2][0]=map[5][2][0]; map[3][1][0]=map[5][1][0]; map[3][0][0]=map[5][0][0];
         map[5][2][0]=tmp[0]; map[5][1][0]=tmp[1]; map[5][0][0]=tmp[2];
     }
-
+if(flag == 0){
 
     int k;
     int r;
@@ -527,7 +527,7 @@ void  GLWidget::rotLD()
     }
 
     updateGL();
-    resetCube();
+    resetCube();}
 }
 /*! Realizacija
  * @param tmp je pomocni niz.
@@ -542,7 +542,7 @@ void  GLWidget::rotLD()
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
  * i za to vreme polako pomerati odgovarajuce kockice oko X ose.
  */
-void GLWidget::rotLU()
+void GLWidget::rotLU(int flag)
 {
     int tmp[8];
     if (way!=1) {
@@ -560,7 +560,7 @@ void GLWidget::rotLU()
         map[3][2][0]=map[5][2][0]; map[3][1][0]=map[5][1][0]; map[3][0][0]=map[5][0][0];
         map[5][2][0]=tmp[0]; map[5][1][0]=tmp[1]; map[5][0][0]=tmp[2];
     }
-
+if(flag == 0){
     int k;
     int r;
     float fr;
@@ -583,7 +583,7 @@ void GLWidget::rotLU()
     }
 
     updateGL();
-    resetCube();
+    resetCube();}
 }
 /*! Realizacija
  * @param tmp je pomocni niz.
@@ -598,7 +598,7 @@ void GLWidget::rotLU()
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
  * i za to vreme polako pomerati odgovarajuce kockice oko X ose.
  */
-void  GLWidget::rotRD()
+void  GLWidget::rotRD(int flag)
 {
     int tmp[8];
     if (way==1) {
@@ -617,7 +617,7 @@ void  GLWidget::rotRD()
         map[3][0][2]=map[5][0][2]; map[3][1][2]=map[5][1][2]; map[3][2][2]=map[5][2][2];
         map[5][0][2]=tmp[0]; map[5][1][2]=tmp[1]; map[5][2][2]=tmp[2];
     }
-
+if(flag == 0){
     int k;
     int r;
     float fr;
@@ -639,7 +639,7 @@ void  GLWidget::rotRD()
     }
 
     updateGL();
-    resetCube();
+    resetCube();}
 
 }
 /*! Realizacija
@@ -655,7 +655,7 @@ void  GLWidget::rotRD()
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
  * i za to vreme polako pomerati odgovarajuce kockice oko X ose.
  */
-void  GLWidget::rotRU()
+void  GLWidget::rotRU(int flag)
 {
     int tmp[8];
     if (way!=1) {
@@ -674,7 +674,7 @@ void  GLWidget::rotRU()
         map[3][0][2]=map[5][0][2]; map[3][1][2]=map[5][1][2]; map[3][2][2]=map[5][2][2];
         map[5][0][2]=tmp[0]; map[5][1][2]=tmp[1]; map[5][2][2]=tmp[2];
     }
-
+if(flag == 0){
     int k;
     int r;
     float fr;
@@ -696,7 +696,7 @@ void  GLWidget::rotRU()
     }
 
     updateGL();
-    resetCube();
+    resetCube();}
 
 }
 /*! Realizacija
@@ -712,7 +712,7 @@ void  GLWidget::rotRU()
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
  * i za to vreme polako pomerati odgovarajuce kockice oko Z ose.
  */
-void  GLWidget::rotFR()
+void  GLWidget::rotFR(int flag)
 {
     int tmp[8];
     if (way==1) {
@@ -730,7 +730,7 @@ void  GLWidget::rotFR()
         map[0][2][0]=map[1][2][0]; map[0][2][1]=map[1][2][1]; map[0][2][2]=map[1][2][2];
         map[1][2][0]=tmp[0]; map[1][2][1]=tmp[1]; map[1][2][2]=tmp[2];
     }
-
+if(flag == 0){
     int k;
     int r;
     float fr;
@@ -752,7 +752,7 @@ void  GLWidget::rotFR()
     }
 
     updateGL();
-    resetCube();
+    resetCube();}
 
 }
 /*! Realizacija
@@ -768,7 +768,7 @@ void  GLWidget::rotFR()
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
  * i za to vreme polako pomerati odgovarajuce kockice oko Z ose.
  */
-void  GLWidget::rotFL()
+void  GLWidget::rotFL(int flag)
 {
     int tmp[8];
     if (way!=1) {
@@ -786,7 +786,7 @@ void  GLWidget::rotFL()
         map[0][2][0]=map[1][2][0]; map[0][2][1]=map[1][2][1]; map[0][2][2]=map[1][2][2];
         map[1][2][0]=tmp[0]; map[1][2][1]=tmp[1]; map[1][2][2]=tmp[2];
     }
-
+if(flag == 0){
     int k;
     int r;
     float fr;
@@ -809,7 +809,7 @@ void  GLWidget::rotFL()
 
     updateGL();
     resetCube();
-
+}
 }
 /*! Realizacija
  * @param tmp je pomocni niz.
@@ -824,7 +824,7 @@ void  GLWidget::rotFL()
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
  * i za to vreme polako pomerati odgovarajuce kockice oko Y ose.
  */
-void  GLWidget::rotTL()
+void  GLWidget::rotTL(int flag)
 {
     int tmp[8];
     if (way==1) {
@@ -842,7 +842,7 @@ void  GLWidget::rotTL()
         map[2][2][0]=map[1][0][0]; map[2][2][1]=map[1][1][0]; map[2][2][2]=map[1][2][0];
         map[1][0][0]=tmp[0]; map[1][1][0]=tmp[1]; map[1][2][0]=tmp[2];
     }
-
+if(flag == 0){
     int k;
     int r;
     float fr;
@@ -864,7 +864,7 @@ void  GLWidget::rotTL()
     }
 
     updateGL();
-    resetCube();
+    resetCube();}
 
 }
 /*! Realizacija
@@ -880,7 +880,7 @@ void  GLWidget::rotTL()
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
  * i za to vreme polako pomerati odgovarajuce kockice oko Y ose.
  */
-void  GLWidget::rotTR()
+void  GLWidget::rotTR(int flag)
 {
     int tmp[8];
     if (way!=1) {
@@ -898,7 +898,7 @@ void  GLWidget::rotTR()
         map[2][2][0]=map[1][0][0]; map[2][2][1]=map[1][1][0]; map[2][2][2]=map[1][2][0];
         map[1][0][0]=tmp[0]; map[1][1][0]=tmp[1]; map[1][2][0]=tmp[2];
     }
-
+if(flag == 0){
     int k;
     int r;
     float fr;
@@ -920,7 +920,7 @@ void  GLWidget::rotTR()
     }
 
     updateGL();
-    resetCube();
+    resetCube();}
 
 }
 /*! Realizacija
@@ -936,7 +936,7 @@ void  GLWidget::rotTR()
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
  * i za to vreme polako pomerati odgovarajuce kockice oko Y ose.
  */
-void  GLWidget::rotDL()
+void  GLWidget::rotDL(int flag)
 {
     int tmp[8];
 
@@ -955,7 +955,7 @@ void  GLWidget::rotDL()
         map[3][0][0]=map[1][2][2]; map[3][0][1]=map[1][1][2]; map[3][0][2]=map[1][0][2];
         map[1][2][2]=tmp[0]; map[1][1][2]=tmp[1]; map[1][0][2]=tmp[2];
     }
-
+if(flag == 0){
     int k;
     int r;
     float fr;
@@ -977,7 +977,7 @@ void  GLWidget::rotDL()
     }
 
     updateGL();
-    resetCube();
+    resetCube();}
 
 }
 /*! Realizacija
@@ -993,7 +993,7 @@ void  GLWidget::rotDL()
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
  * i za to vreme polako pomerati odgovarajuce kockice oko Y ose.
  */
-void GLWidget::rotDR()
+void GLWidget::rotDR(int flag)
 {
     int tmp[8];
 
@@ -1012,7 +1012,7 @@ void GLWidget::rotDR()
         map[3][0][0]=map[1][2][2]; map[3][0][1]=map[1][1][2]; map[3][0][2]=map[1][0][2];
         map[1][2][2]=tmp[0]; map[1][1][2]=tmp[1]; map[1][0][2]=tmp[2];
     }
-
+if(flag == 0){
     int k;
     int r;
     float fr;
@@ -1037,7 +1037,8 @@ void GLWidget::rotDR()
     resetCube();
 
     updateGL();
-    }
+}
+}
 
 /*! Realizacija
  * @param number je broj ukupnih pokreta. Postavljen nadeset
@@ -1241,16 +1242,18 @@ GLWidget::GLWidget(QWidget *parent)
      char resenje [200];
      int i=0;
      int flag = 0;
+
      tekbr= vrednost(map);
      while( tekbr!=54 || n>0)
      {
      tekbr= vrednost(map);
      n=n-1;
 
-     rotDL();
+     rotDL(1);
      novbr= vrednost(map);
      if (novbr > tekbr)
-     {
+     {   rotDR(1);
+         rotDL();
          tekbr= novbr;
          resenje [i] = 'D';
          i=i+1;
@@ -1258,12 +1261,13 @@ GLWidget::GLWidget(QWidget *parent)
          i=i+1;
          if(tekbr == 54) break;
          continue;
-     }else {rotDR();}
+     }else {rotDR(1);}
 
-     rotFL();
+     rotFL(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
-     {
+     { rotFR(1);
+         rotFL();
          tekbr= novbr;
          resenje [i] = 'F';
          i=i+1;
@@ -1271,12 +1275,14 @@ GLWidget::GLWidget(QWidget *parent)
          i=i+1;
          if(tekbr == 54) break;
          continue;
-     }else {rotFR();}
+     }else {rotFR(1);}
 
-     rotLD();
+     rotLD(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
      {
+         rotLU(1);
+         rotLD();
          tekbr= novbr;
          resenje [i] = 'L';
          i=i+1;
@@ -1285,12 +1291,14 @@ GLWidget::GLWidget(QWidget *parent)
          if(tekbr == 54) break;
          continue;
 
-     }else {rotLU();}
+     }else {rotLU(1);}
 
-     rotTL();
+     rotTL(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
      {
+         rotTR(1);
+         rotTL();
          tekbr= novbr;
          resenje [i] = 'T';
          i=i+1;
@@ -1298,12 +1306,14 @@ GLWidget::GLWidget(QWidget *parent)
          i=i+1;
          if(tekbr == 54) break;
          continue;
-     }else {rotTR();}
+     }else {rotTR(1);}
 
-     rotRD();
+     rotRD(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
      {
+         rotRU(1);
+         rotRD();
          tekbr= novbr;
          resenje [i] = 'R';
          i=i+1;
@@ -1311,12 +1321,14 @@ GLWidget::GLWidget(QWidget *parent)
          i=i+1;
          if(tekbr == 54) break;
          continue;
-     }else {rotRU();}
-  /*! Suptrni smer*/
-     rotDR();
+     }else {rotRU(1);}
+  /* Suptrni smer*/
+     rotDR(1);
      novbr= vrednost(map);
      if (novbr > tekbr)
      {
+         rotDL(1);
+         rotDR();
          tekbr= novbr;
          resenje [i] = 'D';
          i=i+1;
@@ -1324,12 +1336,14 @@ GLWidget::GLWidget(QWidget *parent)
          i=i+1;
          if(tekbr == 54) break;
          continue;
-     }else {rotDL();}
+     }else {rotDL(1);}
 
-     rotFR();
+     rotFR(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
      {
+         rotFL(1);
+         rotFR();
          tekbr= novbr;
          resenje [i] = 'F';
          i=i+1;
@@ -1337,12 +1351,14 @@ GLWidget::GLWidget(QWidget *parent)
          i=i+1;
          if(tekbr == 54) break;
          continue;
-     }else {rotFL();}
+     }else {rotFL(1);}
 
-     rotLU();
+     rotLU(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
      {
+         rotLD(1);
+         rotLU();
          tekbr= novbr;
          resenje [i] = 'L';
          i=i+1;
@@ -1351,12 +1367,14 @@ GLWidget::GLWidget(QWidget *parent)
          if(tekbr == 54) break;
          continue;
 
-     }else {rotLD();}
+     }else {rotLD(1);}
 
-     rotTR();
+     rotTR(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
      {
+         rotTL(1);
+         rotTR();
          tekbr= novbr;
          resenje [i] = 'T';
          i=i+1;
@@ -1364,12 +1382,14 @@ GLWidget::GLWidget(QWidget *parent)
          i=i+1;
          if(tekbr == 54) break;
          continue;
-     }else {rotTL();}
+     }else {rotTL(1);}
 
-     rotRU();
+     rotRU(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
      {
+         rotRD(1);
+         rotRU();
          tekbr= novbr;
          resenje [i] = 'R';
          i=i+1;
@@ -1377,17 +1397,21 @@ GLWidget::GLWidget(QWidget *parent)
          i=i+1;
          if(tekbr == 54) break;
          continue;
-     }else {rotRD();}
+     }else {rotRD(1);}
 
      /***Dvostruki potezi ako nam jednostruki nedaju da pridjemo blize resenju****/
  if (flag == 2){
      flag=0;
 
-     rotDL();
-     rotDL();
+     rotDL(1);
+     rotDL(1);
      novbr= vrednost(map);
      if (novbr > tekbr)
      {
+         rotDR(1);
+         rotDR(1);
+         rotDL();
+         rotDL();
          tekbr= novbr;
          resenje [i] = 'D';
          i=i+1;
@@ -1397,12 +1421,16 @@ GLWidget::GLWidget(QWidget *parent)
          i=i+1;
          if(tekbr == 54) break;
          continue;
-     }else {rotDR();rotDR();}
-     rotDR();
-     rotDR();
+     }else {rotDR(1);rotDR(1);}
+     rotDR(1);
+     rotDR(1);
      novbr= vrednost(map);
      if (novbr > tekbr)
      {
+         rotDL(1);
+         rotDL(1);
+         rotDR();
+         rotDR();
          tekbr= novbr;
          resenje [i] = 'D';
          i=i+1;
@@ -1412,12 +1440,16 @@ GLWidget::GLWidget(QWidget *parent)
          i=i+1;
          if(tekbr == 54) break;
          continue;
-     }else {rotDL();rotDL();}
-     rotFL();
-     rotFL();
+     }else {rotDL(1);rotDL(1);}
+     rotFL(1);
+     rotFL(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
      {
+         rotFR(1);
+         rotFR(1);
+         rotFL();
+         rotFL();
          tekbr= novbr;
          resenje [i] = 'F';
          i=i+1;
@@ -1427,13 +1459,17 @@ GLWidget::GLWidget(QWidget *parent)
          i=i+1;
          if(tekbr == 54) break;
          continue;
-     }else {rotFR();rotFR();}
+     }else {rotFR(1);rotFR(1);}
 
-     rotFR();
-     rotFR();
+     rotFR(1);
+     rotFR(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
      {
+         rotFL(1);
+         rotFL(1);
+         rotFR();
+         rotFR();
          tekbr= novbr;
          resenje [i] = 'F';
          i=i+1;
@@ -1443,12 +1479,16 @@ GLWidget::GLWidget(QWidget *parent)
          i=i+1;
          if(tekbr == 54) break;
          continue;
-     }else {rotFL();rotFL();}
-     rotLD();
-     rotLD();
+     }else {rotFL(1);rotFL(1);}
+     rotLD(1);
+     rotLD(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
      {
+         rotLU(1);
+         rotLU(1);
+         rotLD();
+         rotLD();
          tekbr= novbr;
          resenje [i] = 'L';
          i=i+1;
@@ -1459,12 +1499,16 @@ GLWidget::GLWidget(QWidget *parent)
          if(tekbr == 54) break;
          continue;
 
-     }else {rotLU();rotLU();}
-     rotLU();
-     rotLU();
+     }else {rotLU(1);rotLU(1);}
+     rotLU(1);
+     rotLU(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
      {
+         rotLD(1);
+         rotLD(1);
+         rotLU();
+         rotLU();
          tekbr= novbr;
          resenje [i] = 'L';
          i=i+1;
@@ -1475,12 +1519,16 @@ GLWidget::GLWidget(QWidget *parent)
          if(tekbr == 54) break;
          continue;
 
-     }else {rotLD();rotLD();}
-     rotTL();
-     rotTL();
+     }else {rotLD(1);rotLD(1);}
+     rotTL(1);
+     rotTL(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
      {
+         rotTR(1);
+         rotTR(1);
+         rotTL();
+         rotTL();
          tekbr= novbr;
          resenje [i] = 'T';
          i=i+1;
@@ -1489,12 +1537,15 @@ GLWidget::GLWidget(QWidget *parent)
          resenje[i]= '2';
          if(tekbr == 54) break;
          continue;
-     }else {rotTR();rotTR();}
-     rotTR();
-     rotTR();
+     }else {rotTR(1);rotTR(1);}
+     rotTR(1);
+     rotTR(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
-     {
+     {  rotTL(1);
+         rotTL(1);
+         rotTR();
+         rotTR();
          tekbr= novbr;
          resenje [i] = 'T';
          i=i+1;
@@ -1503,12 +1554,16 @@ GLWidget::GLWidget(QWidget *parent)
          resenje[i]= '2';
          if(tekbr == 54) break;
          continue;
-     }else {rotTL();rotTL();}
-     rotRD();
-     rotRD();
+     }else {rotTL(1);rotTL(1);}
+     rotRD(1);
+     rotRD(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
      {
+         rotRD(1);
+         rotRD(1);
+         rotRU();
+         rotRU();
          tekbr= novbr;
          resenje [i] = 'R';
          i=i+1;
@@ -1518,13 +1573,17 @@ GLWidget::GLWidget(QWidget *parent)
          i=i+1;
          if(tekbr == 54) break;
          continue;
-     }else {rotRU();rotRU();}
+     }else {rotRU(1);rotRU(1);}
 
-     rotRU();
-     rotRU();
+     rotRU(1);
+     rotRU(1);
      novbr= vrednost(map);
      if (novbr >tekbr)
      {
+         rotRD(1);
+         rotRD(1);
+         rotRU();
+         rotRU();
          tekbr= novbr;
          resenje [i] = 'R';
          i=i+1;
@@ -1534,7 +1593,7 @@ GLWidget::GLWidget(QWidget *parent)
          i=i+1;
          if(tekbr == 54) break;
          continue;
-     }else {rotRD();rotRD();}
+     }else {rotRD(1);rotRD(1);}
 
 
  }else {flag= flag + 1 ;}
