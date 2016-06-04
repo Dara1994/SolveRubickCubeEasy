@@ -186,6 +186,13 @@ void Cube::move(float dx,float dy,float dz)
         coords[k][2]+=dz;
     }
 }
+//void GLWidget::make_random_cube()
+//{
+//    RandomCube();
+//    Buffer.pushBuffer('Q');
+
+//}
+
 void GLWidget::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_F){
@@ -228,12 +235,7 @@ void GLWidget::keyPressEvent(QKeyEvent *event)
         rotDR();
         Buffer.pushBuffer('M');
     }
-    if(event->key() == Qt::Key_Q){
-        RandomCube();
-        Buffer.pushBuffer('Q');
-    }
     // adding here down
-
     if(event->key() == Qt::Key_W){
         DT=100;
         int k;
@@ -324,6 +326,7 @@ void Cube::drawWireCube()
     glDrawElements(GL_LINES,6,GL_UNSIGNED_INT,(void *)P1);
 
 }
+
 Cube *A[27]={0};
 void resetCube()
 {
@@ -872,11 +875,12 @@ for(int i=0; i<n;i++){
     }
 }
 }
+void GLWidget::make_random_cube(){
+    RandomCube();
+    Buffer.pushBuffer('Q');
 
-
-
-
- GLWidget::GLWidget(QWidget *parent)
+}
+GLWidget::GLWidget(QWidget *parent)
      : QGLWidget(parent)
 {
      resetCube();

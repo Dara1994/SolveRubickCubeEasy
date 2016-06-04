@@ -70,7 +70,7 @@ background-image:url(:/images/canvas3.jpg);}</string>
        <number>10</number>
       </property>
       <item>
-       <widget class="QPushButton" name="New_game">
+       <widget class="QPushButton" name="new_game_btn">
         <property name="styleSheet">
          <string notr="true">QPushButton{
 border-color: 10px solid red;
@@ -84,7 +84,7 @@ font: 75 12pt &quot;Purisa&quot;;
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="Make_a_cube">
+       <widget class="QPushButton" name="make_cube_btn">
         <property name="styleSheet">
          <string notr="true">font: 75 12pt &quot;Purisa&quot;;</string>
         </property>
@@ -94,7 +94,7 @@ font: 75 12pt &quot;Purisa&quot;;
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="solve_it_btn">
         <property name="styleSheet">
          <string notr="true">font: 75 12pt &quot;Purisa&quot;;</string>
         </property>
@@ -132,7 +132,7 @@ font: 75 12pt &quot;Purisa&quot;;
      </spacer>
     </item>
     <item>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="rubick_group_box">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -233,7 +233,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item>
-       <widget class="QPlainTextEdit" name="plainTextEdit">
+       <widget class="QPlainTextEdit" name="write_steps">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>

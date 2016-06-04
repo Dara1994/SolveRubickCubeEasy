@@ -75,8 +75,9 @@
       /*! \brief  FL - front face left / nalicje rotiraj nalevo */
       void rotFL();
 
-      /*! Randomiranje rubikove kocke*/
-      void RandomCube();
+
+   /*! Randomiranje rubikove kocke*/
+     void RandomCube();
 
        protected:
           /*! Desavanja na pritisak misa*/
@@ -95,7 +96,8 @@
             *@param[in] event ??? ??? ???
             */
            void keyPressEvent( QKeyEvent * event );
-
+ public slots:
+           void make_random_cube();
  private:
             /*! Pravljene objekta i isrtavanje*/
      GLuint makeObject();
