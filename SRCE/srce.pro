@@ -19,3 +19,5 @@ HEADERS  += rubik.h \
     mainwindow.h
 
 FORMS    += rubik.ui
+
+RESOURCES +=

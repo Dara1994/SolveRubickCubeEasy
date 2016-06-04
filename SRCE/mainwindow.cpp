@@ -19,10 +19,10 @@ float S=0.16;
  *  koja se kosti za ??? ??? ???*/
 float dist=7;
 /*!  ORTHOFRUSTRUM
- *  koja sluzi za ??? ??? ??? */
+ *  koja sluzi za projekciju kocke, tj. pogleda na projekciju kocke */
 #define ORTHOFRUSTRUM glFrustum (-.3, .3, -.3, .3, 4, 10);
 /*! float DT je tipa float vrednosti 500
- * koju koristimo u kalsama za iscrtavanje. ??? ??? ???*/
+ * koju koristimo u klasama za iscrtavanje. ??? ??????*/
 float DT=500.;
 /*! way je int
  * koja defenise u kom smeru cemo da pomeramo rotacije. */
@@ -197,7 +197,13 @@ Cube::Cube(float x0,float y0,float z0,float a,int r1,int r2,int r3,int r4,int r5
  */
 void Cube::drawCube()
 {
+    /*! Metod glBegin() sluzi za podelu temena u grupe.
+     * U ovom slucaju delice ih u kocke, zbog konstante GL_QUADS
+     */
     glBegin(GL_QUADS);
+    /*! Za svaku od 6 strana kocke metodom glColor3fv() bira boju,
+     * metodom GlVertex3fv() odredjuju se koordinate svakog temena
+     */
        glColor3fv(col[colors[0]]);
        glNormal3fv(norm[0]);
        glVertex3fv(coords[0]);
@@ -382,9 +388,8 @@ void Cube::rotZ(int angle)
     }
 }
 /*! Realizacija
- * @param P je niz koji koristimo za ??? ??? ???
- * @param P1 je niz koji koristimo za ??? ??? ???
- * ??? ??? ??? Kako iscrtava sta koristimo ??? ??? ???
+ * @param P je niz koji sadrzi temena, kroz koja prolaze "trake" zice kocke
+ * @param P1 je niz koji temena kroz koja prolaze linije
  */
 void Cube::drawWireCube()
 {
@@ -450,7 +455,7 @@ void resetCube()
     A[26]=new Cube( R, R, R,S,		           0,           0,map[2][2][2],		           0,map[4][2][0],map[5][2][2]);
 
 }
-/*! Definisemo pomeranje jedne strane ??? ??? ???nalevo/nadesno??? ??? ???*/
+/*! Definisemo pomeranje jedne strane u smeru kazaljke na satu*/
 #define SHIFT_FACE(a_)\
 tmp[0]=map[a_][2][2]; tmp[1]=map[a_][1][2];\
 tmp[2]=map[a_][0][2]; tmp[3]=map[a_][0][1];\
@@ -461,7 +466,7 @@ map[a_][0][2]=tmp[0]; map[a_][0][1]=tmp[1];\
 map[a_][0][0]=tmp[2]; map[a_][1][0]=tmp[3];\
 map[a_][2][0]=tmp[4]; map[a_][2][1]=tmp[5];
 
-/*! Definisemo pomeranje jedne strane ??? ??? ???nalevo/nadesno??? ??? ???*/
+/*! Definisemo pomeranje jedne strane u suprotnom smeru od smera kazaljke na satu*/
 #define DESHIFT_FACE(a_)\
 tmp[6]=map[a_][2][2]; tmp[7]=map[a_][1][2];\
 tmp[0]=map[a_][0][2]; tmp[1]=map[a_][0][1];\
@@ -479,7 +484,7 @@ map[a_][2][0]=tmp[6]; map[a_][2][1]=tmp[7];
  * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
  *
  * @param k je vreme u milisekundama.
- * @param r je ugao ??? ??? ???
+ * @param r je ugao za koji se pomera
  * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
  *
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
@@ -536,7 +541,7 @@ if(flag == 0){
  * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
  *
  * @param k je vreme u milisekundama.
- * @param r je ugao ??? ??? ???
+ * @param r je ugao za koji se pomera
  * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
  *
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
@@ -592,7 +597,7 @@ if(flag == 0){
  * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
  *
  * @param k je vreme u milisekundama.
- * @param r je ugao ??? ??? ???
+ * @param r je ugao za koji se pomera
  * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
  *
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
@@ -649,7 +654,7 @@ if(flag == 0){
  * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
  *
  * @param k je vreme u milisekundama.
- * @param r je ugao ??? ??? ???
+ * @param r je ugao za koji se pomera
  * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
  *
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
@@ -706,7 +711,7 @@ if(flag == 0){
  * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
  *
  * @param k je vreme u milisekundama.
- * @param r je ugao ??? ??? ???
+ * @param r je ugao za koji se pomera
  * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
  *
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
@@ -762,7 +767,7 @@ if(flag == 0){
  * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
  *
  * @param k je vreme u milisekundama.
- * @param r je ugao ??? ??? ???
+ * @param r je ugao za koji se pomera
  * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
  *
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
@@ -818,7 +823,7 @@ if(flag == 0){
  * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
  *
  * @param k je vreme u milisekundama.
- * @param r je ugao ??? ??? ???
+ * @param r je ugao za koji se pomera
  * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
  *
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
@@ -874,7 +879,7 @@ if(flag == 0){
  * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
  *
  * @param k je vreme u milisekundama.
- * @param r je ugao ??? ??? ???
+ * @param r je ugao za koji se pomera
  * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
  *
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
@@ -930,7 +935,7 @@ if(flag == 0){
  * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
  *
  * @param k je vreme u milisekundama.
- * @param r je ugao ??? ??? ???
+ * @param r je ugao za koji se pomera
  * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
  *
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
@@ -987,7 +992,7 @@ if(flag == 0){
  * kada smo rotirali stranu rotiracemo i sve boje na ivici pokreta.
  *
  * @param k je vreme u milisekundama.
- * @param r je ugao ??? ??? ???
+ * @param r je ugao za koji se pomera
  * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
  *
  * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
@@ -1635,8 +1640,8 @@ GLfloat light_position[] = { 1, 0, 0, 1 };
      glEnable(GL_CULL_FACE);
  }
 /*! Realizacija
- * ??? ??? ???
- * Pozovemo makeObject.
+ * Brisemo stanje buffer-a za ponovno upisivanje
+ * i kreira se objekat pozivom makeObject().
  */
 void GLWidget::paintGL()
 {
@@ -1715,9 +1720,9 @@ int processHits (GLint hits, GLuint buffer[])
     return ret;
 }
 /*! Realizacija
- * @param lastPos je poslednja pozicija misa ??? ??? ???
+ * @param lastPos je poslednja pozicija misa prilikom nekog dogadjaja.
  *
- * ??? ??? ???
+ *
  */
 void GLWidget::mousePressEvent(QMouseEvent *event)
 {
