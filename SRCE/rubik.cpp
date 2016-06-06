@@ -27,7 +27,10 @@ rubik::rubik(QWidget *parent, Qt::WindowFlags flags)
     connect(ui.make_cube_btn, SIGNAL (clicked()), Widget, SLOT (make_random_cube()));
     connect(ui.new_game_btn, SIGNAL (clicked()), Widget, SLOT (new_game()));
     connect(ui.solve_it_btn, SIGNAL (clicked()), Widget, SLOT (solve_it()));
-
+    connect(ui.god_btn, SIGNAL (clicked()), Widget, SLOT (god_ptn()));
+    connect(ui.six_spots_btn, SIGNAL (clicked()), Widget, SLOT (spots_ptn()));
+    connect(ui.checkerboard_btn, SIGNAL (clicked()), Widget, SLOT (checker_ptn()));
+    connect(ui.cross_btn, SIGNAL (clicked()), Widget, SLOT (cross_ptn()));
 }
 /*! Destruktor nam je prazan*/
 rubik::~rubik()
@@ -103,4 +106,28 @@ void rubik::on_FunFacts_clicked()
         break;
         }
 
+}
+/*!Realizacija
+ * @param w sluzi za poziv funkcije Cross()*/
+void rubik::cross_ptn(){
+    GLWidget w;
+    w.cross_ptn();
+}
+/*!Realizacija
+ * @param w sluzi za poziv funkcije Checker()*/
+void rubik::checker_ptn(){
+    GLWidget w;
+    w.checker_ptn();
+}
+/*!Realizacija
+ * @param w sluzi za poziv funkcije Number()*/
+void rubik::god_ptn(){
+    GLWidget w;
+    w.god_ptn();
+}
+/*!Realizacija
+ * @param w sluzi za poziv funkcije Spots()*/
+void rubik::spots_ptn(){
+    GLWidget w;
+    w.spots_ptn();
 }

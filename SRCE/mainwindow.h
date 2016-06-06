@@ -77,12 +77,18 @@
       void rotDR(int flag=0);
       /*! \brief  FL - front face left / nalicje rotiraj nalevo */
       void rotFL(int flag=0);
+      /*! \brief  BL - back face left / zadnji deo rotiraj nalevo */
+      void rotBL(int flag=0);
+      /*! \brief  BR - back face left / zadnji deo rotiraj nadesno */
+      void rotBR(int flag=0);
 
 
    /*! Randomiranje rubikove kocke*/
      void RandomCube();
      /*! Simple Solve metoda*/
      void SolveSimple();
+     void Solver();
+
 
        protected:
           /*! Desavanja na pritisak misa*/
@@ -108,6 +114,14 @@
            void new_game();
            /*! funkcija povezana sa solve it button*/
            void solve_it();
+           /*! funkcija povezana sa cross button*/
+           void cross_ptn();
+           /*! funkcija povezana sa checkerboard button*/
+           void checker_ptn();
+           /*! funkcija povezana sa god's number button*/
+           void god_ptn();
+           /*! funkcija povezana sa six spots button*/
+           void spots_ptn();
 
  private:
             /*! Pravljene objekta i isrtavanje*/

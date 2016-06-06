@@ -40,6 +40,14 @@ private slots:
     void solve_it();
  /*! Zanimljivosti o rubikovoj kocki*/
     void on_FunFacts_clicked();
+    /*!cross patern*/
+    void cross_ptn();
+    /*!checkerboard patern*/
+    void checker_ptn();
+    /*!God's number patern*/
+    void god_ptn();
+    /*!six spots patern*/
+    void spots_ptn();
 
 private:
     /*! pomocu ovog polja mozemo da pristupimo i menjamo fajl .ui iz ove klase*/

@@ -194,8 +194,6 @@ Cube::Cube(float x0,float y0,float z0,float a,int r1,int r2,int r3,int r4,int r5
 /*! Realizacija
  * Crta rubikovu kocku.
  * ??? ??? ??? Sta se koristi i mozda opis kako koristi odredene ugradene funkcije? ??? ??? ???
- * Dodaje vrednosti promenljivama, koje cemo kasnije koristiti pri iscrtavanju kocke
- * Njih ce koristit glVertex3d(); i glNormal3d(); funkcije u drawCube
  */
 void Cube::drawCube()
 {
@@ -308,6 +306,14 @@ void GLWidget::keyPressEvent(QKeyEvent *event)
         rotDR();
         Buffer.pushBuffer('M');
     }
+    if(event->key() == Qt::Key_U){
+        rotBR();
+        Buffer.pushBuffer('U');
+    }
+    if(event->key() == Qt::Key_T){
+        rotBL();
+        Buffer.pushBuffer('T');
+    }
 
 }
 
@@ -417,7 +423,7 @@ Cube *A[27]={0};
  *
  * Prvo obrisemo svaki elemenat iz niza A. Potom za svaku od tih 27 kockica koje cine rubikovu kocku
  * koristimo konstruktor Cube sa odgovarajucim elementima. R za koordinatni pocetak za svaku kockicu,
- * S za velicinu stranice kocke 1.6 (2.0 ne bi bilo razmaka), i odgovarajuce map za strane koje su vidljive a 0 za one koje nevidimo.
+ * S za ??? ??? ???, i odgovarajuce map za strane koje su vidljive a 0 za one koje nevidimo.
  */
 void resetCube()
 {
@@ -1047,6 +1053,91 @@ if(flag == 0){
 }
 }
 
+void GLWidget::rotBL(int flag){
+    int tmp[8];
+    if (way==1) {
+        DESHIFT_FACE(3);
+        tmp[0]=map[1][0][2]; tmp[1]=map[1][0][1]; tmp[2]=map[1][0][0];
+        map[1][0][2]=map[5][0][0]; map[1][0][1]=map[5][0][1]; map[1][0][0]=map[5][0][2];
+        map[5][0][0]=map[4][0][0]; map[5][0][1]=map[4][0][1]; map[5][0][2]=map[4][0][2];
+        map[4][0][0]=map[0][0][2]; map[4][0][1]=map[0][0][1]; map[4][0][2]=map[0][0][0];
+        map[0][0][2]=tmp[0]; map[0][0][1]=tmp[1]; map[0][0][0]=tmp[2];
+    } else {
+        SHIFT_FACE(3);
+        tmp[0]=map[0][0][2]; tmp[1]=map[0][0][1]; tmp[2]=map[0][0][0];
+        map[0][0][2]=map[4][0][0]; map[0][0][1]=map[4][0][1]; map[0][0][0]=map[4][0][2];
+        map[4][0][0]=map[5][0][0]; map[4][0][1]=map[5][0][1]; map[4][0][2]=map[5][0][2];
+        map[5][0][0]=map[1][0][2]; map[5][0][1]=map[1][0][1]; map[5][0][2]=map[1][0][0];
+        map[1][0][2]=tmp[0]; map[1][0][1]=tmp[1]; map[1][0][0]=tmp[2];
+    }
+if(flag==0){
+    int k;
+    int r;
+    float fr;
+    QTime time;
+
+    k=0;
+    fr=0;
+    while (k<90) {
+        time.start();
+        updateGL();
+        fr+=(time.elapsed()*90.)/DT;
+        r=fr; fr-=r;
+        if (k+r>90) r=90-k;
+        k=k+r;
+        if (way==0) r=-r;
+        A[0]->rotZ(r); A[1]->rotZ(r); A[2]->rotZ(r);
+        A[3]->rotZ(r); A[4]->rotZ(r); A[5]->rotZ(r);
+        A[6]->rotZ(r); A[7]->rotZ(r); A[8]->rotZ(r);
+    }
+
+    updateGL();
+    resetCube();
+}
+}
+void GLWidget::rotBR(int flag){
+    int tmp[8];
+    if (way!=1) {
+        DESHIFT_FACE(3);
+        tmp[0]=map[1][0][2]; tmp[1]=map[1][0][1]; tmp[2]=map[1][0][0];
+        map[1][0][2]=map[5][0][0]; map[1][0][1]=map[5][0][1]; map[1][0][0]=map[5][0][2];
+        map[5][0][0]=map[4][0][0]; map[5][0][1]=map[4][0][1]; map[5][0][2]=map[4][0][2];
+        map[4][0][0]=map[0][0][2]; map[4][0][1]=map[0][0][1]; map[4][0][2]=map[0][0][0];
+        map[0][0][2]=tmp[0]; map[0][0][1]=tmp[1]; map[0][0][0]=tmp[2];
+    } else {
+        SHIFT_FACE(3);
+        tmp[0]=map[0][0][2]; tmp[1]=map[0][0][1]; tmp[2]=map[0][0][0];
+        map[0][0][2]=map[4][0][0]; map[0][0][1]=map[4][0][1]; map[0][0][0]=map[4][0][2];
+        map[4][0][0]=map[5][0][0]; map[4][0][1]=map[5][0][1]; map[4][0][2]=map[5][0][2];
+        map[5][0][0]=map[1][0][2]; map[5][0][1]=map[1][0][1]; map[5][0][2]=map[1][0][0];
+        map[1][0][2]=tmp[0]; map[1][0][1]=tmp[1]; map[1][0][0]=tmp[2];
+    }
+if(flag==0){
+    int k;
+    int r;
+    float fr;
+    QTime time;
+
+    k=0;
+    fr=0;
+    while (k<90) {
+        time.start();
+        updateGL();
+        fr+=(time.elapsed()*90.)/DT;
+        r=fr; fr-=r;
+        if (k+r>90) r=90-k;
+        k=k+r;
+        if (way==0) r=-r;
+        A[0]->rotZ(-r); A[1]->rotZ(-r); A[2]->rotZ(-r);
+        A[3]->rotZ(-r); A[4]->rotZ(-r); A[5]->rotZ(-r);
+        A[6]->rotZ(-r); A[7]->rotZ(-r); A[8]->rotZ(-r);
+    }
+
+    updateGL();
+    resetCube();
+}
+}
+
 /*! Realizacija
  * @param number je broj ukupnih pokreta. Postavljen nadeset
  * @param n je Broj nasumicnih potez, postavljen na 15
@@ -1146,7 +1237,8 @@ void GLWidget::new_game(){
             case 'J': rotRD(); break;
             case 'K': rotRU(); break;
             case 'M': rotDR(); break;
-
+            case 'T': rotBL(); break;
+            case 'U': rotBR(); break;
          }
          if (k==0) break;
     }
@@ -1613,39 +1705,33 @@ GLWidget::GLWidget(QWidget *parent)
  /**********************************************************************************/
 
 /*! Realizacija
- * Razna podesavanja iz openGL biblioteke za izgled i rendiranje slika
- * GLfloat se koristi kako ne bi doslo do problema pri promeni platforma
+ *
  * ??? ??? ???
- * Neke od funkcija:
- * glClearColor specifira ciste vrednosti za bafer za boje
- * glShadeModel nacin sencenja
- * glMaterial dodaje vrednost materijalu parametra.
  */
  void GLWidget::initializeGL()
  {
-
 GLfloat no_mat[] = { 0.0, 0.0, 0.0, 1.0 };
 GLfloat mat_diffuse[] = { 0.1, 0.5, 0.8, 1.0 };
 GLfloat mat_shininess[] = {30.0};
 //izmenjeno {0, 0, 1, 0}
 GLfloat light_position[] = { 1, 0, 0, 1 };
     glClearColor(1,1,1,0);
-    glShadeModel(GL_FLAT);
-    glEnable(GL_DEPTH_TEST);
-    glMaterialfv(GL_FRONT, GL_AMBIENT, no_mat);
+     glShadeModel(GL_FLAT);
+     glEnable(GL_DEPTH_TEST);
+     glMaterialfv(GL_FRONT, GL_AMBIENT, no_mat);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR, no_mat);
     glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
     glMaterialfv(GL_FRONT, GL_EMISSION, no_mat);
 
-    glColorMaterial(GL_FRONT, GL_DIFFUSE);
-    glEnable(GL_COLOR_MATERIAL);
+     glColorMaterial(GL_FRONT, GL_DIFFUSE);
+     glEnable(GL_COLOR_MATERIAL);
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 
     glTranslated(0.0, 0.0, -dist);
-    glEnable(GL_CULL_FACE);
+     glEnable(GL_CULL_FACE);
  }
 /*! Realizacija
  * Brisemo stanje buffer-a za ponovno upisivanje
@@ -1676,7 +1762,57 @@ void GLWidget::paintGL()
      lastPos = QCursor::pos ();
  }
 
+/*! Realizacija
+ * @param i,j su brojaci
+ * @param z1,z2 su ??? ??? ???
+ * @param hit je ??? ??? ???
+ * @param minZ je ??? ??? ???
+ * @param ret je ??? ??? ???
+ * @param ii ??? ??? ???
+ * @param jj ??? ??? ???
+ * @param names ??? ??? ???
+ * @param ptr je pokazivac na ??? ??? ???
+ *
+ * ??? ??? ???
+ */
+int processHits (GLint hits, GLuint buffer[])
+{
+    int i, j;
+    float z1,z2;
+    int hit;
 
+    float minZ;
+    int ret=0;
+    GLuint ii, jj, names, *ptr;
+    ptr = (GLuint *) buffer;
+    for (i = 0; i < hits; i++) { /* za svai hit */
+        names = *ptr;
+        ptr++;
+        z1=(float)*ptr/0x7fffffff;
+        ptr++;
+        z2=(float)*ptr/0x7fffffff;
+        ptr++;
+        for (j = 0; j < names; j++) { /* za svaki naziv */
+            hit=*ptr;
+            if (j == 0) /* postavi red i kolonu */
+            ii = *ptr;
+            else if (j == 1)
+            jj = *ptr;
+            ptr++;
+        }
+        if (i==0) {
+            ret=hit;
+            minZ=(z1<z2)?z1:z2;
+        } else {
+            if (z1<minZ || z2<minZ) {
+                ret=hit;
+                minZ=(z1<z2)?z1:z2;
+            }
+        }
+
+    }
+    return ret;
+}
 /*! Realizacija
  * @param lastPos je poslednja pozicija misa prilikom nekog dogadjaja.
  *
@@ -1731,7 +1867,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
 
          GLfloat pmat[16];
 
-    glMatrixMode (GL_MODELVIEW);
+         glMatrixMode (GL_MODELVIEW);
     glGetFloatv(GL_MODELVIEW_MATRIX,pmat);
     glLoadIdentity();
 
@@ -1846,3 +1982,68 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
     }
      return 0;
 }
+/*!Implementacija algoritma za six spots*/
+void GLWidget::spots_ptn(){
+    rotTL(); Buffer.pushBuffer('R');
+    rotDL(); Buffer.pushBuffer('C');
+    rotRU(); Buffer.pushBuffer('K');
+    rotLU(); Buffer.pushBuffer('D');
+    rotFR(); Buffer.pushBuffer('H');
+    rotBR(); Buffer.pushBuffer('U');
+    rotTL(); Buffer.pushBuffer('R');
+    rotDL(); Buffer.pushBuffer('C');
+}
+/*!Implementacija algoritma za Cross*/
+void GLWidget::cross_ptn(){
+    rotTL(); Buffer.pushBuffer('R');
+    rotFR(); Buffer.pushBuffer('H');
+    rotBR(); Buffer.pushBuffer('U');
+    rotLD(); Buffer.pushBuffer('F');
+    rotLD(); Buffer.pushBuffer('F');
+    rotTL(); Buffer.pushBuffer('R');
+    rotTL(); Buffer.pushBuffer('R');
+    rotLD(); Buffer.pushBuffer('F');
+    rotLD(); Buffer.pushBuffer('F');
+    rotFL(); Buffer.pushBuffer('G');
+    rotBL(); Buffer.pushBuffer('T');
+    rotTL(); Buffer.pushBuffer('R');
+    rotTL(); Buffer.pushBuffer('R');
+    rotLD(); Buffer.pushBuffer('F');
+    rotLD(); Buffer.pushBuffer('F');
+    rotTL(); Buffer.pushBuffer('R');
+}
+/*Implementacija algoritma God's number*/
+void GLWidget::god_ptn(){
+    rotRU(); Buffer.pushBuffer('K');
+    rotLD(); Buffer.pushBuffer('F');
+    rotTL(); Buffer.pushBuffer('R');
+    rotTL(); Buffer.pushBuffer('R');
+    rotFR(); Buffer.pushBuffer('H');
+    rotTR(); Buffer.pushBuffer('I');
+    rotDR(); Buffer.pushBuffer('M');
+    rotFR(); Buffer.pushBuffer('H');
+    rotFR(); Buffer.pushBuffer('H');
+    rotRU(); Buffer.pushBuffer('K');
+    rotRU(); Buffer.pushBuffer('K');
+    rotBL(); Buffer.pushBuffer('T');
+    rotBL(); Buffer.pushBuffer('T');
+    rotLD(); Buffer.pushBuffer('F');
+    rotTL(); Buffer.pushBuffer('R');
+    rotTL(); Buffer.pushBuffer('R');
+    rotFL(); Buffer.pushBuffer('G');
+    rotBR(); Buffer.pushBuffer('U');
+    rotTL(); Buffer.pushBuffer('R');
+    rotRU(); Buffer.pushBuffer('K');
+    rotRU(); Buffer.pushBuffer('K');
+    rotDR(); Buffer.pushBuffer('M');
+    rotFR(); Buffer.pushBuffer('H');
+    rotFR(); Buffer.pushBuffer('H');
+    rotTL(); Buffer.pushBuffer('R');
+    rotRU(); Buffer.pushBuffer('K');
+    rotRU(); Buffer.pushBuffer('K');
+    rotTL(); Buffer.pushBuffer('R');
+}
+void GLWidget::checker_ptn(){
+
+}
+
