@@ -516,31 +516,32 @@ void  GLWidget::rotLD(int flag)
         map[3][2][0]=map[5][2][0]; map[3][1][0]=map[5][1][0]; map[3][0][0]=map[5][0][0];
         map[5][2][0]=tmp[0]; map[5][1][0]=tmp[1]; map[5][0][0]=tmp[2];
     }
-if(flag == 0){
+    if(flag == 0){
 
-    int k;
-    int r;
-    float fr;
-    QTime time;
+        int k;
+        int r;
+        float fr;
+        QTime time;
 
-    k=0;
-    fr=0;
-    while (k<90) {
-        time.start();
+        k=0;
+        fr=0;
+        while (k<90) {
+            time.start();
+            updateGL();
+            fr+=(time.elapsed()*90.)/DT;
+            r=fr; fr-=r;
+            if (k+r>90) r=90-k;
+            k=k+r;
+            if (way==0) r=-r;
+            A[0]->rotX(r); A[3]->rotX(r); A[6]->rotX(r);
+            A[9]->rotX(r); A[12]->rotX(r); A[15]->rotX(r);
+            A[18]->rotX(r); A[21]->rotX(r); A[24]->rotX(r);
+
+        }
+
         updateGL();
-        fr+=(time.elapsed()*90.)/DT;
-        r=fr; fr-=r;
-        if (k+r>90) r=90-k;
-        k=k+r;
-        if (way==0) r=-r;
-        A[0]->rotX(r); A[3]->rotX(r); A[6]->rotX(r);
-        A[9]->rotX(r); A[12]->rotX(r); A[15]->rotX(r);
-        A[18]->rotX(r); A[21]->rotX(r); A[24]->rotX(r);
-
+        resetCube();
     }
-
-    updateGL();
-    resetCube();}
 }
 /*! Realizacija
  * @param tmp je pomocni niz.
@@ -573,30 +574,31 @@ void GLWidget::rotLU(int flag)
         map[3][2][0]=map[5][2][0]; map[3][1][0]=map[5][1][0]; map[3][0][0]=map[5][0][0];
         map[5][2][0]=tmp[0]; map[5][1][0]=tmp[1]; map[5][0][0]=tmp[2];
     }
-if(flag == 0){
-    int k;
-    int r;
-    float fr;
-    QTime time;
+    if(flag == 0){
+        int k;
+        int r;
+        float fr;
+        QTime time;
 
-    k=0;
-    fr=0;
-    while (k<90) {
-        time.start();
+        k=0;
+        fr=0;
+        while (k<90) {
+            time.start();
+            updateGL();
+            fr+=(time.elapsed()*90.)/DT;
+            r=fr; fr-=r;
+            if (k+r>90) r=90-k;
+            k=k+r;
+            if (way==0) r=-r;
+            A[0]->rotX(-r); A[3]->rotX(-r); A[6]->rotX(-r);
+            A[9]->rotX(-r); A[12]->rotX(-r); A[15]->rotX(-r);
+            A[18]->rotX(-r); A[21]->rotX(-r); A[24]->rotX(-r);
+
+        }
+
         updateGL();
-        fr+=(time.elapsed()*90.)/DT;
-        r=fr; fr-=r;
-        if (k+r>90) r=90-k;
-        k=k+r;
-        if (way==0) r=-r;
-        A[0]->rotX(-r); A[3]->rotX(-r); A[6]->rotX(-r);
-        A[9]->rotX(-r); A[12]->rotX(-r); A[15]->rotX(-r);
-        A[18]->rotX(-r); A[21]->rotX(-r); A[24]->rotX(-r);
-
+        resetCube();
     }
-
-    updateGL();
-    resetCube();}
 }
 /*! Realizacija
  * @param tmp je pomocni niz.
@@ -630,29 +632,30 @@ void  GLWidget::rotRD(int flag)
         map[3][0][2]=map[5][0][2]; map[3][1][2]=map[5][1][2]; map[3][2][2]=map[5][2][2];
         map[5][0][2]=tmp[0]; map[5][1][2]=tmp[1]; map[5][2][2]=tmp[2];
     }
-if(flag == 0){
-    int k;
-    int r;
-    float fr;
-    QTime time;
+    if(flag == 0){
+        int k;
+        int r;
+        float fr;
+        QTime time;
 
-    k=0;
-    fr=0;
-    while (k<90) {
-        time.start();
+        k=0;
+        fr=0;
+        while (k<90) {
+            time.start();
+            updateGL();
+            fr+=(time.elapsed()*90.)/DT;
+            r=fr; fr-=r;
+            if (k+r>90) r=90-k;
+            k=k+r;
+            if (way==0) r=-r;
+            A[2]->rotX(r); A[5]->rotX(r); A[8]->rotX(r);
+            A[11]->rotX(r); A[14]->rotX(r); A[17]->rotX(r);
+            A[20]->rotX(r); A[23]->rotX(r); A[26]->rotX(r);
+        }
+
         updateGL();
-        fr+=(time.elapsed()*90.)/DT;
-        r=fr; fr-=r;
-        if (k+r>90) r=90-k;
-        k=k+r;
-        if (way==0) r=-r;
-        A[2]->rotX(r); A[5]->rotX(r); A[8]->rotX(r);
-        A[11]->rotX(r); A[14]->rotX(r); A[17]->rotX(r);
-        A[20]->rotX(r); A[23]->rotX(r); A[26]->rotX(r);
+        resetCube();
     }
-
-    updateGL();
-    resetCube();}
 
 }
 /*! Realizacija
@@ -687,29 +690,30 @@ void  GLWidget::rotRU(int flag)
         map[3][0][2]=map[5][0][2]; map[3][1][2]=map[5][1][2]; map[3][2][2]=map[5][2][2];
         map[5][0][2]=tmp[0]; map[5][1][2]=tmp[1]; map[5][2][2]=tmp[2];
     }
-if(flag == 0){
-    int k;
-    int r;
-    float fr;
-    QTime time;
+    if(flag == 0){
+        int k;
+        int r;
+        float fr;
+        QTime time;
 
-    k=0;
-    fr=0;
-    while (k<90) {
-        time.start();
+        k=0;
+        fr=0;
+        while (k<90) {
+            time.start();
+            updateGL();
+            fr+=(time.elapsed()*90.)/DT;
+            r=fr; fr-=r;
+            if (k+r>90) r=90-k;
+            k=k+r;
+            if (way==0) r=-r;
+            A[2]->rotX(-r); A[5]->rotX(-r); A[8]->rotX(-r);
+            A[11]->rotX(-r); A[14]->rotX(-r); A[17]->rotX(-r);
+            A[20]->rotX(-r); A[23]->rotX(-r); A[26]->rotX(-r);
+        }
+
         updateGL();
-        fr+=(time.elapsed()*90.)/DT;
-        r=fr; fr-=r;
-        if (k+r>90) r=90-k;
-        k=k+r;
-        if (way==0) r=-r;
-        A[2]->rotX(-r); A[5]->rotX(-r); A[8]->rotX(-r);
-        A[11]->rotX(-r); A[14]->rotX(-r); A[17]->rotX(-r);
-        A[20]->rotX(-r); A[23]->rotX(-r); A[26]->rotX(-r);
+        resetCube();
     }
-
-    updateGL();
-    resetCube();}
 
 }
 /*! Realizacija
@@ -743,29 +747,30 @@ void  GLWidget::rotFR(int flag)
         map[0][2][0]=map[1][2][0]; map[0][2][1]=map[1][2][1]; map[0][2][2]=map[1][2][2];
         map[1][2][0]=tmp[0]; map[1][2][1]=tmp[1]; map[1][2][2]=tmp[2];
     }
-if(flag == 0){
-    int k;
-    int r;
-    float fr;
-    QTime time;
+    if(flag == 0){
+        int k;
+        int r;
+        float fr;
+        QTime time;
 
-    k=0;
-    fr=0;
-    while (k<90) {
-        time.start();
+        k=0;
+        fr=0;
+        while (k<90) {
+            time.start();
+            updateGL();
+            fr+=(time.elapsed()*90.)/DT;
+            r=fr; fr-=r;
+            if (k+r>90) r=90-k;
+            k=k+r;
+            if (way==0) r=-r;
+            A[18]->rotZ(-r); A[19]->rotZ(-r); A[20]->rotZ(-r);
+            A[21]->rotZ(-r); A[22]->rotZ(-r); A[23]->rotZ(-r);
+            A[24]->rotZ(-r); A[25]->rotZ(-r); A[26]->rotZ(-r);
+        }
+
         updateGL();
-        fr+=(time.elapsed()*90.)/DT;
-        r=fr; fr-=r;
-        if (k+r>90) r=90-k;
-        k=k+r;
-        if (way==0) r=-r;
-        A[18]->rotZ(-r); A[19]->rotZ(-r); A[20]->rotZ(-r);
-        A[21]->rotZ(-r); A[22]->rotZ(-r); A[23]->rotZ(-r);
-        A[24]->rotZ(-r); A[25]->rotZ(-r); A[26]->rotZ(-r);
+        resetCube();
     }
-
-    updateGL();
-    resetCube();}
 
 }
 /*! Realizacija
@@ -799,30 +804,30 @@ void  GLWidget::rotFL(int flag)
         map[0][2][0]=map[1][2][0]; map[0][2][1]=map[1][2][1]; map[0][2][2]=map[1][2][2];
         map[1][2][0]=tmp[0]; map[1][2][1]=tmp[1]; map[1][2][2]=tmp[2];
     }
-if(flag == 0){
-    int k;
-    int r;
-    float fr;
-    QTime time;
+    if(flag == 0){
+        int k;
+        int r;
+        float fr;
+        QTime time;
 
-    k=0;
-    fr=0;
-    while (k<90) {
-        time.start();
+        k=0;
+        fr=0;
+        while (k<90) {
+            time.start();
+            updateGL();
+            fr+=(time.elapsed()*90.)/DT;
+            r=fr; fr-=r;
+            if (k+r>90) r=90-k;
+            k=k+r;
+            if (way==0) r=-r;
+            A[18]->rotZ(r); A[19]->rotZ(r); A[20]->rotZ(r);
+            A[21]->rotZ(r); A[22]->rotZ(r); A[23]->rotZ(r);
+            A[24]->rotZ(r); A[25]->rotZ(r); A[26]->rotZ(r);
+        }
+
         updateGL();
-        fr+=(time.elapsed()*90.)/DT;
-        r=fr; fr-=r;
-        if (k+r>90) r=90-k;
-        k=k+r;
-        if (way==0) r=-r;
-        A[18]->rotZ(r); A[19]->rotZ(r); A[20]->rotZ(r);
-        A[21]->rotZ(r); A[22]->rotZ(r); A[23]->rotZ(r);
-        A[24]->rotZ(r); A[25]->rotZ(r); A[26]->rotZ(r);
+        resetCube();
     }
-
-    updateGL();
-    resetCube();
-}
 }
 /*! Realizacija
  * @param tmp je pomocni niz.
@@ -855,29 +860,30 @@ void  GLWidget::rotTL(int flag)
         map[2][2][0]=map[1][0][0]; map[2][2][1]=map[1][1][0]; map[2][2][2]=map[1][2][0];
         map[1][0][0]=tmp[0]; map[1][1][0]=tmp[1]; map[1][2][0]=tmp[2];
     }
-if(flag == 0){
-    int k;
-    int r;
-    float fr;
-    QTime time;
+    if(flag == 0){
+        int k;
+        int r;
+        float fr;
+        QTime time;
 
-    k=0;
-    fr=0;
-    while (k<90) {
-        time.start();
+        k=0;
+        fr=0;
+        while (k<90) {
+            time.start();
+            updateGL();
+            fr+=(time.elapsed()*90.)/DT;
+            r=fr; fr-=r;
+            if (k+r>90) r=90-k;
+            k=k+r;
+            if(way==0) r=-r;
+            A[6]->rotY(-r); A[7]->rotY(-r); A[8]->rotY(-r);
+            A[15]->rotY(-r); A[16]->rotY(-r); A[17]->rotY(-r);
+            A[24]->rotY(-r); A[25]->rotY(-r); A[26]->rotY(-r);
+        }
+
         updateGL();
-        fr+=(time.elapsed()*90.)/DT;
-        r=fr; fr-=r;
-        if (k+r>90) r=90-k;
-        k=k+r;
-        if(way==0) r=-r;
-        A[6]->rotY(-r); A[7]->rotY(-r); A[8]->rotY(-r);
-        A[15]->rotY(-r); A[16]->rotY(-r); A[17]->rotY(-r);
-        A[24]->rotY(-r); A[25]->rotY(-r); A[26]->rotY(-r);
+        resetCube();
     }
-
-    updateGL();
-    resetCube();}
 
 }
 /*! Realizacija
@@ -911,29 +917,30 @@ void  GLWidget::rotTR(int flag)
         map[2][2][0]=map[1][0][0]; map[2][2][1]=map[1][1][0]; map[2][2][2]=map[1][2][0];
         map[1][0][0]=tmp[0]; map[1][1][0]=tmp[1]; map[1][2][0]=tmp[2];
     }
-if(flag == 0){
-    int k;
-    int r;
-    float fr;
-    QTime time;
+    if(flag == 0){
+        int k;
+        int r;
+        float fr;
+        QTime time;
 
-    k=0;
-    fr=0;
-    while (k<90) {
-        time.start();
+        k=0;
+        fr=0;
+        while (k<90) {
+            time.start();
+            updateGL();
+            fr+=(time.elapsed()*90.)/DT;
+            r=fr; fr-=r;
+            if (k+r>90) r=90-k;
+            k=k+r;
+            if(way==0) r=-r;
+            A[6]->rotY(r); A[7]->rotY(r); A[8]->rotY(r);
+            A[15]->rotY(r); A[16]->rotY(r); A[17]->rotY(r);
+            A[24]->rotY(r); A[25]->rotY(r); A[26]->rotY(r);
+        }
+
         updateGL();
-        fr+=(time.elapsed()*90.)/DT;
-        r=fr; fr-=r;
-        if (k+r>90) r=90-k;
-        k=k+r;
-        if(way==0) r=-r;
-        A[6]->rotY(r); A[7]->rotY(r); A[8]->rotY(r);
-        A[15]->rotY(r); A[16]->rotY(r); A[17]->rotY(r);
-        A[24]->rotY(r); A[25]->rotY(r); A[26]->rotY(r);
+        resetCube();
     }
-
-    updateGL();
-    resetCube();}
 
 }
 /*! Realizacija
@@ -968,30 +975,30 @@ void  GLWidget::rotDL(int flag)
         map[3][0][0]=map[1][2][2]; map[3][0][1]=map[1][1][2]; map[3][0][2]=map[1][0][2];
         map[1][2][2]=tmp[0]; map[1][1][2]=tmp[1]; map[1][0][2]=tmp[2];
     }
-if(flag == 0){
-    int k;
-    int r;
-    float fr;
-    QTime time;
+    if(flag == 0){
+        int k;
+        int r;
+        float fr;
+        QTime time;
 
-    k=0;
-    fr=0;
-    while (k<90) {
-        time.start();
+        k=0;
+        fr=0;
+        while (k<90) {
+            time.start();
+            updateGL();
+            fr+=(time.elapsed()*90.)/DT;
+            r=fr; fr-=r;
+            if (k+r>90) r=90-k;
+            k=k+r;
+            if(way==0) r=-r;
+            A[0]->rotY(-r); A[1]->rotY(-r); A[2]->rotY(-r);
+            A[9]->rotY(-r); A[10]->rotY(-r); A[11]->rotY(-r);
+            A[18]->rotY(-r); A[19]->rotY(-r); A[20]->rotY(-r);
+        }
+
         updateGL();
-        fr+=(time.elapsed()*90.)/DT;
-        r=fr; fr-=r;
-        if (k+r>90) r=90-k;
-        k=k+r;
-        if(way==0) r=-r;
-        A[0]->rotY(-r); A[1]->rotY(-r); A[2]->rotY(-r);
-        A[9]->rotY(-r); A[10]->rotY(-r); A[11]->rotY(-r);
-        A[18]->rotY(-r); A[19]->rotY(-r); A[20]->rotY(-r);
+        resetCube();
     }
-
-    updateGL();
-    resetCube();}
-
 }
 /*! Realizacija
  * @param tmp je pomocni niz.
@@ -1025,32 +1032,32 @@ void GLWidget::rotDR(int flag)
         map[3][0][0]=map[1][2][2]; map[3][0][1]=map[1][1][2]; map[3][0][2]=map[1][0][2];
         map[1][2][2]=tmp[0]; map[1][1][2]=tmp[1]; map[1][0][2]=tmp[2];
     }
-if(flag == 0){
-    int k;
-    int r;
-    float fr;
-    QTime time;
+    if(flag == 0){
+        int k;
+        int r;
+        float fr;
+        QTime time;
 
-    k=0;
-    fr=0;
-    while (k<90) {
-        time.start();
+        k=0;
+        fr=0;
+        while (k<90) {
+            time.start();
+            updateGL();
+            fr+=(time.elapsed()*90.)/DT;
+            r=fr; fr-=r;
+            if (k+r>90) r=90-k;
+            k=k+r;
+            if (way==0) r=-r;
+            A[0]->rotY(r); A[1]->rotY(r); A[2]->rotY(r);
+            A[9]->rotY(r); A[10]->rotY(r); A[11]->rotY(r);
+            A[18]->rotY(r); A[19]->rotY(r); A[20]->rotY(r);
+
+        }
+
+        resetCube();
+
         updateGL();
-        fr+=(time.elapsed()*90.)/DT;
-        r=fr; fr-=r;
-        if (k+r>90) r=90-k;
-        k=k+r;
-        if (way==0) r=-r;
-        A[0]->rotY(r); A[1]->rotY(r); A[2]->rotY(r);
-        A[9]->rotY(r); A[10]->rotY(r); A[11]->rotY(r);
-        A[18]->rotY(r); A[19]->rotY(r); A[20]->rotY(r);
-
     }
-
-    resetCube();
-
-    updateGL();
-}
 }
 
 void GLWidget::rotBL(int flag){
@@ -1070,30 +1077,30 @@ void GLWidget::rotBL(int flag){
         map[5][0][0]=map[1][0][2]; map[5][0][1]=map[1][0][1]; map[5][0][2]=map[1][0][0];
         map[1][0][2]=tmp[0]; map[1][0][1]=tmp[1]; map[1][0][0]=tmp[2];
     }
-if(flag==0){
-    int k;
-    int r;
-    float fr;
-    QTime time;
+    if(flag==0){
+        int k;
+        int r;
+        float fr;
+        QTime time;
 
-    k=0;
-    fr=0;
-    while (k<90) {
-        time.start();
+        k=0;
+        fr=0;
+        while (k<90) {
+            time.start();
+            updateGL();
+            fr+=(time.elapsed()*90.)/DT;
+            r=fr; fr-=r;
+            if (k+r>90) r=90-k;
+            k=k+r;
+            if (way==0) r=-r;
+            A[0]->rotZ(r); A[1]->rotZ(r); A[2]->rotZ(r);
+            A[3]->rotZ(r); A[4]->rotZ(r); A[5]->rotZ(r);
+            A[6]->rotZ(r); A[7]->rotZ(r); A[8]->rotZ(r);
+        }
+
         updateGL();
-        fr+=(time.elapsed()*90.)/DT;
-        r=fr; fr-=r;
-        if (k+r>90) r=90-k;
-        k=k+r;
-        if (way==0) r=-r;
-        A[0]->rotZ(r); A[1]->rotZ(r); A[2]->rotZ(r);
-        A[3]->rotZ(r); A[4]->rotZ(r); A[5]->rotZ(r);
-        A[6]->rotZ(r); A[7]->rotZ(r); A[8]->rotZ(r);
+        resetCube();
     }
-
-    updateGL();
-    resetCube();
-}
 }
 void GLWidget::rotBR(int flag){
     int tmp[8];
@@ -1112,33 +1119,32 @@ void GLWidget::rotBR(int flag){
         map[5][0][0]=map[1][0][2]; map[5][0][1]=map[1][0][1]; map[5][0][2]=map[1][0][0];
         map[1][0][2]=tmp[0]; map[1][0][1]=tmp[1]; map[1][0][0]=tmp[2];
     }
-if(flag==0){
-    int k;
-    int r;
-    float fr;
-    QTime time;
+    if(flag==0){
+        int k;
+        int r;
+        float fr;
+        QTime time;
 
-    k=0;
-    fr=0;
-    while (k<90) {
-        time.start();
+        k=0;
+        fr=0;
+        while (k<90) {
+            time.start();
+            updateGL();
+            fr+=(time.elapsed()*90.)/DT;
+            r=fr; fr-=r;
+            if (k+r>90) r=90-k;
+            k=k+r;
+            if (way==0) r=-r;
+            A[0]->rotZ(-r); A[1]->rotZ(-r); A[2]->rotZ(-r);
+            A[3]->rotZ(-r); A[4]->rotZ(-r); A[5]->rotZ(-r);
+            A[6]->rotZ(-r); A[7]->rotZ(-r); A[8]->rotZ(-r);
+        }
         updateGL();
-        fr+=(time.elapsed()*90.)/DT;
-        r=fr; fr-=r;
-        if (k+r>90) r=90-k;
-        k=k+r;
-        if (way==0) r=-r;
-        A[0]->rotZ(-r); A[1]->rotZ(-r); A[2]->rotZ(-r);
-        A[3]->rotZ(-r); A[4]->rotZ(-r); A[5]->rotZ(-r);
-        A[6]->rotZ(-r); A[7]->rotZ(-r); A[8]->rotZ(-r);
+        resetCube();
     }
-
-    updateGL();
-    resetCube();
-}
 }
 
-/*! Realizacija
+    /*! Realizacija
  * @param number je broj ukupnih pokreta. Postavljen nadeset
  * @param n je Broj nasumicnih potez, postavljen na 15
  * @param valueR nasumicna vrednost u opsegu [0-9]
@@ -1156,46 +1162,16 @@ void GLWidget::RandomCube()
 for(int i=0; i<n;i++){
     valueR= qrand()%number;
     switch(valueR){
-    case 0:
-        rotLD();
-         Buffer.pushBuffer('F');
-        break;
-    case 1:
-        rotLU();
-         Buffer.pushBuffer('D');
-        break;
-    case 2:
-        rotRD();
-         Buffer.pushBuffer('J');
-        break;
-    case 3:
-        rotRU();
-         Buffer.pushBuffer('K');
-        break;
-    case 4:
-        rotFR();
-         Buffer.pushBuffer('H');
-        break;
-    case 5:
-        rotFL();
-        Buffer.pushBuffer('G');
-        break;
-    case 6:
-        rotTL();
-         Buffer.pushBuffer('R');
-        break;
-    case 7:
-        rotTR();
-         Buffer.pushBuffer('I');
-        break;
-    case 9:
-        rotDL();
-         Buffer.pushBuffer('C');
-        break;
-    case 8:
-        rotDR();
-         Buffer.pushBuffer('M');
-        break;
+    case 0: rotLD(); Buffer.pushBuffer('F'); break;
+    case 1: rotLU(); Buffer.pushBuffer('D'); break;
+    case 2: rotRD(); Buffer.pushBuffer('J'); break;
+    case 3: rotRU(); Buffer.pushBuffer('K'); break;
+    case 4: rotFR(); Buffer.pushBuffer('H'); break;
+    case 5: rotFL(); Buffer.pushBuffer('G'); break;
+    case 6: rotTL(); Buffer.pushBuffer('R'); break;
+    case 7: rotTR(); Buffer.pushBuffer('I'); break;
+    case 9: rotDL(); Buffer.pushBuffer('C'); break;
+    case 8: rotDR(); Buffer.pushBuffer('M'); break;
     }
 }
 
@@ -1992,9 +1968,8 @@ void GLWidget::god_ptn(){
     rotRU(); Buffer.pushBuffer('K');
     rotTL(); Buffer.pushBuffer('R');
 }
+/*!Implementacija algoritma checkerboard*/
 void GLWidget::checker_ptn(){
-
-    //F B2 R’ D2 B R U D’ R L’ D’ F’ R2 D F2 B’:
     rotFR(); Buffer.pushBuffer('H');
     rotBL(); Buffer.pushBuffer('T');
     rotBL(); Buffer.pushBuffer('T');
@@ -2017,9 +1992,8 @@ void GLWidget::checker_ptn(){
     rotBR(); Buffer.pushBuffer('U');
 
 }
-
+/*!Implementacija algoritma cube in cube in cube*/
 void GLWidget::cube_in_cube_ptn(){
-    //U’ L’ U’ F’ R2 B’ R F U B2 U B’ L U’ F U R F’
     rotTR(); Buffer.pushBuffer('I');
     rotLU(); Buffer.pushBuffer('D');
     rotTR(); Buffer.pushBuffer('I');
@@ -2042,4 +2016,5 @@ void GLWidget::cube_in_cube_ptn(){
     rotFL(); Buffer.pushBuffer('G');
 
 }
+
 
