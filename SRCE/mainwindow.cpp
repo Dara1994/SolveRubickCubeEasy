@@ -1763,57 +1763,6 @@ void GLWidget::paintGL()
  }
 
 /*! Realizacija
- * @param i,j su brojaci
- * @param z1,z2 su ??? ??? ???
- * @param hit je ??? ??? ???
- * @param minZ je ??? ??? ???
- * @param ret je ??? ??? ???
- * @param ii ??? ??? ???
- * @param jj ??? ??? ???
- * @param names ??? ??? ???
- * @param ptr je pokazivac na ??? ??? ???
- *
- * ??? ??? ???
- */
-int processHits (GLint hits, GLuint buffer[])
-{
-    int i, j;
-    float z1,z2;
-    int hit;
-
-    float minZ;
-    int ret=0;
-    GLuint ii, jj, names, *ptr;
-    ptr = (GLuint *) buffer;
-    for (i = 0; i < hits; i++) { /* za svai hit */
-        names = *ptr;
-        ptr++;
-        z1=(float)*ptr/0x7fffffff;
-        ptr++;
-        z2=(float)*ptr/0x7fffffff;
-        ptr++;
-        for (j = 0; j < names; j++) { /* za svaki naziv */
-            hit=*ptr;
-            if (j == 0) /* postavi red i kolonu */
-            ii = *ptr;
-            else if (j == 1)
-            jj = *ptr;
-            ptr++;
-        }
-        if (i==0) {
-            ret=hit;
-            minZ=(z1<z2)?z1:z2;
-        } else {
-            if (z1<minZ || z2<minZ) {
-                ret=hit;
-                minZ=(z1<z2)?z1:z2;
-            }
-        }
-
-    }
-    return ret;
-}
-/*! Realizacija
  * @param lastPos je poslednja pozicija misa prilikom nekog dogadjaja.
  *
  *
