@@ -1222,13 +1222,58 @@ void GLWidget::new_game(){
     way=1;
 
 }
+
+
+
+char resenje [300];
+
+int duzinaResenja=0;
+void GLWidget::Solver()
+{
+    DT=300;
+    int k;
+
+    int i=0;
+    for (;;) {
+         k=Buffer.popBuffer();
+         if (k>0) way=0; else way=1;
+         if (k<0) k=-k;
+         switch (k) {
+            case 'R': rotTL(); resenje[i]= 'T';resenje[i++]='L'; resenje[i++]=' '; break;
+            case 'D': rotLU(); resenje[i]='L';resenje[i++]='U'; resenje[i++]=' ';break;
+            case 'C': rotDL(); resenje[i]='D';resenje[i++]='L'; resenje[i++]=' ';break;
+            case 'F': rotLD(); resenje[i]='L';resenje[i++]='D'; resenje[i++]=' ';break;
+            case 'G': rotFL(); resenje[i]='F';resenje[i++]='L'; resenje[i++]=' ';break;
+            case 'H': rotFR(); resenje[i]='F';resenje[i++]='R'; resenje[i++]=' ';break;
+            case 'I': rotTR(); resenje[i]='T';resenje[i++]='R'; resenje[i++]=' ';break;
+            case 'J': rotRD(); resenje[i]='R';resenje[i++]='D'; resenje[i++]=' ';break;
+            case 'K': rotRU(); resenje[i]='R';resenje[i++]='U'; resenje[i++]=' ';break;
+            case 'M': rotDR(); resenje[i]='D';resenje[i++]='R'; resenje[i++]=' ';break;
+            case 'T': rotBL(); resenje[i]='B';resenje[i++]='L'; resenje[i++]=' ';break;
+            case 'U': rotBR(); resenje[i]='B';resenje[i++]='R'; resenje[i++]=' ';break;
+         }
+         if (k==0) break;
+    }
+    duzinaResenja=i;
+    DT=500;
+    way=1;
+
+}
+
+void GLWidget::write_steps(char *resenje){
+
+    /*for(int i=0; i<duzinaResenja;i++ )
+        ui->lineEdit->setText(ui->lineEdit->text()+resenje[i]);
+*/
+}
+
 /*! Realizacija
  * Pozovemo  SolveSimple i na buffer pushujemo P.
  */
 void GLWidget::solve_it(){
-        SolveSimple();
-        Buffer.pushBuffer('P');
-
+    Solver();
+            Buffer.pushBuffer('P');
+            write_steps(resenje);
 }
 
 /*! Realizacija
@@ -1269,416 +1314,6 @@ GLWidget::GLWidget(QWidget *parent)
      return QSize(400, 400);
  }
 
-/**************************************/
-
- /*! mapa resene rubikove kocke*/
- int mapGoal[6][3][3]=
- {{{1,1,1},{1,1,1},{1,1,1}},
-     {{2,2,2},{2,2,2},{2,2,2}},
-     {{3,3,3},{3,3,3},{3,3,3}},
-     {{4,4,4},{4,4,4},{4,4,4}},
-     {{5,5,5},{5,5,5},{5,5,5}},
-     {{6,6,6},{6,6,6},{6,6,6}}};
- /*! \brief pomocna metoda za proveru stanja nase trenutne rubikove kocke i koliko je daleko od resenja*/
- int vrednost(int tekmap[6][3][3])
- {
-     /*! @param br je broj polja koji se nalaze na tacnom mestu minimalno je 6 jer centri su
-      * uvek na tacnom mestu a max je 54 odnosno solved cube
-      * radi jednostavnosti brojimo od 0 ipak.
-      */
-      int br=0;
-     for (int i =0;i<6;i++)
-         for(int j=0; j<3;j++)
-             for(int k=0;k<3;k++)
-                 if(tekmap[i][j][k]==mapGoal[i][j][k]) br++;
-     return br;
- }
-
- /*! Realizacija
-  * @param n = ogranicenje za maksimum ciklusa, da bi sprecili beskonacnu petlju.
-  * @param tekbr, novbr tekuca i nova vrednost stanja mape
-  * @param[out] resenje je niz poteza do resenja
-  * @param brojac za niz resenja
-  * @param flag je pomocna promenjljiva koja kada nije moguce vise izvrsavati jednostruke poteze
-  * pokusa da izvrsava dvostruke poteze da dodje do resenja.
-  *
-  * Algoritam se svodi na try and error.
-  * Mi posle svakog pokreta racunamo koliko vrednosti nam se poklapaju izmedju trenutne mape, globalne promenljive
-  * i ciljne mape. Sto je ta vrednost veca to smo blizi resenju. Ukoliko smo dosli do maximuma od 54, to jest potpunog
-  * poklapanja nasih mapa, mi radimo break.
-  * Ukoliko nam novo stanje samo vece od starog, mi sacuvamo to stanje i radimo continue.
-  *
-  */
- void GLWidget::SolveSimple()
- {
-
-     int n=100;
-     int tekbr,novbr;
-     char resenje [200];
-     int i=0;
-     int flag = 0;
-
-     tekbr= vrednost(map);
-     while( tekbr!=54 || n>0)
-     {
-     tekbr= vrednost(map);
-     n=n-1;
-
-     rotDL(1);
-     novbr= vrednost(map);
-     if (novbr > tekbr)
-     {   rotDR(1);
-         rotDL();
-         tekbr= novbr;
-         resenje [i] = 'D';
-         i=i+1;
-         resenje [i]= 'L';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-     }else {rotDR(1);}
-
-     rotFL(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     { rotFR(1);
-         rotFL();
-         tekbr= novbr;
-         resenje [i] = 'F';
-         i=i+1;
-         resenje [i]= 'L';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-     }else {rotFR(1);}
-
-     rotLD(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {
-         rotLU(1);
-         rotLD();
-         tekbr= novbr;
-         resenje [i] = 'L';
-         i=i+1;
-         resenje [i]= 'D';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-
-     }else {rotLU(1);}
-
-     rotTL(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {
-         rotTR(1);
-         rotTL();
-         tekbr= novbr;
-         resenje [i] = 'T';
-         i=i+1;
-         resenje [i]= 'R';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-     }else {rotTR(1);}
-
-     rotRD(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {
-         rotRU(1);
-         rotRD();
-         tekbr= novbr;
-         resenje [i] = 'R';
-         i=i+1;
-         resenje [i]= 'D';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-     }else {rotRU(1);}
-  /* Suptrni smer*/
-     rotDR(1);
-     novbr= vrednost(map);
-     if (novbr > tekbr)
-     {
-         rotDL(1);
-         rotDR();
-         tekbr= novbr;
-         resenje [i] = 'D';
-         i=i+1;
-         resenje [i]= 'R';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-     }else {rotDL(1);}
-
-     rotFR(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {
-         rotFL(1);
-         rotFR();
-         tekbr= novbr;
-         resenje [i] = 'F';
-         i=i+1;
-         resenje [i]= 'R';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-     }else {rotFL(1);}
-
-     rotLU(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {
-         rotLD(1);
-         rotLU();
-         tekbr= novbr;
-         resenje [i] = 'L';
-         i=i+1;
-         resenje [i]= 'U';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-
-     }else {rotLD(1);}
-
-     rotTR(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {
-         rotTL(1);
-         rotTR();
-         tekbr= novbr;
-         resenje [i] = 'T';
-         i=i+1;
-         resenje [i]= 'L';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-     }else {rotTL(1);}
-
-     rotRU(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {
-         rotRD(1);
-         rotRU();
-         tekbr= novbr;
-         resenje [i] = 'R';
-         i=i+1;
-         resenje [i]= 'U';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-     }else {rotRD(1);}
-
-     /***Dvostruki potezi ako nam jednostruki nedaju da pridjemo blize resenju****/
- if (flag == 2){
-     flag=0;
-
-     rotDL(1);
-     rotDL(1);
-     novbr= vrednost(map);
-     if (novbr > tekbr)
-     {
-         rotDR(1);
-         rotDR(1);
-         rotDL();
-         rotDL();
-         tekbr= novbr;
-         resenje [i] = 'D';
-         i=i+1;
-         resenje [i]= 'L';
-         i=i+1;
-         resenje [i]= '2';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-     }else {rotDR(1);rotDR(1);}
-     rotDR(1);
-     rotDR(1);
-     novbr= vrednost(map);
-     if (novbr > tekbr)
-     {
-         rotDL(1);
-         rotDL(1);
-         rotDR();
-         rotDR();
-         tekbr= novbr;
-         resenje [i] = 'D';
-         i=i+1;
-         resenje [i]= 'R';
-         i=i+1;
-         resenje [i]= '2';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-     }else {rotDL(1);rotDL(1);}
-     rotFL(1);
-     rotFL(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {
-         rotFR(1);
-         rotFR(1);
-         rotFL();
-         rotFL();
-         tekbr= novbr;
-         resenje [i] = 'F';
-         i=i+1;
-         resenje [i]= 'L';
-         i=i+1;
-         resenje [i]= '2';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-     }else {rotFR(1);rotFR(1);}
-
-     rotFR(1);
-     rotFR(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {
-         rotFL(1);
-         rotFL(1);
-         rotFR();
-         rotFR();
-         tekbr= novbr;
-         resenje [i] = 'F';
-         i=i+1;
-         resenje [i]= 'R';
-         i=i+1;
-         resenje [i]= '2';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-     }else {rotFL(1);rotFL(1);}
-     rotLD(1);
-     rotLD(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {
-         rotLU(1);
-         rotLU(1);
-         rotLD();
-         rotLD();
-         tekbr= novbr;
-         resenje [i] = 'L';
-         i=i+1;
-         resenje [i]= 'D';
-         i=i+1;
-         resenje [i]= '2';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-
-     }else {rotLU(1);rotLU(1);}
-     rotLU(1);
-     rotLU(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {
-         rotLD(1);
-         rotLD(1);
-         rotLU();
-         rotLU();
-         tekbr= novbr;
-         resenje [i] = 'L';
-         i=i+1;
-         resenje [i]= 'U';
-         i=i+1;
-         resenje [i]= '2';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-
-     }else {rotLD(1);rotLD(1);}
-     rotTL(1);
-     rotTL(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {
-         rotTR(1);
-         rotTR(1);
-         rotTL();
-         rotTL();
-         tekbr= novbr;
-         resenje [i] = 'T';
-         i=i+1;
-         resenje [i]= 'L';
-         i=i+1;
-         resenje[i]= '2';
-         if(tekbr == 54) break;
-         continue;
-     }else {rotTR(1);rotTR(1);}
-     rotTR(1);
-     rotTR(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {  rotTL(1);
-         rotTL(1);
-         rotTR();
-         rotTR();
-         tekbr= novbr;
-         resenje [i] = 'T';
-         i=i+1;
-         resenje [i]= 'R';
-         i=i+1;
-         resenje[i]= '2';
-         if(tekbr == 54) break;
-         continue;
-     }else {rotTL(1);rotTL(1);}
-     rotRD(1);
-     rotRD(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {
-         rotRD(1);
-         rotRD(1);
-         rotRU();
-         rotRU();
-         tekbr= novbr;
-         resenje [i] = 'R';
-         i=i+1;
-         resenje [i]= 'D';
-         i=i+1;
-         resenje[i]='2';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-     }else {rotRU(1);rotRU(1);}
-
-     rotRU(1);
-     rotRU(1);
-     novbr= vrednost(map);
-     if (novbr >tekbr)
-     {
-         rotRD(1);
-         rotRD(1);
-         rotRU();
-         rotRU();
-         tekbr= novbr;
-         resenje [i] = 'R';
-         i=i+1;
-         resenje [i]= 'U';
-         i=i+1;
-         resenje[i]='2';
-         i=i+1;
-         if(tekbr == 54) break;
-         continue;
-     }else {rotRD(1);rotRD(1);}
-
-
- }else {flag= flag + 1 ;}
-
-
-     }
-
- }
-
- /**********************************************************************************/
 
 /*! Realizacija
  *

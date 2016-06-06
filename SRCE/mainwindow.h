@@ -107,6 +107,8 @@
             *@param[in] event rotacija delova kocke
             */
            void keyPressEvent( QKeyEvent * event );
+           void write_steps(char * resenje);
+
  public slots:
            /*! funkcije povezane sa new game button*/
            void make_random_cube();
