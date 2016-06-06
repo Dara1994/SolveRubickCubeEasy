@@ -194,6 +194,8 @@ Cube::Cube(float x0,float y0,float z0,float a,int r1,int r2,int r3,int r4,int r5
 /*! Realizacija
  * Crta rubikovu kocku.
  * ??? ??? ??? Sta se koristi i mozda opis kako koristi odredene ugradene funkcije? ??? ??? ???
+ * Dodaje vrednosti promenljivama, koje cemo kasnije koristiti pri iscrtavanju kocke
+ * Njih ce koristit glVertex3d(); i glNormal3d(); funkcije u drawCube
  */
 void Cube::drawCube()
 {
@@ -415,7 +417,7 @@ Cube *A[27]={0};
  *
  * Prvo obrisemo svaki elemenat iz niza A. Potom za svaku od tih 27 kockica koje cine rubikovu kocku
  * koristimo konstruktor Cube sa odgovarajucim elementima. R za koordinatni pocetak za svaku kockicu,
- * S za ??? ??? ???, i odgovarajuce map za strane koje su vidljive a 0 za one koje nevidimo.
+ * S za velicinu stranice kocke 1.6 (2.0 ne bi bilo razmaka), i odgovarajuce map za strane koje su vidljive a 0 za one koje nevidimo.
  */
 void resetCube()
 {
@@ -1611,33 +1613,39 @@ GLWidget::GLWidget(QWidget *parent)
  /**********************************************************************************/
 
 /*! Realizacija
- *
+ * Razna podesavanja iz openGL biblioteke za izgled i rendiranje slika
+ * GLfloat se koristi kako ne bi doslo do problema pri promeni platforma
  * ??? ??? ???
+ * Neke od funkcija:
+ * glClearColor specifira ciste vrednosti za bafer za boje
+ * glShadeModel nacin sencenja
+ * glMaterial dodaje vrednost materijalu parametra.
  */
  void GLWidget::initializeGL()
  {
+
 GLfloat no_mat[] = { 0.0, 0.0, 0.0, 1.0 };
 GLfloat mat_diffuse[] = { 0.1, 0.5, 0.8, 1.0 };
 GLfloat mat_shininess[] = {30.0};
 //izmenjeno {0, 0, 1, 0}
 GLfloat light_position[] = { 1, 0, 0, 1 };
     glClearColor(1,1,1,0);
-     glShadeModel(GL_FLAT);
-     glEnable(GL_DEPTH_TEST);
-     glMaterialfv(GL_FRONT, GL_AMBIENT, no_mat);
+    glShadeModel(GL_FLAT);
+    glEnable(GL_DEPTH_TEST);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, no_mat);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR, no_mat);
     glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
     glMaterialfv(GL_FRONT, GL_EMISSION, no_mat);
 
-     glColorMaterial(GL_FRONT, GL_DIFFUSE);
-     glEnable(GL_COLOR_MATERIAL);
+    glColorMaterial(GL_FRONT, GL_DIFFUSE);
+    glEnable(GL_COLOR_MATERIAL);
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 
     glTranslated(0.0, 0.0, -dist);
-     glEnable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
  }
 /*! Realizacija
  * Brisemo stanje buffer-a za ponovno upisivanje
