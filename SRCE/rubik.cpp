@@ -32,6 +32,7 @@ rubik::rubik(QWidget *parent, Qt::WindowFlags flags)
     connect(ui.checkerboard_btn, SIGNAL (clicked()), Widget, SLOT (checker_ptn()));
     connect(ui.cross_btn, SIGNAL (clicked()), Widget, SLOT (cross_ptn()));
     connect(ui.cube_in_cube_btn, SIGNAL (clicked()), Widget, SLOT (cube_in_cube_ptn()));
+    //connect(ui.write_steps, SIGNAL ())
 }
 
 /*! Destruktor nam je prazan*/

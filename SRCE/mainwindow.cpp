@@ -8,6 +8,7 @@
 #include <GL/glu.h>
 #include <QTime>
 
+
 /*! @param R je float sa vrednoscu 0.2
  * koja se koristi za postavljanje koordinatnog pocetke za kockice
  */
@@ -1225,10 +1226,11 @@ void GLWidget::new_game(){
 
 
 
-char resenje [300];
+ char resenje [300];
 
 int duzinaResenja=0;
-void GLWidget::Solver()
+
+void GLWidget::Solver( )
 {
     DT=300;
     int k;
@@ -1239,39 +1241,40 @@ void GLWidget::Solver()
          if (k>0) way=0; else way=1;
          if (k<0) k=-k;
          switch (k) {
-            case 'R': rotTL(); resenje[i]= 'T';resenje[i++]='L'; resenje[i++]=' '; break;
-            case 'D': rotLU(); resenje[i]='L';resenje[i++]='U'; resenje[i++]=' ';break;
-            case 'C': rotDL(); resenje[i]='D';resenje[i++]='L'; resenje[i++]=' ';break;
-            case 'F': rotLD(); resenje[i]='L';resenje[i++]='D'; resenje[i++]=' ';break;
-            case 'G': rotFL(); resenje[i]='F';resenje[i++]='L'; resenje[i++]=' ';break;
-            case 'H': rotFR(); resenje[i]='F';resenje[i++]='R'; resenje[i++]=' ';break;
-            case 'I': rotTR(); resenje[i]='T';resenje[i++]='R'; resenje[i++]=' ';break;
-            case 'J': rotRD(); resenje[i]='R';resenje[i++]='D'; resenje[i++]=' ';break;
-            case 'K': rotRU(); resenje[i]='R';resenje[i++]='U'; resenje[i++]=' ';break;
-            case 'M': rotDR(); resenje[i]='D';resenje[i++]='R'; resenje[i++]=' ';break;
-            case 'T': rotBL(); resenje[i]='B';resenje[i++]='L'; resenje[i++]=' ';break;
-            case 'U': rotBR(); resenje[i]='B';resenje[i++]='R'; resenje[i++]=' ';break;
+            case 'R': rotTL(); resenje[i]= 'T';resenje[i+1]='L'; resenje[i+2]=' '; break;
+            case 'D': rotLU(); resenje[i]='L';resenje[i+1]='U'; resenje[i+2]=' ';break;
+            case 'C': rotDL(); resenje[i]='D';resenje[i+1]='L'; resenje[i+2]=' ';break;
+            case 'F': rotLD(); resenje[i]='L';resenje[i+1]='D'; resenje[i+2]=' ';break;
+            case 'G': rotFL(); resenje[i]='F';resenje[i+1]='L'; resenje[i+2]=' ';break;
+            case 'H': rotFR(); resenje[i]='F';resenje[i+1]='R'; resenje[i+2]=' ';break;
+            case 'I': rotTR(); resenje[i]='T';resenje[i+1]='R'; resenje[i+2]=' ';break;
+            case 'J': rotRD(); resenje[i]='R';resenje[i+1]='D'; resenje[i+2]=' ';break;
+            case 'K': rotRU(); resenje[i]='R';resenje[i+1]='U'; resenje[i+2]=' ';break;
+            case 'M': rotDR(); resenje[i]='D';resenje[i+1]='R'; resenje[i+2]=' ';break;
+            case 'T': rotBL(); resenje[i]='B';resenje[i+1]='L'; resenje[i+2]=' ';break;
+            case 'U': rotBR(); resenje[i]='B';resenje[i+1]='R'; resenje[i+2]=' ';break;
          }
          if (k==0) break;
+         i=i+3;
+
     }
     duzinaResenja=i;
     DT=500;
     way=1;
+ qInfo(resenje);
 
 }
 
 void GLWidget::write_steps(char *resenje){
-
-    /*for(int i=0; i<duzinaResenja;i++ )
-        ui->lineEdit->setText(ui->lineEdit->text()+resenje[i]);
-*/
+    //hm...
+    emit resenje;
 }
 
 /*! Realizacija
  * Pozovemo  SolveSimple i na buffer pushujemo P.
  */
 void GLWidget::solve_it(){
-    Solver();
+            Solver();
             Buffer.pushBuffer('P');
             write_steps(resenje);
 }

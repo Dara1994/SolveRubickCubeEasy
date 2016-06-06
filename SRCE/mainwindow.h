@@ -107,7 +107,10 @@
             *@param[in] event rotacija delova kocke
             */
            void keyPressEvent( QKeyEvent * event );
-           void write_steps(char * resenje);
+
+
+
+
 
  public slots:
            /*! funkcije povezane sa new game button*/
@@ -127,11 +130,13 @@
            /*! funkcija povezana sa sube in cube in cube */
            void cube_in_cube_ptn();
 
+            void write_steps(char * resenje);
  private:
             /*! Pravljene objekta i iscrtavanje*/
      GLuint makeObject();
 
      QPoint lastPos;
  };
+
 
  #endif

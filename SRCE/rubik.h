@@ -40,14 +40,15 @@ private slots:
     void solve_it();
  /*! Zanimljivosti o rubikovoj kocki*/
     void on_FunFacts_clicked();
-    /*!cross patern*/
+    /*! cross patern*/
     void cross_ptn();
-    /*!checkerboard patern*/
+    /*! checkerboard patern*/
     void checker_ptn();
-    /*!God's number patern*/
+    /*! God's number patern*/
     void god_ptn();
-    /*!six spots patern*/
+    /*! six spots patern*/
     void spots_ptn();
+
     void cube_in_cube_ptn();
 
 private:
