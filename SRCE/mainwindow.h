@@ -122,9 +122,11 @@
            void god_ptn();
            /*! funkcija povezana sa six spots button*/
            void spots_ptn();
+           /*! funkcija povezana sa sube in cube in cube */
+           void cube_in_cube_ptn();
 
  private:
-            /*! Pravljene objekta i isrtavanje*/
+            /*! Pravljene objekta i iscrtavanje*/
      GLuint makeObject();
 
      QPoint lastPos;

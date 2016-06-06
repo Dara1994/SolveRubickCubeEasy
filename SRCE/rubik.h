@@ -48,6 +48,7 @@ private slots:
     void god_ptn();
     /*!six spots patern*/
     void spots_ptn();
+    void cube_in_cube_ptn();
 
 private:
     /*! pomocu ovog polja mozemo da pristupimo i menjamo fajl .ui iz ove klase*/

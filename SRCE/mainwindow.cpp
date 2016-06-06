@@ -1994,5 +1994,52 @@ void GLWidget::god_ptn(){
 }
 void GLWidget::checker_ptn(){
 
+    //F B2 R’ D2 B R U D’ R L’ D’ F’ R2 D F2 B’:
+    rotFR(); Buffer.pushBuffer('H');
+    rotBL(); Buffer.pushBuffer('T');
+    rotBL(); Buffer.pushBuffer('T');
+    rotRD(); Buffer.pushBuffer('J');
+    rotDR(); Buffer.pushBuffer('M');
+    rotDR(); Buffer.pushBuffer('M');
+    rotBL(); Buffer.pushBuffer('T');
+    rotRU(); Buffer.pushBuffer('K');
+    rotTL(); Buffer.pushBuffer('R');
+    rotDL(); Buffer.pushBuffer('C');
+    rotRU(); Buffer.pushBuffer('K');
+    rotLU(); Buffer.pushBuffer('D');
+    rotDL(); Buffer.pushBuffer('C');
+    rotFL(); Buffer.pushBuffer('G');
+    rotRU(); Buffer.pushBuffer('K');
+    rotRU(); Buffer.pushBuffer('K');
+    rotDR(); Buffer.pushBuffer('M');
+    rotFR(); Buffer.pushBuffer('H');
+    rotFR(); Buffer.pushBuffer('H');
+    rotBR(); Buffer.pushBuffer('U');
+
+}
+
+void GLWidget::cube_in_cube_ptn(){
+    //U’ L’ U’ F’ R2 B’ R F U B2 U B’ L U’ F U R F’
+    rotTR(); Buffer.pushBuffer('I');
+    rotLU(); Buffer.pushBuffer('D');
+    rotTR(); Buffer.pushBuffer('I');
+    rotFL(); Buffer.pushBuffer('G');
+    rotRU(); Buffer.pushBuffer('K');
+    rotRU(); Buffer.pushBuffer('K');
+    rotBR(); Buffer.pushBuffer('U');
+    rotRU(); Buffer.pushBuffer('K');
+    rotFR(); Buffer.pushBuffer('H');
+    rotTL(); Buffer.pushBuffer('R');
+    rotBL(); Buffer.pushBuffer('T');
+    rotBL(); Buffer.pushBuffer('T');
+    rotTL(); Buffer.pushBuffer('R');
+    rotBR(); Buffer.pushBuffer('U');
+    rotLD(); Buffer.pushBuffer('F');
+    rotTR(); Buffer.pushBuffer('I');
+    rotFR(); Buffer.pushBuffer('H');
+    rotTL(); Buffer.pushBuffer('R');
+    rotRU(); Buffer.pushBuffer('K');
+    rotFL(); Buffer.pushBuffer('G');
+
 }
 

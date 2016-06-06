@@ -31,7 +31,9 @@ rubik::rubik(QWidget *parent, Qt::WindowFlags flags)
     connect(ui.six_spots_btn, SIGNAL (clicked()), Widget, SLOT (spots_ptn()));
     connect(ui.checkerboard_btn, SIGNAL (clicked()), Widget, SLOT (checker_ptn()));
     connect(ui.cross_btn, SIGNAL (clicked()), Widget, SLOT (cross_ptn()));
+    connect(ui.cube_in_cube_btn, SIGNAL (clicked()), Widget, SLOT (cube_in_cube_ptn()));
 }
+
 /*! Destruktor nam je prazan*/
 rubik::~rubik()
 {}
@@ -130,4 +132,8 @@ void rubik::god_ptn(){
 void rubik::spots_ptn(){
     GLWidget w;
     w.spots_ptn();
+}
+void rubik::cube_in_cube_ptn(){
+    GLWidget w;
+    w.cube_in_cube_ptn();
 }
