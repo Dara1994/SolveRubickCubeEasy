@@ -130,7 +130,7 @@
            /*! funkcija povezana sa sube in cube in cube */
            void cube_in_cube_ptn();
 
-            void write_steps(char * resenje);
+            void write_steps();
  private:
             /*! Pravljene objekta i iscrtavanje*/
      GLuint makeObject();

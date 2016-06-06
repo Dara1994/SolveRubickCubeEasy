@@ -1226,16 +1226,18 @@ void GLWidget::new_game(){
 
 
 
- char resenje [300];
+
 
 int duzinaResenja=0;
 
 void GLWidget::Solver( )
 {
+     char resenje [300];
     DT=300;
     int k;
 
     int i=0;
+
     for (;;) {
          k=Buffer.popBuffer();
          if (k>0) way=0; else way=1;
@@ -1265,9 +1267,9 @@ void GLWidget::Solver( )
 
 }
 
-void GLWidget::write_steps(char *resenje){
+void GLWidget::write_steps(){
     //hm...
-    emit resenje;
+    //emit resenje;
 }
 
 /*! Realizacija
@@ -1276,7 +1278,7 @@ void GLWidget::write_steps(char *resenje){
 void GLWidget::solve_it(){
             Solver();
             Buffer.pushBuffer('P');
-            write_steps(resenje);
+            write_steps();
 }
 
 /*! Realizacija
