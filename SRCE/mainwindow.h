@@ -91,14 +91,14 @@
            void mouseMoveEvent(QMouseEvent *event);
           /*! Inicializacija okruzenja*/
            void initializeGL();
-           /*! prostor za crtanje ??? ??? ???*/
+           /*! Crtanje OpenGL scene. Poziva se svaki put kad widget treba da se updateuje.*/
            void paintGL();
            /*! \brief Promena velicine prozora
             *@param[in] weigth,heigth nove velicine za prozor
             */
            void resizeGL(int width, int height);
            /*! \brief Dogadjaji na pritisak dugmeta sa tastature
-            *@param[in] event ??? ??? ???
+            *@param[in] event rotacija delova kocke
             */
            void keyPressEvent( QKeyEvent * event );
  public slots:

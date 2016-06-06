@@ -8,7 +8,8 @@
 #include <QProcess>
 
 /*! Realizacija
- *
+ * Ubacuje u graficki interfejs widget na kom nam se iscrtava 3D objekat, i prikazuje ga, i stavlja fokus na njega,
+ * i slotovi za komunikaciju sa dugmicima interfejsa.
  * ??? ??? ???
  */
 rubik::rubik(QWidget *parent, Qt::WindowFlags flags)

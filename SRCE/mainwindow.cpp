@@ -13,13 +13,13 @@
  */
 float R=0.2;
 /*! @param S je float sa vrednoscu 0.16
- * koja se koristi za ??? ??? ??? */
+ * koja se koristi za velicinu stranice kockice sa 0.2 ne bi bilo razmaka*/
 float S=0.16;
 /*! @param dist je int sa vrednoscu 7
- *  koja se kosti za ??? ??? ???*/
+ *  koja se kosti za glTranslated koja pravi translaciju matrice ??? ??? ???*/
 float dist=7;
 /*!  ORTHOFRUSTRUM
- *  koja sluzi za projekciju kocke, tj. pogleda na projekciju kocke */
+ *  koja sluzi za projekciju kocke, tj. pogleda na projekciju kocke . Mnozi matricu i zamenjuje je novom. */
 #define ORTHOFRUSTRUM glFrustum (-.3, .3, -.3, .3, 4, 10);
 /*! float DT je tipa float vrednosti 500
  * koju koristimo u klasama za iscrtavanje. ??? ??????*/
@@ -69,7 +69,7 @@ MoveBuffer Buffer;
 
 /*! Realizacija metode pushBuffer
  *  * Stavljamo mov na vrh buffer posto izvsimo provere.
- * ??? ??? ??? opisati sta svaki if radi sta tacno proveravamo ??? ??? ???
+ * ??? ??? ??? opisati sta svaki if radi sta tacno proveravamo
  */
 void MoveBuffer::pushBuffer(char mov)
 {
@@ -135,7 +135,7 @@ class Cube
      *Iscrtavamo relevatne tacke za nasu kocku to su uglovi rubikove kocke u prostoru.
      */
      float coords[8][3];
-     /*! ??? ??? ??? */
+     /*! Kasnije ih inicijalizujemo , to su koordinate */
      float norm[6][3];
      /*! Boje*/
      int colors[6];

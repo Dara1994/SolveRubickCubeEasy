@@ -42,7 +42,7 @@ private slots:
     void on_FunFacts_clicked();
 
 private:
-    /*! ??? ??? ???*/
+    /*! pomocu ovog polja mozemo da pristupimo i menjamo fajl .ui iz ove klase*/
      Ui::MainWindow ui;
 };
 
