@@ -16,14 +16,12 @@ float R=0.2;
 /*! @param S je float sa vrednoscu 0.16
  * koja se koristi za velicinu stranice kockice sa 0.2 ne bi bilo razmaka*/
 float S=0.16;
-/*! @param dist je int sa vrednoscu 7
- *  koja se kosti za glTranslated koja pravi translaciju matrice ??? ??? ???*/
-float dist=7;
+
 /*!  ORTHOFRUSTRUM
  *  koja sluzi za projekciju kocke, tj. pogleda na projekciju kocke . Mnozi matricu i zamenjuje je novom. */
 #define ORTHOFRUSTRUM glFrustum (-.3, .3, -.3, .3, 4, 10);
 /*! float DT je tipa float vrednosti 500
- * koju koristimo u klasama za iscrtavanje. ??? ??????*/
+ * koju koristimo u klasama za iscrtavanje. Definise brzinu rotacija kocke. */
 float DT=500.;
 /*! way je int
  * koja defenise u kom smeru cemo da pomeramo rotacije. */
@@ -70,22 +68,22 @@ MoveBuffer Buffer;
 
 /*! Realizacija metode pushBuffer
  *  * Stavljamo mov na vrh buffer posto izvsimo provere.
- * ??? ??? ??? opisati sta svaki if radi sta tacno proveravamo
+ * Proveravamo da li je memorija puna ili prazna.
  */
 void MoveBuffer::pushBuffer(char mov)
 {
-    if (movBufferLen>0 &&
-        movBuffer[movBufferLen-1]==-mov) {
-            movBufferLen--;
-            return;
-    }
-    if (movBufferLen>1 &&
-        movBuffer[movBufferLen-1]==mov &&
-        movBuffer[movBufferLen-2]==mov) {
-            movBuffer[movBufferLen-2]=-mov;
-            movBufferLen--;
-            return;
-    }
+//    if (movBufferLen>0 &&
+//        movBuffer[movBufferLen-1]==-mov) {
+//            movBufferLen--;
+//            return;
+//    }
+//    if (movBufferLen>1 &&
+//        movBuffer[movBufferLen-1]==mov &&
+//        movBuffer[movBufferLen-2]==mov) {
+//            movBuffer[movBufferLen-2]=-mov;
+//            movBufferLen--;
+//            return;
+//    }
 
 
     if (movBufferLen==movBufferMem) {
@@ -136,13 +134,13 @@ class Cube
      *Iscrtavamo relevatne tacke za nasu kocku to su uglovi rubikove kocke u prostoru.
      */
      float coords[8][3];
-     /*! Kasnije ih inicijalizujemo , to su koordinate */
+     /*! Kasnije ih inicijalizujemo , to su jedinicni vektori*/
      float norm[6][3];
      /*! Boje*/
      int colors[6];
      /*! Konstruktor
       * @param[in] x0, y0, z0 su koordinate koordinatnog pocetka
-      * @param[in] b je ??? ??? ???
+      * @param[in] b je velicina stranice a0 u potpisu ili S globalno
       * @param[in] r1, r2 ,r3 ,r4, r5 ,r6 su relevatne boje.
       */
      Cube(float x0,float y0,float z0,float b,int r1,int r2,int r3,int r4,int r5,int r6);
@@ -194,7 +192,7 @@ Cube::Cube(float x0,float y0,float z0,float a,int r1,int r2,int r3,int r4,int r5
 }
 /*! Realizacija
  * Crta rubikovu kocku.
- * ??? ??? ??? Sta se koristi i mozda opis kako koristi odredene ugradene funkcije? ??? ??? ???
+ * Koristimo funkcije iz biblioteke opengl za iscrtavanje kocke. Pomocu jedinicnih vektora.
  */
 void Cube::drawCube()
 {
@@ -424,7 +422,7 @@ Cube *A[27]={0};
  *
  * Prvo obrisemo svaki elemenat iz niza A. Potom za svaku od tih 27 kockica koje cine rubikovu kocku
  * koristimo konstruktor Cube sa odgovarajucim elementima. R za koordinatni pocetak za svaku kockicu,
- * S za ??? ??? ???, i odgovarajuce map za strane koje su vidljive a 0 za one koje nevidimo.
+ * S je velicina stranice kockice 1.6, i odgovarajuce map za strane koje su vidljive a 0 za one koje nevidimo.
  */
 void resetCube()
 {
@@ -1232,7 +1230,7 @@ int duzinaResenja=0;
 
 void GLWidget::Solver( )
 {
-     char resenje [300];
+    char resenje [300];
     DT=300;
     int k;
 
@@ -1263,14 +1261,11 @@ void GLWidget::Solver( )
     duzinaResenja=i;
     DT=500;
     way=1;
+
  qInfo(resenje);
 
 }
 
-void GLWidget::write_steps(){
-    //hm...
-    //emit resenje;
-}
 
 /*! Realizacija
  * Pozovemo  SolveSimple i na buffer pushujemo P.
@@ -1278,7 +1273,7 @@ void GLWidget::write_steps(){
 void GLWidget::solve_it(){
             Solver();
             Buffer.pushBuffer('P');
-            write_steps();
+
 }
 
 /*! Realizacija
@@ -1321,8 +1316,9 @@ GLWidget::GLWidget(QWidget *parent)
 
 
 /*! Realizacija
- *
- * ??? ??? ???
+ * Redefinicija ugradjene funkcije , nasledjene iz klase QGLWidget
+ * Sluze za spremanje prostora za widget, iscrtavanje kocke.
+ * Nijanse boja, osvetljenje, materijal kocke itd.
  */
  void GLWidget::initializeGL()
  {
@@ -1332,25 +1328,25 @@ GLfloat mat_shininess[] = {30.0};
 //izmenjeno {0, 0, 1, 0}
 GLfloat light_position[] = { 1, 0, 0, 1 };
     glClearColor(1,1,1,0);
-     glShadeModel(GL_FLAT);
-     glEnable(GL_DEPTH_TEST);
-     glMaterialfv(GL_FRONT, GL_AMBIENT, no_mat);
+    glShadeModel(GL_FLAT);
+    glEnable(GL_DEPTH_TEST);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, no_mat);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR, no_mat);
     glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
     glMaterialfv(GL_FRONT, GL_EMISSION, no_mat);
 
-     glColorMaterial(GL_FRONT, GL_DIFFUSE);
-     glEnable(GL_COLOR_MATERIAL);
+    glColorMaterial(GL_FRONT, GL_DIFFUSE);
+    glEnable(GL_COLOR_MATERIAL);
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 
-    glTranslated(0.0, 0.0, -dist);
-     glEnable(GL_CULL_FACE);
+    glTranslated(0.0, 0.0, -7);
+    glEnable(GL_CULL_FACE);
  }
 /*! Realizacija
- * Brisemo stanje buffer-a za ponovno upisivanje
+ * Poziva svaki put kad treba opet biti iscrtana.
  * i kreira se objekat pozivom makeObject().
  */
 void GLWidget::paintGL()
@@ -1363,7 +1359,7 @@ void GLWidget::paintGL()
 /*! Realizacija
  *
  * Vrsi se promena velicine pomocu glVieport.
- * ??? ??? ???
+ * isto je virtualna funkcija iz klase QGLWidget.
  */
  void GLWidget::resizeGL(int width, int height)
  {
@@ -1380,8 +1376,7 @@ void GLWidget::paintGL()
 
 /*! Realizacija
  * @param lastPos je poslednja pozicija misa prilikom nekog dogadjaja.
- *
- *
+ * Stavlja fokus, izcitava poziciju misa.
  */
 void GLWidget::mousePressEvent(QMouseEvent *event)
 {
@@ -1418,9 +1413,8 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
     }
 }
 /*! Realizacija
- * @param dx,dy za koliko se mis pomerio u odnosu na poslednju poziciju ??? ??? ???
- *
- * ??? ??? ???
+ * @param dx,dy za koliko se mis pomerio u odnosu na poslednju poziciju.
+ * I vrsi pomeranje kocke u odnosu na vektor pomeraj misa.
  */
  void GLWidget::mouseMoveEvent(QMouseEvent *event)
  {
@@ -1440,7 +1434,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
     glRotatef(dx, 0,1,0);
     glMultMatrixf(pmat);
     glGetFloatv(GL_MODELVIEW_MATRIX,pmat);
-    pmat[12]=0; pmat[13]=0; pmat[14]=-dist;
+    pmat[12]=0; pmat[13]=0; pmat[14]=-7;
     glLoadMatrixf(pmat);
 
 
@@ -1451,9 +1445,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
  }
 
  /*! Realizacija
-  * @param render_mode ??? ??? ???
-  *
-  * ??? ??? ???
+  * @param render_mode provera da li je kocka vec prikazana i ako nije iscrta je.
   */
 
  GLuint GLWidget::makeObject()
@@ -1547,7 +1539,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
     }
      return 0;
 }
-/*!Implementacija algoritma za six spots*/
+/*! Implementacija algoritma za six spots*/
 void GLWidget::spots_ptn(){
     rotTL(); Buffer.pushBuffer('R');
     rotDL(); Buffer.pushBuffer('C');
@@ -1558,7 +1550,7 @@ void GLWidget::spots_ptn(){
     rotTL(); Buffer.pushBuffer('R');
     rotDL(); Buffer.pushBuffer('C');
 }
-/*!Implementacija algoritma za Cross*/
+/*! Implementacija algoritma za Cross*/
 void GLWidget::cross_ptn(){
     rotTL(); Buffer.pushBuffer('R');
     rotFR(); Buffer.pushBuffer('H');
@@ -1577,7 +1569,7 @@ void GLWidget::cross_ptn(){
     rotLD(); Buffer.pushBuffer('F');
     rotTL(); Buffer.pushBuffer('R');
 }
-/*Implementacija algoritma God's number*/
+/*! Implementacija algoritma God's number*/
 void GLWidget::god_ptn(){
     rotRU(); Buffer.pushBuffer('K');
     rotLD(); Buffer.pushBuffer('F');
@@ -1608,7 +1600,7 @@ void GLWidget::god_ptn(){
     rotRU(); Buffer.pushBuffer('K');
     rotTL(); Buffer.pushBuffer('R');
 }
-/*!Implementacija algoritma checkerboard*/
+/*! Implementacija algoritma checkerboard*/
 void GLWidget::checker_ptn(){
     rotFR(); Buffer.pushBuffer('H');
     rotBL(); Buffer.pushBuffer('T');
@@ -1632,7 +1624,7 @@ void GLWidget::checker_ptn(){
     rotBR(); Buffer.pushBuffer('U');
 
 }
-/*!Implementacija algoritma cube in cube in cube*/
+/*! Implementacija algoritma cube in cube in cube*/
 void GLWidget::cube_in_cube_ptn(){
     rotTR(); Buffer.pushBuffer('I');
     rotLU(); Buffer.pushBuffer('D');

@@ -12,7 +12,7 @@
 #include <QPushButton>
 #include "ui_rubik.h"
 #include "mainwindow.h"
-/*! Klasa rubik
+/*! rubik
  * Sadrzi konstruktor i destruktor. Kao i metode za pravljene nove, randominizaciju, resertovane i zanimlivosti
  * o rubikovoj kocki. I slotove koji nam sluze za povezivanje dugmica.
  */

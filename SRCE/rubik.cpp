@@ -31,7 +31,7 @@ rubik::rubik(QWidget *parent, Qt::WindowFlags flags)
     connect(ui.checkerboard_btn, SIGNAL (clicked()), Widget, SLOT (checker_ptn()));
     connect(ui.cross_btn, SIGNAL (clicked()), Widget, SLOT (cross_ptn()));
     connect(ui.cube_in_cube_btn, SIGNAL (clicked()), Widget, SLOT (cube_in_cube_ptn()));
-    //connect(ui.write_steps, SIGNAL ()) nema slota changeText
+
 }
 
 /*! Destruktor nam je prazan*/
@@ -109,31 +109,31 @@ void rubik::on_FunFacts_clicked()
         }
 
 }
-/*!Realizacija
+/*! Realizacija
  * @param w sluzi za poziv funkcije Cross()*/
 void rubik::cross_ptn(){
     GLWidget w;
     w.cross_ptn();
 }
-/*!Realizacija
+/*! Realizacija
  * @param w sluzi za poziv funkcije Checker()*/
 void rubik::checker_ptn(){
     GLWidget w;
     w.checker_ptn();
 }
-/*!Realizacija
+/*! Realizacija
  * @param w sluzi za poziv funkcije Number()*/
 void rubik::god_ptn(){
     GLWidget w;
     w.god_ptn();
 }
-/*!Realizacija
+/*! Realizacija
  * @param w sluzi za poziv funkcije Spots()*/
 void rubik::spots_ptn(){
     GLWidget w;
     w.spots_ptn();
 }
-/*!Realizacija
+/*! Realizacija
  * @param w sluzi za poziv funkcije CubeinCube()*/
 void rubik::cube_in_cube_ptn(){
     GLWidget w;
