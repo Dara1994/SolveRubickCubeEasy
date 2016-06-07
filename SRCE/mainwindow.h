@@ -4,7 +4,7 @@
  *
  * Definisana Clasa GLWidget koja nasleduje QLWidget. Ovde se nalaze funkcije
  * koje reaguju na desavanja misa i tastature. Takodje imamofunkcije za crtanje i
- * Randomiranje rubikove kocke. ??? ??? ???
+ * Randomiranje rubikove kocke.
 */
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H

@@ -2,7 +2,7 @@
  * \header.h rubik.h "rubik.h"
  *  \brief Class rubik.
  *
- * Sadrzi Klasu rubik koja nasledjuje QMainWindow. ??? ??? ???
+ * Sadrzi Klasu rubik koja nasledjuje QMainWindow.
  */
 #ifndef RUBIK_H
 #define RUBIK_H
@@ -14,7 +14,7 @@
 #include "mainwindow.h"
 /*! Klasa rubik
  * Sadrzi konstruktor i destruktor. Kao i metode za pravljene nove, randominizaciju, resertovane i zanimlivosti
- * o rubikovoj kocki.
+ * o rubikovoj kocki. I slotove koji nam sluze za povezivanje dugmica.
  */
 class rubik : public QMainWindow
 {
@@ -48,7 +48,7 @@ private slots:
     void god_ptn();
     /*! six spots patern*/
     void spots_ptn();
-
+    /*! cube in cube patern*/
     void cube_in_cube_ptn();
 
 private:

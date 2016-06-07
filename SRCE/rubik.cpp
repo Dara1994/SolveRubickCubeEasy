@@ -1,5 +1,5 @@
 /*! \file rubik.cpp
- * ??? ??? ???
+ *
  */
 #include "rubik.h"
 #include "mainwindow.h"
@@ -10,7 +10,6 @@
 /*! Realizacija
  * Ubacuje u graficki interfejs widget na kom nam se iscrtava 3D objekat, i prikazuje ga, i stavlja fokus na njega,
  * i slotovi za komunikaciju sa dugmicima interfejsa.
- * ??? ??? ???
  */
 rubik::rubik(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags)
@@ -32,7 +31,7 @@ rubik::rubik(QWidget *parent, Qt::WindowFlags flags)
     connect(ui.checkerboard_btn, SIGNAL (clicked()), Widget, SLOT (checker_ptn()));
     connect(ui.cross_btn, SIGNAL (clicked()), Widget, SLOT (cross_ptn()));
     connect(ui.cube_in_cube_btn, SIGNAL (clicked()), Widget, SLOT (cube_in_cube_ptn()));
-    //connect(ui.write_steps, SIGNAL ())
+    //connect(ui.write_steps, SIGNAL ()) nema slota changeText
 }
 
 /*! Destruktor nam je prazan*/
@@ -134,6 +133,8 @@ void rubik::spots_ptn(){
     GLWidget w;
     w.spots_ptn();
 }
+/*!Realizacija
+ * @param w sluzi za poziv funkcije CubeinCube()*/
 void rubik::cube_in_cube_ptn(){
     GLWidget w;
     w.cube_in_cube_ptn();
