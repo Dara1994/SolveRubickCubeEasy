@@ -10,7 +10,6 @@ set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lGLU")
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check https://doc.qt.io/qt/deployment-android.html for more information.
@@ -32,7 +31,8 @@ find_package(Qt6 COMPONENTS OpenGLWidgets REQUIRED)
 find_package(Qt6 COMPONENTS Core REQUIRED)
 find_package(Qt6 COMPONENTS Gui REQUIRED)
 
-include_directories( ${QT_QTOPENGL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLUT_INCLUDE_DIRS})
+
+include_directories( ${QT_QTOPENGL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLUT_INCLUDE_DIR})
 
 set(PROJECT_SOURCES
         mainwindow.cpp
@@ -65,7 +65,8 @@ target_link_libraries(SolveRubicCube PRIVATE Qt6::OpenGL)
 target_link_libraries(SolveRubicCube PRIVATE Qt6::Gui)
 target_link_libraries(SolveRubicCube PRIVATE Qt6::Core)
 target_link_libraries(SolveRubicCube PRIVATE Qt6::OpenGLWidgets)
-target_link_libraries(SolveRubicCube ${GLUT_LIBRARY})
+target_link_libraries(SolveRubicCube PRIVATE ${GLUT_INCLUDE_LIBRARY})
+
 set (QT_USE_QTOPENGL TRUE)
 set_target_properties(SolveRubicCube PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
