@@ -1,46 +1,41 @@
-/*! \file rubik.cpp
- *
- */
 #include "rubik.h"
+#include "./ui_rubik.h"
 #include "mainwindow.h"
 #include <QMessageBox>
 #include <QGridLayout>
 #include <QProcess>
+#include <QRandomGenerator>
+#include <QtOpenGLWidgets/QtOpenGLWidgets>
 
-/*! Realizacija
- * Ubacuje u graficki interfejs widget na kom nam se iscrtava 3D objekat, i prikazuje ga, i stavlja fokus na njega,
- * i slotovi za komunikaciju sa dugmicima interfejsa.
- */
-rubik::rubik(QWidget *parent, Qt::WindowFlags flags)
-    : QMainWindow(parent, flags)
+rubik::rubik(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::rubik)
 {
-    ui.setupUi(this);
-    QGridLayout *gd=new QGridLayout(ui.rubick_group_box);
-    Widget=new GLWidget(ui.rubick_group_box);
+    ui->setupUi(this);
+    QGridLayout *gd =new QGridLayout(ui->rubick_group_box);
+    Widget = new QOpenGLWidget(ui->rubick_group_box);
     gd->addWidget(Widget);
     Widget->show();
     Widget->setFocusPolicy(Qt::StrongFocus);
     Widget->setFocus();
 
     // Connect button signal to appropriate slot
-    connect(ui.make_cube_btn, SIGNAL (clicked()), Widget, SLOT (make_random_cube()));
-    connect(ui.new_game_btn, SIGNAL (clicked()), Widget, SLOT (new_game()));
-    connect(ui.solve_it_btn, SIGNAL (clicked()), Widget, SLOT (solve_it()));
-    connect(ui.god_btn, SIGNAL (clicked()), Widget, SLOT (god_ptn()));
-    connect(ui.six_spots_btn, SIGNAL (clicked()), Widget, SLOT (spots_ptn()));
-    connect(ui.checkerboard_btn, SIGNAL (clicked()), Widget, SLOT (checker_ptn()));
-    connect(ui.cross_btn, SIGNAL (clicked()), Widget, SLOT (cross_ptn()));
-    connect(ui.cube_in_cube_btn, SIGNAL (clicked()), Widget, SLOT (cube_in_cube_ptn()));
+    connect(ui->make_cube_btn, SIGNAL (clicked()), Widget, SLOT (make_random_cube()));
+    connect(ui->new_game_btn, SIGNAL (clicked()), Widget, SLOT (new_game()));
+    connect(ui->solve_it_btn, SIGNAL (clicked()), Widget, SLOT (solve_it()));
+    connect(ui->god_btn, SIGNAL (clicked()), Widget, SLOT (god_ptn()));
+    connect(ui->six_spots_btn, SIGNAL (clicked()), Widget, SLOT (spots_ptn()));
+    connect(ui->checkerboard_btn, SIGNAL (clicked()), Widget, SLOT (checker_ptn()));
+    connect(ui->cross_btn, SIGNAL (clicked()), Widget, SLOT (cross_ptn()));
+    connect(ui->cube_in_cube_btn, SIGNAL (clicked()), Widget, SLOT (cube_in_cube_ptn()));
 
 }
 
-/*! Destruktor nam je prazan*/
 rubik::~rubik()
-{}
-/*! Realizacija
- * @param w nam sluzi da bi mogli da pozovemo metodu RandomCube
- *
- */
+{
+    delete ui;
+}
+
 void rubik::make_random_cube(){
     GLWidget w;
     w.RandomCube();
@@ -74,7 +69,8 @@ void rubik::solve_it(){
 void rubik::on_FunFacts_clicked()
 {
     int number=10;
-    int value= qrand()%number;
+    int value= QRandomGenerator::global()->generate()%number;
+
     switch(value){
     case 0:
     QMessageBox::information(this,"Fun fun fun", "A Rubik’s Cube has 43,252,003,274,489,856,000 possible configurations.");

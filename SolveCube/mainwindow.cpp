@@ -1,8 +1,5 @@
-/*! \file mainwindow.cpp
- * \brief Implementacija
- * Implementacija metoda, pomocna klasa MoveBuffer.
- */
 #include "mainwindow.h"
+#include "rubik.h"
 #include <math.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -525,9 +522,10 @@ void  GLWidget::rotLD(int flag)
         k=0;
         fr=0;
         while (k<90) {
-            time.start();
-            updateGL();
-            fr+=(time.elapsed()*90.)/DT;
+            time.currentTime();
+
+          //  updateGL();
+          //  fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -538,7 +536,7 @@ void  GLWidget::rotLD(int flag)
 
         }
 
-        updateGL();
+       // updateGL();
         resetCube();
     }
 }
@@ -582,9 +580,9 @@ void GLWidget::rotLU(int flag)
         k=0;
         fr=0;
         while (k<90) {
-            time.start();
-            updateGL();
-            fr+=(time.elapsed()*90.)/DT;
+          //  time.start();
+         //   updateGL();
+         //   fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -595,7 +593,7 @@ void GLWidget::rotLU(int flag)
 
         }
 
-        updateGL();
+       // updateGL();
         resetCube();
     }
 }
@@ -640,9 +638,9 @@ void  GLWidget::rotRD(int flag)
         k=0;
         fr=0;
         while (k<90) {
-            time.start();
-            updateGL();
-            fr+=(time.elapsed()*90.)/DT;
+         //   time.start();
+         //   updateGL();
+         //   fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -652,7 +650,7 @@ void  GLWidget::rotRD(int flag)
             A[20]->rotX(r); A[23]->rotX(r); A[26]->rotX(r);
         }
 
-        updateGL();
+ //       updateGL();
         resetCube();
     }
 
@@ -698,9 +696,9 @@ void  GLWidget::rotRU(int flag)
         k=0;
         fr=0;
         while (k<90) {
-            time.start();
-            updateGL();
-            fr+=(time.elapsed()*90.)/DT;
+        //    time.start();
+        //    updateGL();
+        //    fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -710,7 +708,7 @@ void  GLWidget::rotRU(int flag)
             A[20]->rotX(-r); A[23]->rotX(-r); A[26]->rotX(-r);
         }
 
-        updateGL();
+       // updateGL();
         resetCube();
     }
 
@@ -755,9 +753,9 @@ void  GLWidget::rotFR(int flag)
         k=0;
         fr=0;
         while (k<90) {
-            time.start();
-            updateGL();
-            fr+=(time.elapsed()*90.)/DT;
+       //     time.start();
+       //     updateGL();
+        //    fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -767,7 +765,7 @@ void  GLWidget::rotFR(int flag)
             A[24]->rotZ(-r); A[25]->rotZ(-r); A[26]->rotZ(-r);
         }
 
-        updateGL();
+     //   updateGL();
         resetCube();
     }
 
@@ -812,9 +810,9 @@ void  GLWidget::rotFL(int flag)
         k=0;
         fr=0;
         while (k<90) {
-            time.start();
-            updateGL();
-            fr+=(time.elapsed()*90.)/DT;
+         //   time.start();
+         //   updateGL();
+        //    fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -824,7 +822,7 @@ void  GLWidget::rotFL(int flag)
             A[24]->rotZ(r); A[25]->rotZ(r); A[26]->rotZ(r);
         }
 
-        updateGL();
+     //   updateGL();
         resetCube();
     }
 }
@@ -868,9 +866,9 @@ void  GLWidget::rotTL(int flag)
         k=0;
         fr=0;
         while (k<90) {
-            time.start();
-            updateGL();
-            fr+=(time.elapsed()*90.)/DT;
+           // time.start();
+          //  updateGL();
+          //  fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -880,7 +878,7 @@ void  GLWidget::rotTL(int flag)
             A[24]->rotY(-r); A[25]->rotY(-r); A[26]->rotY(-r);
         }
 
-        updateGL();
+      //  updateGL();
         resetCube();
     }
 
@@ -925,9 +923,9 @@ void  GLWidget::rotTR(int flag)
         k=0;
         fr=0;
         while (k<90) {
-            time.start();
-            updateGL();
-            fr+=(time.elapsed()*90.)/DT;
+        //    time.start();
+       //     updateGL();
+           // fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -937,7 +935,7 @@ void  GLWidget::rotTR(int flag)
             A[24]->rotY(r); A[25]->rotY(r); A[26]->rotY(r);
         }
 
-        updateGL();
+     //   updateGL();
         resetCube();
     }
 
@@ -983,9 +981,9 @@ void  GLWidget::rotDL(int flag)
         k=0;
         fr=0;
         while (k<90) {
-            time.start();
-            updateGL();
-            fr+=(time.elapsed()*90.)/DT;
+      //      time.start();
+       //     updateGL();
+       //     fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -995,7 +993,7 @@ void  GLWidget::rotDL(int flag)
             A[18]->rotY(-r); A[19]->rotY(-r); A[20]->rotY(-r);
         }
 
-        updateGL();
+        //updateGL();
         resetCube();
     }
 }
@@ -1040,9 +1038,9 @@ void GLWidget::rotDR(int flag)
         k=0;
         fr=0;
         while (k<90) {
-            time.start();
-            updateGL();
-            fr+=(time.elapsed()*90.)/DT;
+          //  time.start();
+         //   updateGL();
+         //   fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -1055,7 +1053,7 @@ void GLWidget::rotDR(int flag)
 
         resetCube();
 
-        updateGL();
+     //   updateGL();
     }
 }
 
@@ -1085,9 +1083,9 @@ void GLWidget::rotBL(int flag){
         k=0;
         fr=0;
         while (k<90) {
-            time.start();
-            updateGL();
-            fr+=(time.elapsed()*90.)/DT;
+        //    time.start();
+        //    updateGL();
+       //     fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -1097,7 +1095,7 @@ void GLWidget::rotBL(int flag){
             A[6]->rotZ(r); A[7]->rotZ(r); A[8]->rotZ(r);
         }
 
-        updateGL();
+      //  updateGL();
         resetCube();
     }
 }
@@ -1127,9 +1125,9 @@ void GLWidget::rotBR(int flag){
         k=0;
         fr=0;
         while (k<90) {
-            time.start();
-            updateGL();
-            fr+=(time.elapsed()*90.)/DT;
+         //   time.start();
+        //    updateGL();
+        //    fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -1138,7 +1136,7 @@ void GLWidget::rotBR(int flag){
             A[3]->rotZ(-r); A[4]->rotZ(-r); A[5]->rotZ(-r);
             A[6]->rotZ(-r); A[7]->rotZ(-r); A[8]->rotZ(-r);
         }
-        updateGL();
+      //  updateGL();
         resetCube();
     }
 }
@@ -1159,7 +1157,7 @@ void GLWidget::RandomCube()
     int valueR;
 
 for(int i=0; i<n;i++){
-    valueR= qrand()%number;
+   // valueR= qrand()%number;
     switch(valueR){
     case 0: rotLD(); Buffer.pushBuffer('F'); break;
     case 1: rotLU(); Buffer.pushBuffer('D'); break;
@@ -1280,7 +1278,7 @@ void GLWidget::solve_it(){
  * Pozovemo resetCube
  */
 GLWidget::GLWidget(QWidget *parent)
-     : QGLWidget(parent)
+     : QOpenGLWidget(parent)
 {
      resetCube();
 }
@@ -1402,10 +1400,10 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
 
         glLoadIdentity();
 
-        gluPickMatrix(x,viewport[3]+2*viewport[1]-y,3,3,viewport);
+        //gluPickMatrix(x,viewport[3]+2*viewport[1]-y,3,3,viewport);
         ORTHOFRUSTRUM;
 
-        updateGL();
+       // updateGL();
 
         glMatrixMode (GL_PROJECTION);
         glPopMatrix();
@@ -1438,7 +1436,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
     glLoadMatrixf(pmat);
 
 
-         updateGL();
+     //    updateGL();
 
      }
      lastPos = event->pos();
@@ -1648,5 +1646,3 @@ void GLWidget::cube_in_cube_ptn(){
     rotFL(); Buffer.pushBuffer('G');
 
 }
-
-
