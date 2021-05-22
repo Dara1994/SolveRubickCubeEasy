@@ -524,7 +524,7 @@ void  GLWidget::rotLD(int flag)
         while (k<90) {
             time.currentTime();
 
-          //  updateGL();
+            paintGL();
           //  fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
@@ -536,7 +536,7 @@ void  GLWidget::rotLD(int flag)
 
         }
 
-       // updateGL();
+        paintGL();
         resetCube();
     }
 }
@@ -550,7 +550,7 @@ void  GLWidget::rotLD(int flag)
  * @param r je ugao za koji se pomera
  * @param fr je frame odnosno koliko ce se pomeriti za delic vremena.
  *
- * U while petlji mi cemo vrsiti updateGL da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
+ * U while petlji mi cemo vrsiti paintGl da osvezimo sliku, obnovimo koliko jos vremena nam je ostalo
  * i za to vreme polako pomerati odgovarajuce kockice oko X ose.
  */
 void GLWidget::rotLU(int flag)
@@ -581,7 +581,7 @@ void GLWidget::rotLU(int flag)
         fr=0;
         while (k<90) {
           //  time.start();
-         //   updateGL();
+              paintGL();
          //   fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
@@ -593,7 +593,7 @@ void GLWidget::rotLU(int flag)
 
         }
 
-       // updateGL();
+        paintGL();
         resetCube();
     }
 }
@@ -639,7 +639,7 @@ void  GLWidget::rotRD(int flag)
         fr=0;
         while (k<90) {
          //   time.start();
-         //   updateGL();
+               paintGL();
          //   fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
@@ -650,7 +650,7 @@ void  GLWidget::rotRD(int flag)
             A[20]->rotX(r); A[23]->rotX(r); A[26]->rotX(r);
         }
 
- //       updateGL();
+        paintGL();
         resetCube();
     }
 
@@ -697,7 +697,7 @@ void  GLWidget::rotRU(int flag)
         fr=0;
         while (k<90) {
         //    time.start();
-        //    updateGL();
+              paintGL();
         //    fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
@@ -708,7 +708,7 @@ void  GLWidget::rotRU(int flag)
             A[20]->rotX(-r); A[23]->rotX(-r); A[26]->rotX(-r);
         }
 
-       // updateGL();
+        paintGL();
         resetCube();
     }
 
@@ -754,7 +754,7 @@ void  GLWidget::rotFR(int flag)
         fr=0;
         while (k<90) {
        //     time.start();
-       //     updateGL();
+              paintGL();
         //    fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
@@ -765,7 +765,7 @@ void  GLWidget::rotFR(int flag)
             A[24]->rotZ(-r); A[25]->rotZ(-r); A[26]->rotZ(-r);
         }
 
-     //   updateGL();
+        paintGL();
         resetCube();
     }
 
@@ -811,7 +811,7 @@ void  GLWidget::rotFL(int flag)
         fr=0;
         while (k<90) {
          //   time.start();
-         //   updateGL();
+              paintGL();
         //    fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
@@ -822,7 +822,7 @@ void  GLWidget::rotFL(int flag)
             A[24]->rotZ(r); A[25]->rotZ(r); A[26]->rotZ(r);
         }
 
-     //   updateGL();
+        paintGL();
         resetCube();
     }
 }
@@ -867,7 +867,7 @@ void  GLWidget::rotTL(int flag)
         fr=0;
         while (k<90) {
            // time.start();
-          //  updateGL();
+              paintGL();
           //  fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
@@ -878,7 +878,7 @@ void  GLWidget::rotTL(int flag)
             A[24]->rotY(-r); A[25]->rotY(-r); A[26]->rotY(-r);
         }
 
-      //  updateGL();
+        paintGL();
         resetCube();
     }
 
@@ -924,7 +924,7 @@ void  GLWidget::rotTR(int flag)
         fr=0;
         while (k<90) {
         //    time.start();
-       //     updateGL();
+            paintGL();
            // fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
@@ -935,7 +935,7 @@ void  GLWidget::rotTR(int flag)
             A[24]->rotY(r); A[25]->rotY(r); A[26]->rotY(r);
         }
 
-     //   updateGL();
+        paintGL();
         resetCube();
     }
 
@@ -982,7 +982,7 @@ void  GLWidget::rotDL(int flag)
         fr=0;
         while (k<90) {
       //      time.start();
-       //     updateGL();
+            paintGL();
        //     fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
@@ -993,7 +993,7 @@ void  GLWidget::rotDL(int flag)
             A[18]->rotY(-r); A[19]->rotY(-r); A[20]->rotY(-r);
         }
 
-        //updateGL();
+        paintGL();
         resetCube();
     }
 }
@@ -1039,7 +1039,7 @@ void GLWidget::rotDR(int flag)
         fr=0;
         while (k<90) {
           //  time.start();
-         //   updateGL();
+            paintGL();
          //   fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
@@ -1053,7 +1053,7 @@ void GLWidget::rotDR(int flag)
 
         resetCube();
 
-     //   updateGL();
+        paintGL();
     }
 }
 
@@ -1084,7 +1084,7 @@ void GLWidget::rotBL(int flag){
         fr=0;
         while (k<90) {
         //    time.start();
-        //    updateGL();
+            paintGL();
        //     fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
@@ -1095,7 +1095,7 @@ void GLWidget::rotBL(int flag){
             A[6]->rotZ(r); A[7]->rotZ(r); A[8]->rotZ(r);
         }
 
-      //  updateGL();
+        paintGL();
         resetCube();
     }
 }
@@ -1126,7 +1126,7 @@ void GLWidget::rotBR(int flag){
         fr=0;
         while (k<90) {
          //   time.start();
-        //    updateGL();
+            paintGL();
         //    fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
@@ -1136,7 +1136,7 @@ void GLWidget::rotBR(int flag){
             A[3]->rotZ(-r); A[4]->rotZ(-r); A[5]->rotZ(-r);
             A[6]->rotZ(-r); A[7]->rotZ(-r); A[8]->rotZ(-r);
         }
-      //  updateGL();
+        paintGL();
         resetCube();
     }
 }
@@ -1400,10 +1400,10 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
 
         glLoadIdentity();
 
-        //gluPickMatrix(x,viewport[3]+2*viewport[1]-y,3,3,viewport);
+        gluPickMatrix(x,viewport[3]+2*viewport[1]-y,3,3,viewport);
         ORTHOFRUSTRUM;
 
-       // updateGL();
+        paintGL();
 
         glMatrixMode (GL_PROJECTION);
         glPopMatrix();
@@ -1436,7 +1436,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
     glLoadMatrixf(pmat);
 
 
-     //    updateGL();
+        paintGL();
 
      }
      lastPos = event->pos();
