@@ -13,6 +13,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "-g -O0 -Wall -ftest-coverage -fprofile-arcs")
 set(CMAKE_C_FLAGS "-g -O0 -Wall -W -ftest-coverage -fprofile-arcs")
 set(CMAKE_EXE_LINKER_FLAGS "-ftest-coverage -fprofile-arcs")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check https://doc.qt.io/qt/deployment-android.html for more information.

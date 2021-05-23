@@ -67,7 +67,7 @@ class MoveBuffer
 	/*! \brief Pop.
 	 * \return slovo sa vrha buffera.
 	 */
-	char popBuffer();
+	auto popBuffer() -> char;
 };
 
 /*! Buffer
@@ -108,7 +108,7 @@ void MoveBuffer::pushBuffer(char mov)
  * ukoliko duzina buffera nije nula smanjimo tu duzino i vratimo char sa vrha.
  * ukoliko nam je duzina buffera nula, odnosno Buffer je prazan, vracamo nulu.
  */
-char MoveBuffer::popBuffer()
+auto MoveBuffer::popBuffer() -> char
 {
 	if (movBufferLen > 0) {
 		movBufferLen--;
@@ -1997,7 +1997,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
  * @param render_mode provera da li je kocka vec prikazana i ako nije iscrta je.
  */
 
-GLuint GLWidget::makeObject()
+auto GLWidget::makeObject() -> GLuint
 {
 	int render_mode;
 	glGetIntegerv(GL_RENDER_MODE, &render_mode);
