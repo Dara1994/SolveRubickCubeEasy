@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(SolveRubicCube VERSION 0.1 LANGUAGES CXX)
+project(SolveCube VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -30,9 +30,9 @@ find_package(Qt6 COMPONENTS OpenGL REQUIRED)
 find_package(Qt6 COMPONENTS OpenGLWidgets REQUIRED)
 find_package(Qt6 COMPONENTS Core REQUIRED)
 find_package(Qt6 COMPONENTS Gui REQUIRED)
-
-
-include_directories( ${QT_QTOPENGL_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLUT_INCLUDE_DIR})
+find_package(GLUT REQUIRED)
+include_directories(${GLUT_INCLUDE_DIRS})
+include_directories(${OPENGL_INCLUDE_DIRS})
 
 set(PROJECT_SOURCES
         mainwindow.cpp
@@ -44,36 +44,37 @@ set(PROJECT_SOURCES
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(SolveRubicCube
+    qt_add_executable(SolveCube
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
 else()
     if(ANDROID)
-        add_library(SolveRubicCube SHARED
+        add_library(SolveCube SHARED
             ${PROJECT_SOURCES}
         )
     else()
-        add_executable(SolveRubicCube
+        add_executable(SolveCube
             ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
-target_link_libraries(SolveRubicCube PRIVATE Qt6::Widgets)
-target_link_libraries(SolveRubicCube PRIVATE Qt6::OpenGL)
-target_link_libraries(SolveRubicCube PRIVATE Qt6::Gui)
-target_link_libraries(SolveRubicCube PRIVATE Qt6::Core)
-target_link_libraries(SolveRubicCube PRIVATE Qt6::OpenGLWidgets)
-target_link_libraries(SolveRubicCube PRIVATE ${GLUT_INCLUDE_LIBRARY})
+target_link_libraries(SolveCube PRIVATE Qt6::Widgets)
+target_link_libraries(SolveCube PRIVATE Qt6::OpenGL)
+target_link_libraries(SolveCube PRIVATE Qt6::Gui)
+target_link_libraries(SolveCube PRIVATE Qt6::Core)
+target_link_libraries(SolveCube PRIVATE Qt6::OpenGLWidgets)
+target_link_libraries(SolveCube PRIVATE ${GLUT_LIBRARIES})
+target_link_libraries(SolveCube PRIVATE ${OPENGL_LIBRARIES})
 
 set (QT_USE_QTOPENGL TRUE)
-set_target_properties(SolveRubicCube PROPERTIES
+set_target_properties(SolveCube PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(SolveRubicCube)
+    qt_finalize_executable(SolveCube)
 endif()
