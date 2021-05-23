@@ -13,7 +13,7 @@ rubik::rubik(QWidget *parent)
 {
     ui->setupUi(this);
     QGridLayout *gd =new QGridLayout(ui->rubick_group_box);
-    Widget = new QOpenGLWidget(ui->rubick_group_box);
+    Widget = new GLWidget(ui->rubick_group_box);
     gd->addWidget(Widget);
     Widget->show();
     Widget->setFocusPolicy(Qt::StrongFocus);

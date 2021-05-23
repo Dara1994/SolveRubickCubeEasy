@@ -1,9 +1,11 @@
 #include "mainwindow.h"
-#include "rubik.h"
 #include <math.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <QTime>
+#include <cstdlib>
+#include <QElapsedTimer>
+#include <QRandomGenerator>
 
 
 /*! @param R je float sa vrednoscu 0.2
@@ -517,15 +519,14 @@ void  GLWidget::rotLD(int flag)
         int k;
         int r;
         float fr;
-        QTime time;
+        QElapsedTimer time;
 
         k=0;
         fr=0;
         while (k<90) {
-            time.currentTime();
-
+            time.start();
             paintGL();
-          //  fr+=(time.elapsed()*90.)/DT;
+            fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -575,14 +576,14 @@ void GLWidget::rotLU(int flag)
         int k;
         int r;
         float fr;
-        QTime time;
+        QElapsedTimer time;
 
         k=0;
         fr=0;
         while (k<90) {
-          //  time.start();
-              paintGL();
-         //   fr+=(time.elapsed()*90.)/DT;
+            time.start();
+            paintGL();
+            fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -633,14 +634,14 @@ void  GLWidget::rotRD(int flag)
         int k;
         int r;
         float fr;
-        QTime time;
+        QElapsedTimer time;
 
         k=0;
         fr=0;
         while (k<90) {
-         //   time.start();
-               paintGL();
-         //   fr+=(time.elapsed()*90.)/DT;
+            time.start();
+            paintGL();
+            fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -691,14 +692,14 @@ void  GLWidget::rotRU(int flag)
         int k;
         int r;
         float fr;
-        QTime time;
+        QElapsedTimer time;
 
         k=0;
         fr=0;
         while (k<90) {
-        //    time.start();
-              paintGL();
-        //    fr+=(time.elapsed()*90.)/DT;
+            time.start();
+            paintGL();
+            fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -748,14 +749,14 @@ void  GLWidget::rotFR(int flag)
         int k;
         int r;
         float fr;
-        QTime time;
+        QElapsedTimer time;
 
         k=0;
         fr=0;
         while (k<90) {
-       //     time.start();
-              paintGL();
-        //    fr+=(time.elapsed()*90.)/DT;
+            time.start();
+            paintGL();
+            fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -805,14 +806,14 @@ void  GLWidget::rotFL(int flag)
         int k;
         int r;
         float fr;
-        QTime time;
+        QElapsedTimer time;
 
         k=0;
         fr=0;
         while (k<90) {
-         //   time.start();
-              paintGL();
-        //    fr+=(time.elapsed()*90.)/DT;
+            time.start();
+            paintGL();
+            fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -861,14 +862,14 @@ void  GLWidget::rotTL(int flag)
         int k;
         int r;
         float fr;
-        QTime time;
+        QElapsedTimer time;
 
         k=0;
         fr=0;
         while (k<90) {
-           // time.start();
-              paintGL();
-          //  fr+=(time.elapsed()*90.)/DT;
+            time.start();
+            paintGL();
+            fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -918,14 +919,14 @@ void  GLWidget::rotTR(int flag)
         int k;
         int r;
         float fr;
-        QTime time;
+        QElapsedTimer time;
 
         k=0;
         fr=0;
         while (k<90) {
-        //    time.start();
+            time.start();
             paintGL();
-           // fr+=(time.elapsed()*90.)/DT;
+            fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -976,14 +977,14 @@ void  GLWidget::rotDL(int flag)
         int k;
         int r;
         float fr;
-        QTime time;
+        QElapsedTimer time;
 
         k=0;
         fr=0;
         while (k<90) {
-      //      time.start();
+            time.start();
             paintGL();
-       //     fr+=(time.elapsed()*90.)/DT;
+            fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -1033,14 +1034,14 @@ void GLWidget::rotDR(int flag)
         int k;
         int r;
         float fr;
-        QTime time;
+        QElapsedTimer time;
 
         k=0;
         fr=0;
         while (k<90) {
-          //  time.start();
+            time.start();
             paintGL();
-         //   fr+=(time.elapsed()*90.)/DT;
+            fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -1078,14 +1079,14 @@ void GLWidget::rotBL(int flag){
         int k;
         int r;
         float fr;
-        QTime time;
+        QElapsedTimer time;
 
         k=0;
         fr=0;
         while (k<90) {
-        //    time.start();
+            time.start();
             paintGL();
-       //     fr+=(time.elapsed()*90.)/DT;
+            fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -1120,14 +1121,14 @@ void GLWidget::rotBR(int flag){
         int k;
         int r;
         float fr;
-        QTime time;
+        QElapsedTimer time;
 
         k=0;
         fr=0;
         while (k<90) {
-         //   time.start();
+            time.start();
             paintGL();
-        //    fr+=(time.elapsed()*90.)/DT;
+            fr+=(time.elapsed()*90.)/DT;
             r=fr; fr-=r;
             if (k+r>90) r=90-k;
             k=k+r;
@@ -1157,7 +1158,8 @@ void GLWidget::RandomCube()
     int valueR;
 
 for(int i=0; i<n;i++){
-   // valueR= qrand()%number;
+    int valueR = rand()%number;
+
     switch(valueR){
     case 0: rotLD(); Buffer.pushBuffer('F'); break;
     case 1: rotLU(); Buffer.pushBuffer('D'); break;
