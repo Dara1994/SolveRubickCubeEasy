@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(SolveCube VERSION 0.1 LANGUAGES CXX)
+project(SolveRubickCubeEasy VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -49,37 +49,37 @@ set(PROJECT_SOURCES
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(SolveCube
+    qt_add_executable(SolveRubickCubeEasy
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
 else()
     if(ANDROID)
-        add_library(SolveCube SHARED
+        add_library(SolveRubickCubeEasy SHARED
             ${PROJECT_SOURCES}
         )
     else()
-        add_executable(SolveCube
+        add_executable(SolveRubickCubeEasy
             ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
-target_link_libraries(SolveCube PRIVATE Qt6::Widgets)
-target_link_libraries(SolveCube PRIVATE Qt6::OpenGL)
-target_link_libraries(SolveCube PRIVATE Qt6::Gui)
-target_link_libraries(SolveCube PRIVATE Qt6::Core)
-target_link_libraries(SolveCube PRIVATE Qt6::OpenGLWidgets)
-target_link_libraries(SolveCube PRIVATE ${GLUT_LIBRARIES})
-target_link_libraries(SolveCube PRIVATE ${OPENGL_LIBRARIES})
+target_link_libraries(SolveRubickCubeEasy PRIVATE Qt6::Widgets)
+target_link_libraries(SolveRubickCubeEasy PRIVATE Qt6::OpenGL)
+target_link_libraries(SolveRubickCubeEasy PRIVATE Qt6::Gui)
+target_link_libraries(SolveRubickCubeEasy PRIVATE Qt6::Core)
+target_link_libraries(SolveRubickCubeEasy PRIVATE Qt6::OpenGLWidgets)
+target_link_libraries(SolveRubickCubeEasy PRIVATE ${GLUT_LIBRARIES})
+target_link_libraries(SolveRubickCubeEasy PRIVATE ${OPENGL_LIBRARIES})
 
 set (QT_USE_QTOPENGL TRUE)
-set_target_properties(SolveCube PROPERTIES
+set_target_properties(SolveRubickCubeEasy PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(SolveCube)
+    qt_finalize_executable(SolveRubickCubeEasy)
 endif()
