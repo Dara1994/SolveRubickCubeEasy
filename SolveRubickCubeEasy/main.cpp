@@ -4,8 +4,8 @@
 
 auto main(int argc, char *argv[]) -> int
 {
-	QApplication a(argc, argv);
-	rubik w;
-	w.show();
-	return a.exec();
+    QApplication a(argc, argv);
+    rubik w;
+    w.show();
+    return a.exec();
 }
